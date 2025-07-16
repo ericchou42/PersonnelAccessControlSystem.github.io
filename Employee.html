@@ -1,0 +1,40 @@
+<DOCTYPE html>
+<html>
+    <head>
+        <title>員工</title>
+        <script src = "main.js"></script>
+        <style>
+            .IP{
+                display:flex;
+                flex-direction:column;
+                align-items:center;
+                gap:45px;
+                border:2px solid #000000;
+                width:450px;
+                padding: 24px 48px;
+                margin: 30px auto;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+    <body>
+        <button style = "width: 150px;height:75px;" onclick = "jump('index')">回首頁</button>
+        <div class = "IP">
+            <div  style = "font-size:25px;">
+                姓名:<input style = "width: 200px;height: 25px;" id = "name">
+            </div>
+            <div  style = "font-size:25px;">
+                工號:<input style = "width: 200px;height: 25px;" id = "eid">
+            </div>
+            <div  style = "font-size:25px;">
+                部門編號:<input style = "width: 200px;height: 25px;" id = "department">
+            </div>
+            <div  style = "font-size:25px;">
+                備註:<input style = "width: 200px;height: 25px;" id = "remark">
+            </div>
+            <div  style = "font-size:25px;">
+                <button style = "width: 125px;height:50px;"onclick = "send_data(1)">送出</button>
+            </div>
+        </div>
+    </body>
+</html>

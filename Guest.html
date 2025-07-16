@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<head>
+    <title>訪客</title>
+    <script src = "main.js"></script>
+    <style>
+        .IP{
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+            gap:45px;
+            border: 2px solid #000;
+            padding: 24px 48px;
+            width: 700px;
+            margin: 30px auto;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <button style = "width: 150px;height:75px;" onclick = "jump('index')">回首頁</button>
+    <div style = "display:flex;flex-direction:column;align-items:center;">
+        <div class = "IP">
+            <div  style = "font-size:25px;">姓名:   <input style = "width: 200px;height: 25px;" id = "name"></div>
+            <div style="display: flex; align-items: flex-start;">
+                    <div style = "margin-right:5px;font-size:25px;">
+                        事由:
+                    </div>
+                    <div style = "display:flex;flex-direction:column;border:1px solid #000000;gap:12px;margin:20 30px;" class = "checkbox">
+                 
+                        <div style = "font-size: 25px;"><input  style = "transform:scale(2);margin:10px 10px;" type = "radio" name="reason" class = "reason">廠商領料<br></div>
+                        <div style = "font-size: 25px;"><input style = "transform:scale(2);margin: 10px 10px;" type = "radio" name="reason" class = "reason">廠商退貨<br></div>
+                        <div style = "font-size: 25px;"><input style = "transform:scale(2);margin: 10px 10px;" type = "radio" name="reason" class = "reason">轉廠、調撥<br></div>
+                        <div style = "font-size: 25px;"><input style = "transform:scale(2);margin: 10px 10px;" type = "radio" name="reason" class = "reason">出貨<br></div>
+                        <div style = "font-size: 25px;"><input style = "transform:scale(2);margin: 10px 10px;" type = "radio" name="reason" class = "reason">其他<input style = "width: 200px;height: 25px;" id = "other"></div>
+                    </div>
+            </div>
+            <div  style = "font-size:25px;">
+                單位:    <input style = "width: 200px;height: 25px;" id = "unit">
+            </div>
+            <div  style = "font-size:25px;">
+                受訪者:  <input style = "width: 200px;height: 25px;" id = visited>
+            </div>
+            <div  style = "font-size:25px;">
+                證號:   
+                <select style = "font-size:30px;" id ="identity" name="identity">
+                    <option value="">請選擇</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                </select>
+            </div>
+            <div  style = "font-size:25px;">
+                備註:   <input style = "width: 200px;height: 25px;" id = "remark">
+            </div>
+            <div  style = "font-size:25px;">
+                人數:   
+                <select style = "font-size:30px;" id ="npeople" name="npeople">
+                    <option value="">請選擇</option>
+                    <option value="1">1人</option>
+                    <option value="2">2人</option>
+                    <option value="3">3人</option>
+                    <option value="4">4人</option>
+                    <option value="5">5人</option>
+                    <option value="6">6人</option>
+                    <option value="7">7人</option>
+                    <option value="8">8人</option>
+                    <option value="9">9人</option>
+                    <option value="10">10人</option>
+                </select>
+            </div>
+            <div  style = "font-size:25px;">
+                <input style = "transform:scale(2);margin-right:20px" type = "checkbox" id = checkbutton>同意打勾
+                <canvas style = "border:2px solid #000000;width: 400px;height:150px;"></canvas>
+            </div>
+        </div>
+        <br>
+            <div style="display: flex; gap: 100px; justify-content: center;">
+            <button style="width: 120px;height:40px;">清除</button>
+            <button style="width: 120px;height:40px;" onclick = "send_data(0)">送出</button>
+        </div>
+    </div>
+</body>
