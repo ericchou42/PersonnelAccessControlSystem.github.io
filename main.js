@@ -14,7 +14,7 @@ function getNowDatetime() {
 
 
 function send_data(type){
-    //type = 0(訪客)，type = 1(員工)
+    let Alertstr = "請 ";
     if(type == 0){
         let Agree = document.getElementById("checkbutton").checked;
         let Gname = document.getElementById("name");
@@ -23,16 +23,13 @@ function send_data(type){
         let Visited = document.getElementById("visited");
         let Identity = document.getElementById("identity");
         let Remark = document.getElementById("remark");
-        let Npeople = document.getElementById("npeople"); //人數
+        let Npeople = document.getElementById("npeople");
 
         let Reason_string = ""
         let Reason_dic = ["廠商領料", "廠商退貨", "轉發、調撥", "出貨"];
-        //閱讀同意
         if(!Agree){
-            alert("請閱讀須知並勾選同意");
-            return;
+            Alertstr += "閱讀須知並勾選同意 ";
         }
-        //事由
         for(let index = 0;index < Reason.length - 1;index++){
             if(Reason[index].checked){
                 Reason_string = Reason_dic[index];
@@ -42,20 +39,45 @@ function send_data(type){
         if(Reason[Reason.length - 1].checked){
             let other = document.getElementById("other").value;
                 if(other == ""){
-                    alert("請填寫完整資料");
-                    return;
+                    Alertstr += "填寫完整事由 ";
                 }
                 Reason_string = "其他:" + other;
         }
         if(Reason_string == ""){
-            alert("請填寫完整資料");
+            Alertstr += "勾選事由 ";
+        }
+        if(Gname.value == "" ){
+            Alertstr += "填寫名稱 ";
+        }
+        if(Unit.value == ""){
+            Alertstr += "填寫單位 ";
+        }
+        if(Visited.value == ""){
+            Alertstr += "填寫受訪者 ";
+        }
+        if(Identity.value == ""){
+            Alertstr += "填寫證號 ";
+        }
+        if(Npeople.value == ""){
+            Alertstr += "填寫人數 ";
+        }
+        if(Alertstr != "請 "){
+            alert(Alertstr);
             return;
         }
-        //其餘填寫
-        if(Gname.value == "" || Unit.value == "" || Visited.value == "" || Identity.value == "" || Npeople.value == ""){
-            alert("請填寫完整資料");
+        let confirmMsg = 
+            "【請再次確認資料】\n\n" +
+            "姓名：" + Gname.value + "\n" +
+            "單位：" + Unit.value + "\n" +
+            "受訪者：" + Visited.value + "\n" +
+            "證號：" + Identity.value + "\n" +
+            "備註：" + Remark.value + "\n" +
+            "人數：" + Npeople.options[Npeople.selectedIndex].text + "\n" +
+            "事由：" + Reason_string + "\n";
+        if(!confirm(confirmMsg)){
             return;
         }
+
         fetch("Save.php",{
             method: "POST",
             headers: {'Content-Type':'application/x-www-form-urlencoded'},
@@ -72,7 +94,7 @@ function send_data(type){
         .then(response => response.text())
         .then(msg => {
             if (msg.trim() === "success") {
-                alert(msg);
+                alert("送出成功！");
                 jump("index");
             }
         });
@@ -82,10 +104,29 @@ function send_data(type){
         let Eid = document.getElementById("eid");
         let Department = document.getElementById("department");
         let Remark = document.getElementById("remark");
-        if(Ename.value == "" || Eid.value == "" || Department.value == ""){
-            alert("請填寫完整資料");
+        if(Ename.value == ""){
+            Alertstr += "填寫姓名 ";
+        }
+        if(Eid.value == ""){
+            Alertstr += "填寫工號 ";
+        }
+        if(Department.value == ""){
+            Alertstr += "填寫完整資料 ";
+        }
+        if(Alertstr != "請 "){
+            alert(Alertstr);
             return;
         }
+        let confirmMsg = 
+            "【請再次確認資料】\n\n" +
+            "姓名：" + Ename.value + "\n" +
+            "工號：" + Eid.value + "\n" +
+            "部門：" + Department.value + "\n" +
+            "備註：" + Remark.value + "\n";
+        if(!confirm(confirmMsg)){
+            return;
+        }
+
         fetch("Save.php",{
             method:"POST",
             headers:{'Content-Type':'application/x-www-form-urlencoded'},
@@ -96,10 +137,10 @@ function send_data(type){
                 'Remark=' + encodeURIComponent(Remark.value) + '&' +
                 "Enter_time=" + encodeURIComponent(getNowDatetime())
         })
-        .then(response => response.text())     // 取回後端回應的純文字
+        .then(response => response.text())
         .then(msg => {
             if (msg.trim() === "success") {
-                alert(msg);
+                alert("送出成功！");
                 jump("index");
             }
         });

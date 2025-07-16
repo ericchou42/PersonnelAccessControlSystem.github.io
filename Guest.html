@@ -2,6 +2,7 @@
 <head>
     <title>訪客</title>
     <script src = "main.js"></script>
+    <script src = "signature_pad.js"></script>
     <style>
         .IP{
             display:flex;
@@ -14,10 +15,69 @@
             margin: 30px auto;
             box-sizing: border-box;
         }
+        .Head{
+            font-size: 50px;
+        }
+        p {
+            margin: 4px 0;
+            font-size: 22px;
+            text-align: left;
+        }
+        p.Head {
+            font-size: 32px;
+            font-weight: bold;
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+        p.Sub {
+            font-size: 26px;
+            font-weight: bold;
+            color: #2736af;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
     <button style = "width: 150px;height:75px;" onclick = "jump('index')">回首頁</button>
+    <div style="display:flex; flex-direction:column; align-items:center; gap:10px;">
+        <div style="width: 700px; text-align: left;">
+            <p class="Head">光紅建聖股份有限公司</p>
+            <p class="Head">入廠安全衛生須知</p>
+            <p class="Sub">一、一般注意事項：</p>
+            <p>1.本公司全面禁止吸煙及食用橫榔。</p>
+            <p>2.各室內場所均有緊急出口標示燈，提供緊急逃生路線。</p>
+            <p>3.於聽到緊急疏散廣播時，應依照相關人員的指示，迅速疏散至安全地點。</p>
+            <p>4.廠內火警電話：119，急救電話：110。</p>
+            <p>5.非經許可禁止攜帶危險物、有害物入廠。</p>
+            <p>6.禁止攜帶酒精性飲料、麻藥、毒品、刀械及槍炮彈藥等達禁品入廠。</p>
+            <p>7.注意地板潛在危險（潺滑或積水）。</p>
+            <p>8.上下樓梯請手扶樓梯扶手。</p>
+            <p>9.若有任何疑問，請詢問陪同人員。</p>
+            <p>10.來賓識別證需佩掛於胸前。</p>
+            <p>11.注意車輛。</p>
+            <p class="Sub">二、進入生產區域應注意事項：</p>
+            <p>1.進入生產區域請注意地板潛在危險（混滑、積水或油漬）。</p>
+            <p>2.請儘量穿著平底鞋或換穿現場專用之防滑拖鞋。</p>
+            <p>3.進入無塵室前須穿著防塵帽、無塵衣、靜電拖鞋或鞋套。</p>
+            <p>4.換裝完畢後須進入空氣洗淨室作空氣浴後，始得進入無塵室。</p>
+            <p>5.進入高分貝生產區域請穿戴耳塞。</p>
+            <p>6.非經許可禁止攜帶攝影器材進入生產區域。</p>
+            <p>7.如需照相，請透過本廠陪同人員代為申請。</p>
+            <p>8.參訪人員請依參觀路線，非經許可不得私自進入機器操作區。</p>
+            <p>9.遵守各項警告標示及告示牌之注意事項。</p>
+            <p>10.注意移動式機具及長工件的端面，以避免被撞、被割。</p>
+            <p>11.參訪人員若配戴領帶、識別證或其他證件之吊帶，請取下收好，以免不慎捲入機器設備，造成嚴重傷害。</p>
+            <p class="Sub">三、廠商應注意事項：</p>
+            <p>1.廠區內車輛依現場標示速限行駛，並停放於指定區域。</p>
+            <p>2.超過二分鐘以上務必熄火。</p>
+            <p>3.非經許可禁止使用及操作任何機具。</p>
+            <p>4.廠商操作依法令規範之危險性機械，應出示相關證明。</p>
+            <p>5.施工前應簽署「承攬作業危害因素告知單」。</p>
+            <p>6.其他臨時注意事項：</p>
+            <p>附件編號：N-4-C-HR-47B(240723)</p>
+        </div>
+    </div>
+
     <div style = "display:flex;flex-direction:column;align-items:center;">
         <div class = "IP">
             <div  style = "font-size:25px;">姓名:   <input style = "width: 200px;height: 25px;" id = "name"></div>
@@ -26,7 +86,6 @@
                         事由:
                     </div>
                     <div style = "display:flex;flex-direction:column;border:1px solid #000000;gap:12px;margin:20 30px;" class = "checkbox">
-                 
                         <div style = "font-size: 25px;"><input  style = "transform:scale(2);margin:10px 10px;" type = "radio" name="reason" class = "reason">廠商領料<br></div>
                         <div style = "font-size: 25px;"><input style = "transform:scale(2);margin: 10px 10px;" type = "radio" name="reason" class = "reason">廠商退貨<br></div>
                         <div style = "font-size: 25px;"><input style = "transform:scale(2);margin: 10px 10px;" type = "radio" name="reason" class = "reason">轉廠、調撥<br></div>
@@ -41,7 +100,7 @@
                 受訪者:  <input style = "width: 200px;height: 25px;" id = visited>
             </div>
             <div  style = "font-size:25px;">
-                證號:   
+                證號(請詢問管理員):   
                 <select style = "font-size:30px;" id ="identity" name="identity">
                     <option value="">請選擇</option>
                     <option value="1">1</option>
@@ -87,13 +146,22 @@
             </div>
             <div  style = "font-size:25px;">
                 <input style = "transform:scale(2);margin-right:20px" type = "checkbox" id = checkbutton>同意打勾
-                <canvas style = "border:2px solid #000000;width: 400px;height:150px;"></canvas>
+                <canvas id="signbox" width="400" height="150" style="border:2px solid #000000;width: 400px;height:150px;"></canvas>
             </div>
         </div>
         <br>
             <div style="display: flex; gap: 100px; justify-content: center;">
-            <button style="width: 120px;height:40px;">清除</button>
+            <button style="width: 120px;height:40px;" id = "CBT" onclick = "Clear()">清除簽名</button>
             <button style="width: 120px;height:40px;" onclick = "send_data(0)">送出</button>
         </div>
     </div>
+    <script>
+        const signbox = new SignaturePad(
+            document.getElementById("signbox"),
+            { backgroundColor: "rgba(255,255,255,0)", penColor: "black" }
+        );
+        document.getElementById("CBT").onclick = function(){
+            signbox.clear();
+        };
+    </script>
 </body>
