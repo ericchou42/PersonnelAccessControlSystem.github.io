@@ -57,24 +57,24 @@ if ($image) {
 
 // 判斷訪客(0)或員工(1)來決定欄位
 if ($type == "1") { // 員工
-    $stmt = $conn->prepare("INSERT INTO user (Type, Name, Employee_id, Unit, Remark, Enter_time, Signature) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO user (Type, Name, Employee_id, Unit, Remark, Enter_time) VALUES (?, ?, ?, ?, ?, ?)");
     if (!$stmt) {
         die("prepare fail: " . $conn->error);
     }
-    $stmt->bind_param("issssss", $type, $name, $employee_id, $unit, $remark, $enter_time, $signature_path);
+    $stmt->bind_param("isssss", $type, $name, $employee_id, $unit, $remark, $enter_time);
 } else { // 訪客
-    $stmt = $conn->prepare("INSERT INTO user (Type, Name, Unit, Interviewee, Certificate_num, Remark, Npeople, Reason, Enter_time, Signature) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO user (Type, Name, Unit, Interviewee, Certificate_num, Remark, Npeople, Reason, Enter_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
     if (!$stmt) {
         die("prepare fail: " . $conn->error);
     }
-    $stmt->bind_param("isssssssss", $type, $name, $unit, $interviewee, $certificate_num, $remark, $npeople, $reason, $enter_time, $signature_path);
+    $stmt->bind_param("issssssss", $type, $name, $unit, $interviewee, $certificate_num, $remark, $npeople, $reason, $enter_time);
 }
 
 // 執行
 if ($stmt->execute()) {
     echo "success";
 } else {
-    echo "寫入失敗: " . $conn->error;
+       echo "寫入失敗: " . $conn->error . " 參數: " . json_encode([$type, $name, $unit, $interviewee, $certificate_num, $remark, $npeople, $reason, $enter_time, $signature_path]);
 }
 
 $stmt->close();

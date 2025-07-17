@@ -113,6 +113,12 @@ function send_data(type){
                 alert("送出成功！");
                 jump("index");
             }
+            else{
+                  alert("後端未回傳 success，回應內容：" + msg);
+            }
+        })
+        .catch(err=>{
+            alert("fetch 發生錯誤:" + err);
         });
     }
     else if(type == 1){
