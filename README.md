@@ -25,16 +25,18 @@
 - 支援手寫與打字輸入資料  
 
 ## 系統架構  
+<pre>
 /
-├── signatures/ (裝圖片的資料夾)
-├── Employee.html
-├── Guest.html
-├── index.html
-├── Leave.html
-├── main.js
-├── pdf-lib.js
-├── READ.MD
-├── Save.php
-├── SearchEmployee.php
-├── SearchGuest.php
-└── signature_pad.js
+├── signatures/ (簽名圖片)
+├── Employee.html (員工頁面)
+├── Guest.html (訪客頁面)
+├── index.html (首頁)
+├── Leave.html (離場)
+├── main.js (處理html回傳資料、按鈕跳轉)
+├── pdf-lib.js (圖片印在PDF套件) 
+├── READ.MD 
+├── Save.php (後端儲存處理)
+├── SearchEmployee.php (離場用:查詢員工)
+├── SearchGuest.php (離場用:查詢訪客)
+└── signature_pad.js (簽名套件)
+</pre>
