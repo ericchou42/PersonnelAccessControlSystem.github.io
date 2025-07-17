@@ -156,7 +156,8 @@ function send_data(type){
                 'Name=' + encodeURIComponent(Ename.value) + '&' +
                 'Employee_id=' + encodeURIComponent(Eid.value) + '&' +
                 'Unit=' + encodeURIComponent(Department.value) + '&' +
-                'Remark=' + encodeURIComponent(Remark.value) + '&'
+                'Remark=' + encodeURIComponent(Remark.value) + '&' +
+                "&Enter_time=" + encodeURIComponent(getNowDatetime())
 
         })
         .then(response => response.text())
@@ -164,6 +165,9 @@ function send_data(type){
             if (msg.trim() === "success") {
                 alert("送出成功！");
                 jump("index");
+            }
+            else{
+                alert("後端未回傳 success，回應內容：" + msg);
             }
         });
     }
