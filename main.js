@@ -1,3 +1,11 @@
+
+var signbox;
+window.onload = function() {
+    signbox = new SignaturePad(
+        document.getElementById("signbox"),
+        { backgroundColor: "rgba(255,255,255,0)", penColor: "black" }
+    );
+}
 function jump(filname){
     window.location.href = filname + ".html";
 }
@@ -11,7 +19,9 @@ function getNowDatetime() {
     let ss = String(now.getSeconds()).padStart(2, '0');
     return `${yyyy}-${mm}-${dd} ${hh}:${min}:${ss}`;
 }
-
+function clear(){
+    signbox.clear();
+}
 
 function send_data(type){
     let Alertstr = "請 ";
@@ -27,6 +37,8 @@ function send_data(type){
 
         let Reason_string = ""
         let Reason_dic = ["廠商領料", "廠商退貨", "轉發、調撥", "出貨"];
+
+
         if(!Agree){
             Alertstr += "閱讀須知並勾選同意 ";
         }
@@ -61,6 +73,9 @@ function send_data(type){
         if(Npeople.value == ""){
             Alertstr += "填寫人數 ";
         }
+        if(signbox.isEmpty()){
+            Alertstr += "簽名";
+        }
         if(Alertstr != "請 "){
             alert(Alertstr);
             return;
@@ -89,7 +104,8 @@ function send_data(type){
                 "&Remark=" + encodeURIComponent(Remark.value) +
                 "&Npeople=" + encodeURIComponent(Npeople.value) +
                 "&Reason=" + encodeURIComponent(Reason_string) +
-                "&Enter_time=" + encodeURIComponent(getNowDatetime())
+                "&Enter_time=" + encodeURIComponent(getNowDatetime()) +
+                "&Image=" + encodeURIComponent(signbox.toDataURL())
         })
         .then(response => response.text())
         .then(msg => {
@@ -134,8 +150,8 @@ function send_data(type){
                 'Name=' + encodeURIComponent(Ename.value) + '&' +
                 'Employee_id=' + encodeURIComponent(Eid.value) + '&' +
                 'Unit=' + encodeURIComponent(Department.value) + '&' +
-                'Remark=' + encodeURIComponent(Remark.value) + '&' +
-                "Enter_time=" + encodeURIComponent(getNowDatetime())
+                'Remark=' + encodeURIComponent(Remark.value) + '&'
+
         })
         .then(response => response.text())
         .then(msg => {

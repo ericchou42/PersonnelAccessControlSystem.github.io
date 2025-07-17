@@ -151,17 +151,8 @@
         </div>
         <br>
             <div style="display: flex; gap: 100px; justify-content: center;">
-            <button style="width: 120px;height:40px;" id = "CBT" onclick = "Clear()">清除簽名</button>
+            <button style="width: 120px;height:40px;" onclick = "clear()">清除簽名</button>
             <button style="width: 120px;height:40px;" onclick = "send_data(0)">送出</button>
         </div>
     </div>
-    <script>
-        const signbox = new SignaturePad(
-            document.getElementById("signbox"),
-            { backgroundColor: "rgba(255,255,255,0)", penColor: "black" }
-        );
-        document.getElementById("CBT").onclick = function(){
-            signbox.clear();
-        };
-    </script>
 </body>
