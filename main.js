@@ -19,7 +19,7 @@ function getNowDatetime() {
     let ss = String(now.getSeconds()).padStart(2, '0');
     return `${yyyy}-${mm}-${dd} ${hh}:${min}:${ss}`;
 }
-function clear(){
+function Clear(){
     signbox.clear();
 }
 
