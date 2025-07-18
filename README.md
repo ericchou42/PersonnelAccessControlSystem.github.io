@@ -32,11 +32,12 @@
 ├── Guest.html (訪客頁面)
 ├── index.html (首頁)
 ├── Leave.html (離場)
-├── main.js (處理html回傳資料、按鈕跳轉)
-├── pdf-lib.js (圖片印在PDF套件) 
 ├── READ.MD 
 ├── Save.php (後端儲存處理)
-├── SearchEmployee.php (離場用:查詢員工)
-├── SearchGuest.php (離場用:查詢訪客)
+├── Search.php (離場用:查詢指定日期當天進出場人員記錄)
+├── Updatetable.php (離場用:改變資料庫離場時間資料)
+├── main.js (處理html回傳資料、按鈕跳轉)
+├── loadtable.js (處理html回傳資料、按鈕跳轉)
+├── pdf-lib.js (圖片印在PDF套件)
 └── signature_pad.js (簽名套件)
 </pre>

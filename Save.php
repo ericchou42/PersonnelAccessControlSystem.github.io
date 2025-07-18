@@ -74,7 +74,7 @@ if ($type == "1") { // 員工
 if ($stmt->execute()) {
     echo "success";
 } else {
-       echo "寫入失敗: " . $conn->error . " 參數: " . json_encode([$type, $name, $unit, $interviewee, $certificate_num, $remark, $npeople, $reason, $enter_time, $signature_path]);
+    echo "寫入失敗: " . $conn->error . " 參數: " . json_encode([$type, $name, $unit, $interviewee, $certificate_num, $remark, $npeople, $reason, $enter_time, $signature_path]);
 }
 
 $stmt->close();
