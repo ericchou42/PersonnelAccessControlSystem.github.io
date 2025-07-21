@@ -25,6 +25,7 @@ function load_list(num, time) {
                 tr.innerHTML = `
                     <td class="Name" data-realname="${row.Name}">${maskName}</td>
                     <td>${row.Enter_time}</td>
+                    <td><input type="time"></td>
                     <td>
                         <input type="checkbox"
                             style="width:25px;height:25px"
