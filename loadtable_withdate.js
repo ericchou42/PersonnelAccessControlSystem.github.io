@@ -1,3 +1,9 @@
+function getTimeStr() {
+    let now = new Date();
+    return now.getHours().toString().padStart(2, '0') + ":" +
+           now.getMinutes().toString().padStart(2, '0') + ":" +
+           now.getSeconds().toString().padStart(2, '0');
+}
 function load_list(num, time) {
     let url = (num == 0) ? 'Search.php?type=0&' + time : 'Search.php?type=1&' + time;
     let table = (num == 0) ? document.getElementById("Guest_Table") : document.getElementById("Employee_Table");
@@ -50,7 +56,7 @@ function send(){
             UnLeaveName += Name[boxind].innerText + " ";
         }
     }
-    if(!confirm(LeaveName + UnLeaveName)){
+    if(!confirm(LeaveName + UnLeaveName + "\n\n目前時間:" + getTimeStr())){
         return;
     }
     fetch("Updatetable.php",{
