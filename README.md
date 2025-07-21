@@ -42,4 +42,6 @@
 ├── loadtable_withdate.js (根據選擇日期顯示當天離場紀錄)
 ├── pdf-lib.js (圖片印在PDF套件)
 └── signature_pad.js (簽名套件)
+
+## 隱藏資料夾.gitignore
 </pre>
