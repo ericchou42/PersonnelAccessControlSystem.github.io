@@ -1,10 +1,12 @@
 
 var signbox;
 window.onload = function() {
-    signbox = new SignaturePad(
-        document.getElementById("signbox"),
-        { backgroundColor: "rgba(255,255,255,0)", penColor: "black" }
-    );
+    if(document.getElementById("signbox")){
+            signbox = new SignaturePad(
+            document.getElementById("signbox"),
+            { backgroundColor: "rgba(255,255,255,0)", penColor: "black" }
+        );
+    }
 }
 function jump(filname){
     window.location.href = filname + ".html";

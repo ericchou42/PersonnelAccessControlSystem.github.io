@@ -5,19 +5,25 @@ function load_list(num, time) {
         .then(response => response.json())
         .then(data => {
             while (table.rows.length > 1) table.deleteRow(1);
-
             data.forEach(row => {
                 let tr = document.createElement('tr');
+                let maskName = "";
                 tr.style.fontSize = "20px";
                 tr.style.textAlign = "center";
+                if(row.Name.length == 2) {
+                    maskname = row.Name[0] + "O";
+                }
+                else if(row.Name.length > 2){
+                    maskName = row.Name[0] + "O".repeat(row.Name.length - 2) + row.Name[row.Name.length - 1];
+                }
                 tr.innerHTML = `
-                    <td class="Name">${row.Name}</td>
+                    <td class="Name" data-realname="${row.Name}">${maskName}</td>
                     <td>${row.Enter_time}</td>
                     <td>
                         <input type="checkbox"
                             style="width:25px;height:25px"
-                            class = "LeaveBT"
-                            ${row.Leave_time != null ? 'checked disabled' : ''}>
+                            class="LeaveBT"
+                            ${row.Leave_time != null ? 'checked' : ''}>
                     </td>
                 `;
                 table.appendChild(tr);
@@ -30,23 +36,31 @@ function jump(filname){
 function send(){
     let CheckBox = document.getElementsByClassName("LeaveBT");
     let Name = document.getElementsByClassName("Name");
-    let NameList = []
-    let CheckName = "【請再次確認資料】\n\n";
-    for (let boxind = 0 ; boxind < CheckBox.length;boxind++){
+    let CheckedNameList = [];     // 已勾選（已離場）
+    let UncheckedNameList = [];   // 未勾選（未離場）
+    let LeaveName = "【請再次確認資料】\n\n離場:\n";
+    let UnLeaveName = "\n\n未離場:\n";
+    for (let boxind = 0 ; boxind < CheckBox.length; boxind++){
+        let realName = Name[boxind].getAttribute('data-realname');
         if(CheckBox[boxind].checked){
-            NameList.push(Name[boxind].innerText);
-            CheckName += Name[boxind].innerText;
-            CheckName += " ";
+            CheckedNameList.push(realName);
+            LeaveName += Name[boxind].innerText + " ";
+        } else {
+            UncheckedNameList.push(realName);
+            UnLeaveName += Name[boxind].innerText + " ";
         }
     }
-    if(!confirm(CheckName += "\n\n是否都要離場?")){
+    if(!confirm(LeaveName + UnLeaveName)){
         return;
     }
     fetch("Updatetable.php",{
         method:"POST",
         headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({
-            NameList: NameList})
+        body: JSON.stringify({
+            CheckedNameList: CheckedNameList,      // 已勾選名單
+            UncheckedNameList: UncheckedNameList,  // 未勾選名單
+            LeaveTime: new Date().toISOString().slice(0, 19).replace('T', ' ')
+        })
     })
     .then(res=>res.json())
     .then(data=>{
@@ -57,9 +71,14 @@ function send(){
         else alert('更新失敗');
     })
 }
+
 window.onload = function() {
     let today = new Date().toISOString().slice(0, 10);
     load_list(1, 'time=' + today);
     load_list(0, 'time=' + today);
-
 };
+document.getElementById('Time').addEventListener('change', function() {
+    let newDate = this.value;
+    load_list(1, 'time=' + newDate);
+    load_list(0, 'time=' + newDate);
+});

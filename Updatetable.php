@@ -11,15 +11,35 @@ if($conn->connect_error){
 $conn->set_charset("utf8mb4");
 
 $data = json_decode(file_get_contents("php://input"), true);
-$nameList = $data['NameList'];
+
+$CheckedNameList = $data['CheckedNameList'] ?? [];
+$UncheckedNameList = $data['UncheckedNameList'] ?? [];
+$NameList = $data['NameList'] ?? [];
+
 date_default_timezone_set('Asia/Taipei');
 $now = date('Y-m-d H:i:s');
 
-foreach ($nameList as $name) {
-    $stmt = $conn->prepare("UPDATE user SET Leave_time=? WHERE name=?");
-    $stmt->bind_param('ss', $now, $name);
-    $stmt->execute();
+if(!empty($NameList)){
+    foreach ($NameList as $name) {
+        $stmt = $conn->prepare("UPDATE user SET Leave_time=? WHERE name=?");
+        $stmt->bind_param('ss', $now, $name);
+        $stmt->execute();
+    }
 }
 
+if(!empty($CheckedNameList)){
+    foreach ($CheckedNameList as $name) {
+        $stmt = $conn->prepare("UPDATE user SET Leave_time=? WHERE name=?");
+        $stmt->bind_param('ss', $now, $name);
+        $stmt->execute();
+    }
+}
+if(!empty($UncheckedNameList)){
+    foreach ($UncheckedNameList as $name) {
+        $stmt = $conn->prepare("UPDATE user SET Leave_time=NULL WHERE name=?");
+        $stmt->bind_param('s', $name);
+        $stmt->execute();
+    }
+}
 echo json_encode(['success' => true]);
 ?>
