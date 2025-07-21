@@ -58,8 +58,9 @@ function send(){
     headers:{"Content-Type":"application/json"},
     body: JSON.stringify({
         NameList: NameList,
-        LeaveTime: new Date().toISOString().slice(0, 19).replace('T', ' ')
-        })
+        LeaveTime: new Date().toISOString().slice(0, 19).replace('T', ' '),
+        Commit : 1
+    })
     })
     .then(res=>res.json())
     .then(data=>{

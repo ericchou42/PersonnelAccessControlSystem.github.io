@@ -44,7 +44,7 @@ if ($image) {
             die("圖片解碼失敗");
         }
         // 指定儲存路徑與檔名（用時間+隨機數確保不重複）
-        $filename = '/var/www/html/signatures/sign_' . date('Ymd_His') . '_' . uniqid() . '.' . $ext;
+        $filename = '/var/www/html/signatures/sign_' . date('Ymd_H:i:s.') . $ext;
         if (file_put_contents($filename, $data)) {
             $signature_path = $filename;
         } else {

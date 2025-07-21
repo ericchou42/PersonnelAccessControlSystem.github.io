@@ -59,6 +59,7 @@ function send(){
         body: JSON.stringify({
             CheckedNameList: CheckedNameList,      // 已勾選名單
             UncheckedNameList: UncheckedNameList,  // 未勾選名單
+            Commit : 2,
             LeaveTime: new Date().toISOString().slice(0, 19).replace('T', ' ')
         })
     })
