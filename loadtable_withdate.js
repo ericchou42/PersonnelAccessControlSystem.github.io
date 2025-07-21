@@ -73,7 +73,7 @@ function send(){
     .then(data=>{
         if(data.success) {
             alert('更新成功！');
-            jump("index");
+            location.reload();
         }
         else alert('更新失敗');
     })

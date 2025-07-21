@@ -12,6 +12,6 @@ CREATE TABLE `user` (
     `Leave_time` datetime DEFAULT NULL COMMENT '離場時間',
     `Remark` varchar(100) DEFAULT NULL COMMENT '備註',
     `Npeople` int(11) DEFAULT NULL COMMENT '人數',
-    `Commit` tinyint(4) NOT NULL COMMENT '填寫對象：1:本人 2:警衛',
+    `Commit` tinyint(4) DEFAULT NULL COMMENT '填寫對象：1:本人 2:警衛',
     PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

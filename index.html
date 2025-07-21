@@ -1,39 +1,114 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>首頁</title>
-        <script src="main.js"></script>
-        <style>
-            .UBT{
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap:200px;
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>首頁</title>
+    <script src="main.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html, body {
+            height: 100%;
+            min-height: 100%;
+        }
+        body.body {
+            background: #f6f8fa;
+            font-family: 'Microsoft JhengHei', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            min-width: 100vw;
+        }
+        /* 主容器絕對置中 */
+        .body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+            background: #fff;
+            margin: auto;
+            padding: 40px 16px 56px 16px;
+            max-width: 760px;
+            min-height: 380px;
+            box-shadow: 0 3px 20px #bdc4d81a;
+        }
+        .UBT {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 10px;
+        }
+        .DBT {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 44px;
+        }
+        .BT {
+            width: 220px;
+            height: 64px;
+            font-size: 1.32rem;
+            background: #f6f8fa;
+            color: #2e437c;
+            font-weight: 600;
+            border: 1.5px solid #c4cde0;
+            border-radius: 13px;
+            box-shadow: 0 2px 10px #c6d6ec18;
+            margin: 0 6px;
+            transition: background 0.12s, border-color 0.12s, color 0.12s;
+            cursor: pointer;
+            letter-spacing: 2px;
+        }
+        .BT:hover, .DBT button:hover {
+            background: #eaf1ff;
+            color: #244abb;
+            border-color: #8faee9;
+        }
+        .DBT button {
+            width: 480px;
+            height: 64px;
+            font-size: 1.23rem;
+            background: #f6f8fa;
+            color: #2e437c;
+            font-weight: 600;
+            border: 1.5px solid #c4cde0;
+            border-radius: 13px;
+            box-shadow: 0 2px 10px #c6d6ec18;
+            transition: background 0.12s, border-color 0.12s, color 0.12s;
+            cursor: pointer;
+            letter-spacing: 2px;
+        }
+        @media (max-width: 600px) {
+            .body {
+                padding: 2vw 2vw 6vw 2vw;
+                min-width: 99vw;
+                max-width: 100vw;
             }
-            .DBT{
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
+            .UBT, .DBT {
+                flex-direction: column;
+                gap: 20px;
             }
-            .body{
-                border:2px solid #000000;
-                margin:30px 30px 30px 30px;
-                padding:40px;
+            .BT, .DBT button {
+                width: 92vw;
+                min-width: 0;
+                height: 48px;
+                font-size: 1rem;
+                margin: 7px 0;
             }
-            .BT{
-                width:500px;
-                height:300px;
-            }
-        </style>
-    </head>  
-    <body class = "body">
-        <div class = "UBT">
-            <button class = BT onclick="jump('Guest')" >訪客</button>
-            <button  class = BT onclick="jump('Employee')">員工</button>
-        </div>
-        <br><br><br><br><br>
-        <div class = "DBT">  
-            <button style = "width:1200px;height: 300px;" onclick="jump('Leave')">離場</button>
-        </div>
-    </body>
+        }
+    </style>
+</head>
+<body class="body">
+    <div class="UBT">
+        <button class="BT" onclick="jump('Guest')">訪客</button>
+        <button class="BT" onclick="jump('Employee')">員工</button>
+    </div>
+    <div class="DBT">  
+        <button onclick="jump('Leave')">離場</button>
+    </div>
+</body>
 </html>

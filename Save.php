@@ -47,7 +47,8 @@ if ($image) {
         $filename = '/var/www/html/signatures/sign_' . date('Ymd_H:i:s.') . $ext;
         if (file_put_contents($filename, $data)) {
             $signature_path = $filename;
-        } else {
+        }
+        else {
             die("圖片儲存失敗");
         }
     } else {

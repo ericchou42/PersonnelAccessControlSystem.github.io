@@ -1,47 +1,176 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>離場</title>
-        <style>
-            .IP{
-                display:flex;
-                flex-direction:column;
-                align-items:center;
-            }
-        </style>
-    </head>
-    <body>
-        <button style = "width: 150px;height:75px;" onclick = "jump('index')">回首頁</button>
-        <div class = "IP">
-            <div style = "font-size:50px;font-weight: bold;">內部</div>
-            <div style = "border: 2px solid #000000;" cellspacin = "10">
-                <table id = "Employee_Table">
-                    <tr style = "font-size: 40px;">
-                        <td style = "padding: 8px 40px;">姓名</td>
-                        <td style = "padding: 8px 40px;">進場時間</td>
-                        <td style = "padding: 8px 40px;">離場</td>
-                    </tr>
-                    
-                </table>
-            </div>
-            <div style = "font-size:50px;font-weight: bold;">外部</div>
-            <div style = "border:2px solid #000000">
-                <table id = "Guest_Table">
-                    <tr style = "font-size: 40px;">
-                        <td style = "padding: 8px 40px;">姓名</td>
-                        <td style = "padding: 8px 40px;">進場時間</td>
-                        <td style = "padding: 8px 40px;">離場</td>
-                    </tr>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>離場</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Microsoft JhengHei', Arial, sans-serif;
+            background: linear-gradient(120deg, #eaf0ff 60%, #f7fafd 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        .topbar {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            max-width: 900px;
+            margin: 36px auto 0 auto;
+        }
+        .topbar button {
+            width: 130px;
+            height: 48px;
+            font-size: 20px;
+            background: #4568e8;
+            border: none;
+            color: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 10px #4063e812;
+            transition: background 0.18s, transform 0.13s;
+            cursor: pointer;
+        }
+        .topbar button:hover {
+            background: #2d49b2;
+            transform: translateY(-2px) scale(1.04);
+        }
+        .IP {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+            max-width: 900px;
+            margin: 24px auto 0 auto;
+            padding-bottom: 38px;
+        }
+        .section-card {
+            background: #fff;
+            border-radius: 24px;
+            box-shadow: 0 6px 28px #4568e81a;
+            padding: 34px 28px 28px 28px;
+            width: 98%;
+            margin-bottom: 12px;
+            max-width: 850px;
+            min-width: 300px;
+        }
+        .table-title {
+            font-size: 2.1rem;
+            font-weight: bold;
+            color: #26348a;
+            letter-spacing: 1.2px;
+            margin-bottom: 18px;
+            margin-top: 0;
+            text-align: left;
+            padding-left: 12px;
+        }
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: #f9fbfe;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px #4568e81c;
+        }
+        th, td {
+            font-size: 1.36rem;
+            padding: 18px 26px;
+            text-align: center;
+        }
+        th {
+            background: #eaf1ff;
+            color: #2b3145;
+            font-weight: bold;
+            font-size: 1.5rem;
+            border-bottom: 3px solid #d0d7ee;
+        }
+        tr:not(:last-child) td {
+            border-bottom: 1.5px solid #e6ebf6;
+        }
+        td {
+            color: #34415e;
+            background: none;
+        }
+        .button-row {
+            width: 98%;
+            max-width: 850px;
+            margin: 0 auto;
+            margin-top: 14px;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .button-row button {
+            width: 240px;
+            height: 54px;
+            font-size: 1.32rem;
+            background: #4568e8;
+            border: none;
+            color: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px #4063e818;
+            transition: background 0.18s, transform 0.15s;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .button-row button:hover {
+            background: #22399a;
+            transform: translateY(-2px) scale(1.04);
+        }
+        
+        @media (max-width: 800px) {
+            .section-card, .button-row { width: 99vw; max-width: 99vw; }
+            th, td { font-size: 1.09rem; padding: 13px 7vw; }
+            .table-title { font-size: 1.5rem; }
+        }
+        @media (max-width: 540px) {
+            .section-card, .button-row { padding: 6vw 2vw; }
+            .table-title { font-size: 1.1rem; }
+            th, td { font-size: 0.92rem; padding: 9px 3vw; }
+        }
+        #Employee_Table tr:nth-child(even),
+        #Guest_Table tr:nth-child(even) {
+            background: #fff;
+        }
+        #Employee_Table tr:nth-child(odd),
+        #Guest_Table tr:nth-child(odd) {
+            background: #dbe9fa;
+        }
 
-                </table>
-            </div>
-            <br>
-            <div style = "display:flex;justify-content:flex-end;width: 50%;height:70px;">
-                <button style = "width: 100%;height: 100%;float:right;" onclick = "send()">
-                    送出
-                </button>
-            </div>
+
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <button onclick="jump('index')">回首頁</button>
+    </div>
+    <div class="IP">
+        <div class="section-card">
+            <div class="table-title">內部</div>
+            <table id="Employee_Table">
+                <tr>
+                    <th>姓名</th>
+                    <th>進場時間</th>
+                    <th>離場</th>
+                </tr>
+                <!-- 員工資料會 JS append 在這裡 -->
+            </table>
         </div>
-        <script src = "loadtable_basic.js"></script>
-    </body>
+        <div class="section-card">
+            <div class="table-title">外部</div>
+            <table id="Guest_Table">
+                <tr>
+                    <th>姓名</th>
+                    <th>進場時間</th>
+                    <th>離場</th>
+                </tr>
+                <!-- 訪客資料會 JS append 在這裡 -->
+            </table>
+        </div>
+        <div class="button-row">
+            <button onclick="send()">送出</button>
+        </div>
+    </div>
+    <script src="loadtable_basic.js"></script>
+</body>
 </html>

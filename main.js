@@ -28,7 +28,7 @@ function Clear(){
 function send_data(type){
     let Alertstr = "請 ";
     if(type == 0){
-        let Agree = document.getElementById("checkbutton").checked;
+        let Agree = document.getElementById("agreeCheck").checked;
         let Gname = document.getElementById("name");
         let Reason = document.getElementsByClassName("reason");
         let Unit = document.getElementById("unit");
@@ -113,7 +113,7 @@ function send_data(type){
         .then(msg => {
             if (msg.trim() === "success") {
                 alert("送出成功！");
-                jump("index");
+                location.reload();
             }
             else{
                   alert("後端未回傳 success，回應內容：" + msg);
@@ -166,7 +166,7 @@ function send_data(type){
         .then(msg => {
             if (msg.trim() === "success") {
                 alert("送出成功！");
-                jump("index");
+                location.reload();
             }
             else{
                 alert("後端未回傳 success，回應內容：" + msg);
