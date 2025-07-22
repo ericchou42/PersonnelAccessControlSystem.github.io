@@ -21,7 +21,6 @@
             flex-direction: column;
             min-width: 100vw;
         }
-        /* 主容器絕對置中 */
         .body {
             display: flex;
             flex-direction: column;
@@ -34,6 +33,14 @@
             max-width: 760px;
             min-height: 380px;
             box-shadow: 0 3px 20px #bdc4d81a;
+        }
+        .title {
+            font-size: 2.7rem;
+            font-weight: bold;
+            color: #253476;
+            margin-bottom: 38px;
+            letter-spacing: 4px;
+            text-align: center;
         }
         .UBT {
             display: flex;
@@ -99,10 +106,15 @@
                 font-size: 1rem;
                 margin: 7px 0;
             }
+            .title {
+                font-size: 1.7rem;
+                margin-bottom: 22px;
+            }
         }
     </style>
 </head>
 <body class="body">
+    <div class="title">門禁管理系統</div>
     <div class="UBT">
         <button class="BT" onclick="jump('Guest')">訪客</button>
         <button class="BT" onclick="jump('Employee')">員工</button>
