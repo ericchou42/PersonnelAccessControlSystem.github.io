@@ -21,6 +21,33 @@
             flex-direction: column;
             min-width: 100vw;
         }
+        /* 右上角登入按鈕區 */
+        .admin-bar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 32px 0 0;
+        }
+        .admin-bar button {
+            background: #f6f8fa;
+            color: #4765ba;
+            border: 1.5px solid #b9c3e2;
+            border-radius: 9px;
+            font-size: 1.06rem;
+            font-weight: 600;
+            padding: 10px 24px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px #dbe3f518;
+            transition: background 0.15s, color 0.13s, border-color 0.13s;
+            letter-spacing: 1px;
+        }
+        .admin-bar button:hover {
+            background: #eaf1ff;
+            color: #244abb;
+            border-color: #8faee9;
+        }
+
         .body {
             display: flex;
             flex-direction: column;
@@ -90,6 +117,8 @@
             letter-spacing: 2px;
         }
         @media (max-width: 600px) {
+            .admin-bar { padding: 12px 10px 0 0; }
+            .admin-bar button { padding: 8px 12px; font-size: 0.95rem;}
             .body {
                 padding: 2vw 2vw 6vw 2vw;
                 min-width: 99vw;
@@ -114,12 +143,15 @@
     </style>
 </head>
 <body class="body">
+    <div class="admin-bar">
+        <button onclick="jump('Login')">後台登陸</button>
+    </div>
     <div class="title">門禁管理系統</div>
     <div class="UBT">
         <button class="BT" onclick="jump('Guest')">訪客</button>
         <button class="BT" onclick="jump('Employee')">員工</button>
     </div>
-    <div class="DBT">  
+    <div class="DBT">
         <button onclick="jump('Leave')">離場</button>
     </div>
 </body>

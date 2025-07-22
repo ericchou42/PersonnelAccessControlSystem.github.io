@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>後台登入</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background: #f6f8fa;
+            font-family: 'Microsoft JhengHei', Arial, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .topbar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100vw;
+            height: 60px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            background: transparent;
+            z-index: 10;
+            padding: 0 2vw;
+        }
+        .topbar button {
+            font-size: 1.05rem;
+            color: #fff;
+            background: #4568e8;
+            border: none;
+            border-radius: 12px;
+            padding: 10px 22px;
+            font-weight: bold;
+            box-shadow: 0 2px 10px #4063e812;
+            margin-left: 16px;
+            margin-top: 12px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background 0.13s, color 0.12s;
+        }
+        .topbar button:hover {
+            background: #23389d;
+        }
+        .login-container {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 4px 24px #bdd5ec26;
+            max-width: 350px;
+            width: 95vw;
+            padding: 38px 28px 32px 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .login-title {
+            font-size: 1.7rem;
+            font-weight: bold;
+            color: #273b83;
+            margin-bottom: 22px;
+            letter-spacing: 2px;
+        }
+        .form-group {
+            width: 100%;
+            margin-bottom: 18px;
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-size: 1.08rem;
+            margin-bottom: 7px;
+            color: #222;
+        }
+        input[type="text"], input[type="password"] {
+            border: 1.2px solid #bbc7e3;
+            border-radius: 8px;
+            font-size: 1.07rem;
+            padding: 10px 12px;
+            transition: border 0.17s;
+            outline: none;
+            background: #f7fafd;
+        }
+        input[type="text"]:focus, input[type="password"]:focus {
+            border: 1.8px solid #4462ea;
+        }
+        .login-btn {
+            width: 100%;
+            margin-top: 6px;
+            height: 44px;
+            background: #4568e8;
+            color: #fff;
+            font-size: 1.16rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px #4063e812;
+            letter-spacing: 1.2px;
+            transition: background 0.14s;
+        }
+        .login-btn:hover {
+            background: #22399a;
+        }
+        .tips {
+            color: #c22;
+            font-size: 0.98rem;
+            min-height: 24px;
+            margin-top: 2px;
+            text-align: center;
+        }
+        @media (max-width: 520px) {
+            .login-container {
+                max-width: 99vw;
+                padding: 7vw 2vw;
+            }
+            .login-title {
+                font-size: 1.2rem;
+            }
+            .topbar {
+                height: 46px;
+                padding: 0 2vw;
+            }
+            .topbar button {
+                font-size: 0.95rem;
+                padding: 7px 12px;
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <button onclick="window.location.href='index.html'">首頁</button>
+    </div>
+    <div class="login-container">
+        <div class="login-title">後台登入</div>
+        <form id="loginForm" autocomplete="off" onsubmit="return false;">
+            <div class="form-group">
+                <label for="username">帳號</label>
+                <input type="text" id="username" name="username" autocomplete="off" required>
+            </div>
+            <div class="form-group">
+                <label for="password">密碼</label>
+                <input type="password" id="password" name="password" autocomplete="off" required>
+            </div>
+            <button class="login-btn" type="submit">登入</button>
+            <div class="tips" id="tips"></div>
+        </form>
+    </div>
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(e){
+            const user = document.getElementById("username").value.trim();
+            const pwd = document.getElementById("password").value.trim();
+            const tips = document.getElementById("tips");
+            if(!user || !pwd){
+                tips.textContent = "請輸入帳號和密碼";
+                return;
+            }
+
+            if(user === "admin" && pwd === "123456"){
+                tips.style.color = "#2c7";
+                tips.textContent = "登入成功，跳轉中...";
+                window.location.href = "LeaveDataUpdate.html";
+            }else{
+                tips.style.color = "#c22";
+                tips.textContent = "帳號或密碼錯誤";
+            }
+        });
+    </script>
+</body>
+</html>
