@@ -15,6 +15,7 @@ $data = json_decode(file_get_contents("php://input"), true);
 $CheckedNameList = $data['CheckedNameList'] ?? [];
 $UncheckedNameList = $data['UncheckedNameList'] ?? [];
 $NameList = $data['NameList'] ?? [];
+$LeaveTimeList = $data['LeaveTimeList'] ?? [];
 $Commit = intval($data['Commit']);
 
 date_default_timezone_set('Asia/Taipei');
@@ -23,24 +24,29 @@ $now = date('Y-m-d H:i:s');
 if(!empty($NameList)){
     foreach ($NameList as $name) {
         $stmt = $conn->prepare("UPDATE user SET Leave_time=?,`Commit`=? WHERE name=?");
-        $stmt->bind_param('sis', $now,$Commit,$name);
+        $stmt->bind_param('sis', $now, $Commit, $name);
         $stmt->execute();
     }
 }
 
-if(!empty($CheckedNameList)){
-    foreach ($CheckedNameList as $name) {
-        $stmt = $conn->prepare("UPDATE user SET Leave_time=?,`Commit`=? WHERE name=?");
-        $stmt->bind_param('sis', $now,$Commit,$name);
-        $stmt->execute();
+if(!empty($CheckedNameList) && !empty($LeaveTimeList)){
+    foreach ($CheckedNameList as $i => $name) {
+        $leave_time = $LeaveTimeList[$i] ?? null;
+        if ($leave_time) {
+            $stmt = $conn->prepare("UPDATE user SET Leave_time=?, `Commit`=? WHERE name=?");
+            $stmt->bind_param('sis', $leave_time, $Commit, $name);
+            $stmt->execute();
+        }
     }
 }
+
 if(!empty($UncheckedNameList)){
     foreach ($UncheckedNameList as $name) {
-        $stmt = $conn->prepare("UPDATE user SET Leave_time=NULL,`Commit`=? WHERE name=?");
-        $stmt->bind_param('is', $Commit,$name);
+        $stmt = $conn->prepare("UPDATE user SET Leave_time=NULL, `Commit`=? WHERE name=?");
+        $stmt->bind_param('is', $Commit, $name);
         $stmt->execute();
     }
 }
+
 echo json_encode(['success' => true]);
 ?>
