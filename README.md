@@ -24,7 +24,12 @@
 - 補登離場時間功能並記錄異常（LeaveDataUpdate.html、Updatetable.php、loadtable_withdate.js）
 - 查詢當天登記記錄（Leave.html、Search.php、loadtable_basic.js）
 
-
+## 環境變數檔案
+- **DB_HOST**：資料庫主機位置（例如：localhost）
+- **DB_USER**：資料庫的使用者名稱（例如：benson）
+- **DB_PASS**：資料庫的密碼（例如：benson25）
+- **DB_NAME**：資料庫名稱（例如：mydb）
+- **SIGNATURE_PATH**：簽名檔案存放路徑（例如：/var/www/html/signatures）
 ## 系統架構  
 <pre>
 /
@@ -44,5 +49,7 @@
 ├── pdf-lib.js (圖片印在PDF套件)
 └── signature_pad.js (簽名套件)
 
-## 隱藏資料夾.gitignore
+## 隱藏資料夾 .gitignore
+
+## 環境變數檔案.env
 </pre>
