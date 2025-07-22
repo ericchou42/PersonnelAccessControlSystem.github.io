@@ -17,12 +17,13 @@
 -選擇誰要離開或取消離場紀錄
 
 ## 功能列表  
-- 訪客與員工電子入場與離場登記  
-- 須知中英文雙語介面支援  
-- 電子簽名板功能  
-- 補登離場時間功能並記錄異常  
-- 查詢當天登記記錄  
-- 支援手寫與打字輸入資料  
+- 選擇入場身分或離場（index.html）
+- 訪客與員工電子入場與離場登記（Guest.html、Employee.html、Leave.html、Save.php、Updatetable.php）
+- 須知中英文雙語介面支援（Guest.html）
+- 電子簽名板功能（signature_pad.js、main.js、Guest.html）
+- 補登離場時間功能並記錄異常（LeaveDataUpdate.html、Updatetable.php、loadtable_withdate.js）
+- 查詢當天登記記錄（Leave.html、Search.php、loadtable_basic.js）
+
 
 ## 系統架構  
 <pre>
