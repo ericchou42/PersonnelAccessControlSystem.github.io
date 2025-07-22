@@ -26,6 +26,9 @@ function load_list(num, time) {
                 else if (row.Name.length > 2) {
                     maskName = row.Name[0] + "O".repeat(row.Name.length - 2) + row.Name[row.Name.length - 1];
                 }
+                else{
+                    maskName = row.Name;
+                }
                 // 判斷離場狀態，決定 time input 是否顯示
                 let timeInputDisplay = (row.Leave_time != null) ? '' : 'none';
                 let timeInputValue = "";

@@ -22,6 +22,9 @@ function load_list(num, time) {
                 } else if (row.Name.length > 2) {
                     maskName = row.Name[0] + "O".repeat(row.Name.length - 2) + row.Name[row.Name.length - 1];
                 }
+                else{
+                    maskName = row.Name;
+                }
                 tr.innerHTML = `
                     <td class="Name" data-realname="${row.Name}">${maskName}</td>
                     <td>${row.Enter_time}</td>
