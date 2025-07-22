@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>訪客登記</title>
-    <script src="main.js"></script>
     <script src="signature_pad.js"></script>
+    <script src="main.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
@@ -174,6 +174,11 @@
             display: flex;
             flex-direction: column;
         }
+        .checkbox label {
+            cursor: pointer;
+            font-size: 1.13rem;
+            display: block;
+        }
         .checkbox input[type="radio"] {
             accent-color: #4462ea;
             margin-right: 10px;
@@ -193,13 +198,19 @@
             flex-direction: column;
             align-items: flex-start;
             gap: 10px;
+            width: 100%;
         }
+        .signature-row > div { width: 100%; }
         #signbox {
             border: 2px solid #4462ea;
             border-radius: 9px;
             background: #f9fafc;
             box-shadow: 0 2px 8px #4a6cf718;
             margin-top: 2px;
+            display: block;
+            width: 100%;
+            height: 180px;
+            touch-action: none;
         }
         .button-row {
             display: flex;
@@ -223,7 +234,6 @@
             background: #22399a;
             transform: translateY(-2px) scale(1.05);
         }
-        /* RWD */
         @media (max-width: 900px) {
             .container { max-width: 99vw; padding: 5vw 2vw; }
             .IP, #agreeSection { padding: 6vw 2vw; }
@@ -232,8 +242,7 @@
             .container, .IP, #agreeSection { max-width: 100vw !important; width: 98vw !important; padding: 3vw 1vw; }
             .notice-card, .form-row label { font-size: 1rem; }
             .header .Head { font-size: 1.5rem; }
-            #signbox { width: 92vw !important; }
-            .form-row input, .form-row select { font-size: 1rem; }
+            .signature-row { width: 100%; }
         }
     </style>
 </head>
@@ -253,95 +262,65 @@
         </div>
         <div class="notice-card">
             <p class="Sub">一、一般注意事項(General Instructions)：</p>
-            <p>1.本公司全面禁止吸煙及食用橫榔。
-                <br><span style="font-size:0.93em;color:#888;">1. Smoking and betel nut chewing are strictly prohibited in the company.</span>
-            </p>
-            <p>2.各室內場所均有緊急出口標示燈，提供緊急逃生路線。
-                <br><span style="font-size:0.93em;color:#888;">2. All indoor areas have emergency exit signs for evacuation routes.</span>
-            </p>
-            <p>3.於聽到緊急疏散廣播時，應依照相關人員的指示，迅速疏散至安全地點。
-                <br><span style="font-size:0.93em;color:#888;">3. Upon hearing emergency evacuation announcements, follow instructions to evacuate to a safe location promptly.</span>
-            </p>
-            <p>4.廠內火警電話：119，急救電話：110。
-                <br><span style="font-size:0.93em;color:#888;">4. Factory fire emergency number: 119; medical emergency: 110.</span>
-            </p>
-            <p>5.非經許可禁止攜帶危險物、有害物入廠。
-                <br><span style="font-size:0.93em;color:#888;">5. Do not bring dangerous or hazardous items into the factory without permission.</span>
-            </p>
-            <p>6.禁止攜帶酒精性飲料、麻藥、毒品、刀械及槍炮彈藥等達禁品入廠。
-                <br><span style="font-size:0.93em;color:#888;">6. Alcohol, narcotics, drugs, knives, guns, ammunition, and other prohibited items are forbidden in the factory.</span>
-            </p>
-            <p>7.注意地板潛在危險（潺滑或積水）。
-                <br><span style="font-size:0.93em;color:#888;">7. Beware of potential hazards on the floor (slipperiness or puddles).</span>
-            </p>
-            <p>8.上下樓梯請手扶樓梯扶手。
-                <br><span style="font-size:0.93em;color:#888;">8. Please hold the handrail when using stairs.</span>
-            </p>
-            <p>9.若有任何疑問，請詢問陪同人員。
-                <br><span style="font-size:0.93em;color:#888;">9. If you have any questions, please ask the accompanying personnel.</span>
-            </p>
-            <p>10.來賓識別證需佩掛於胸前。
-                <br><span style="font-size:0.93em;color:#888;">10. Visitor badges must be worn on the chest.</span>
-            </p>
-            <p>11.注意車輛。
-                <br><span style="font-size:0.93em;color:#888;">11. Be cautious of moving vehicles.</span>
-            </p>
+            <p>1.本公司全面禁止吸煙及食用橫榔。<br>
+            <span style="font-size:0.93em;color:#888;">1. Smoking and betel nut chewing are strictly prohibited in the company.</span></p>
+            <p>2.各室內場所均有緊急出口標示燈，提供緊急逃生路線。<br>
+            <span style="font-size:0.93em;color:#888;">2. All indoor areas have emergency exit signs for evacuation routes.</span></p>
+            <p>3.於聽到緊急疏散廣播時，應依照相關人員的指示，迅速疏散至安全地點。<br>
+            <span style="font-size:0.93em;color:#888;">3. Upon hearing emergency evacuation announcements, follow instructions to evacuate to a safe location promptly.</span></p>
+            <p>4.廠內火警電話：119，急救電話：110。<br>
+            <span style="font-size:0.93em;color:#888;">4. Factory fire emergency number: 119; medical emergency: 110.</span></p>
+            <p>5.非經許可禁止攜帶危險物、有害物入廠。<br>
+            <span style="font-size:0.93em;color:#888;">5. Do not bring dangerous or hazardous items into the factory without permission.</span></p>
+            <p>6.禁止攜帶酒精性飲料、麻藥、毒品、刀械及槍炮彈藥等達禁品入廠。<br>
+            <span style="font-size:0.93em;color:#888;">6. Alcohol, narcotics, drugs, knives, guns, ammunition, and other prohibited items are forbidden in the factory.</span></p>
+            <p>7.注意地板潛在危險（潺滑或積水）。<br>
+            <span style="font-size:0.93em;color:#888;">7. Beware of potential hazards on the floor (slipperiness or puddles).</span></p>
+            <p>8.上下樓梯請手扶樓梯扶手。<br>
+            <span style="font-size:0.93em;color:#888;">8. Please hold the handrail when using stairs.</span></p>
+            <p>9.若有任何疑問，請詢問陪同人員。<br>
+            <span style="font-size:0.93em;color:#888;">9. If you have any questions, please ask the accompanying personnel.</span></p>
+            <p>10.來賓識別證需佩掛於胸前。<br>
+            <span style="font-size:0.93em;color:#888;">10. Visitor badges must be worn on the chest.</span></p>
+            <p>11.注意車輛。<br>
+            <span style="font-size:0.93em;color:#888;">11. Be cautious of moving vehicles.</span></p>
             <p class="Sub">二、進入生產區域應注意事項(Precautions for Entering Production Areas):</p>
-            <p>1.進入生產區域請注意地板潛在危險（混滑、積水或油漬）。
-                <br><span style="font-size:0.93em;color:#888;">1. Beware of potential floor hazards (slipperiness, puddles, or oil) in production areas.</span>
-            </p>
-            <p>2.請儘量穿著平底鞋或換穿現場專用之防滑拖鞋。
-                <br><span style="font-size:0.93em;color:#888;">2. Please wear flat shoes or use anti-slip slippers provided on site.</span>
-            </p>
-            <p>3.進入無塵室前須穿著防塵帽、無塵衣、靜電拖鞋或鞋套。
-                <br><span style="font-size:0.93em;color:#888;">3. Wear dust caps, cleanroom suits, and anti-static slippers or shoe covers before entering the cleanroom.</span>
-            </p>
-            <p>4.換裝完畢後須進入空氣洗淨室作空氣浴後，始得進入無塵室。
-                <br><span style="font-size:0.93em;color:#888;">4. After changing, you must enter the air shower room before entering the cleanroom.</span>
-            </p>
-            <p>5.進入高分貝生產區域請穿戴耳塞。
-                <br><span style="font-size:0.93em;color:#888;">5. Please wear earplugs in high-decibel production areas.</span>
-            </p>
-            <p>6.非經許可禁止攜帶攝影器材進入生產區域。
-                <br><span style="font-size:0.93em;color:#888;">6. Do not bring photographic equipment into production areas without permission.</span>
-            </p>
-            <p>7.如需照相，請透過本廠陪同人員代為申請。
-                <br><span style="font-size:0.93em;color:#888;">7. For photography, please ask accompanying staff to apply for permission.</span>
-            </p>
-            <p>8.參訪人員請依參觀路線，非經許可不得私自進入機器操作區。
-                <br><span style="font-size:0.93em;color:#888;">8. Visitors should follow the tour route and do not enter machinery operation areas without permission.</span>
-            </p>
-            <p>9.遵守各項警告標示及告示牌之注意事項。
-                <br><span style="font-size:0.93em;color:#888;">9. Follow all warning signs and posted instructions.</span>
-            </p>
-            <p>10.注意移動式機具及長工件的端面，以避免被撞、被割。
-                <br><span style="font-size:0.93em;color:#888;">10. Beware of moving equipment and the ends of long workpieces to avoid injury.</span>
-            </p>
-            <p>11.參訪人員若配戴領帶、識別證或其他證件之吊帶，請取下收好，以免不慎捲入機器設備，造成嚴重傷害。
-                <br><span style="font-size:0.93em;color:#888;">11. Remove ties, ID lanyards, or any hanging straps to avoid getting caught in machinery.</span>
-            </p>
+            <p>1.進入生產區域請注意地板潛在危險（混滑、積水或油漬）。<br>
+            <span style="font-size:0.93em;color:#888;">1. Beware of potential floor hazards (slipperiness, puddles, or oil) in production areas.</span></p>
+            <p>2.請儘量穿著平底鞋或換穿現場專用之防滑拖鞋。<br>
+            <span style="font-size:0.93em;color:#888;">2. Please wear flat shoes or use anti-slip slippers provided on site.</span></p>
+            <p>3.進入無塵室前須穿著防塵帽、無塵衣、靜電拖鞋或鞋套。<br>
+            <span style="font-size:0.93em;color:#888;">3. Wear dust caps, cleanroom suits, and anti-static slippers or shoe covers before entering the cleanroom.</span></p>
+            <p>4.換裝完畢後須進入空氣洗淨室作空氣浴後，始得進入無塵室。<br>
+            <span style="font-size:0.93em;color:#888;">4. After changing, you must enter the air shower room before entering the cleanroom.</span></p>
+            <p>5.進入高分貝生產區域請穿戴耳塞。<br>
+            <span style="font-size:0.93em;color:#888;">5. Please wear earplugs in high-decibel production areas.</span></p>
+            <p>6.非經許可禁止攜帶攝影器材進入生產區域。<br>
+            <span style="font-size:0.93em;color:#888;">6. Do not bring photographic equipment into production areas without permission.</span></p>
+            <p>7.如需照相，請透過本廠陪同人員代為申請。<br>
+            <span style="font-size:0.93em;color:#888;">7. For photography, please ask accompanying staff to apply for permission.</span></p>
+            <p>8.參訪人員請依參觀路線，非經許可不得私自進入機器操作區。<br>
+            <span style="font-size:0.93em;color:#888;">8. Visitors should follow the tour route and do not enter machinery operation areas without permission.</span></p>
+            <p>9.遵守各項警告標示及告示牌之注意事項。<br>
+            <span style="font-size:0.93em;color:#888;">9. Follow all warning signs and posted instructions.</span></p>
+            <p>10.注意移動式機具及長工件的端面，以避免被撞、被割。<br>
+            <span style="font-size:0.93em;color:#888;">10. Beware of moving equipment and the ends of long workpieces to avoid injury.</span></p>
+            <p>11.參訪人員若配戴領帶、識別證或其他證件之吊帶，請取下收好，以免不慎捲入機器設備，造成嚴重傷害。<br>
+            <span style="font-size:0.93em;color:#888;">11. Remove ties, ID lanyards, or any hanging straps to avoid getting caught in machinery.</span></p>
             <p class="Sub">三、廠商應注意事項(Notes for Contractors)：</p>
-            <p>1.廠區內車輛依現場標示速限行駛，並停放於指定區域。
-                <br><span style="font-size:0.93em;color:#888;">1. Vehicles must follow speed limits and park in designated areas within the factory.</span>
-            </p>
-            <p>2.超過二分鐘以上務必熄火。
-                <br><span style="font-size:0.93em;color:#888;">2. Turn off your engine if stationary for more than two minutes.</span>
-            </p>
-            <p>3.非經許可禁止使用及操作任何機具。
-                <br><span style="font-size:0.93em;color:#888;">3. Do not use or operate any equipment without permission.</span>
-            </p>
-            <p>4.廠商操作依法令規範之危險性機械，應出示相關證明。
-                <br><span style="font-size:0.93em;color:#888;">4. Contractors operating hazardous machinery must present relevant certificates as required by law.</span>
-            </p>
-            <p>5.施工前應簽署「承攬作業危害因素告知單」。
-                <br><span style="font-size:0.93em;color:#888;">5. Sign the "Contractor Hazard Notification Form" before construction.</span>
-            </p>
-            <p>6.其他臨時注意事項：
-                <br><span style="font-size:0.93em;color:#888;">6. Other temporary instructions:</span>
-            </p>
-            <p>附件編號：N-4-C-HR-47B(240723)
-                <br><span style="font-size:0.93em;color:#888;">Attachment Number: N-4-C-HR-47B(240723)</span>
-            </p>
+            <p>1.廠區內車輛依現場標示速限行駛，並停放於指定區域。<br>
+            <span style="font-size:0.93em;color:#888;">1. Vehicles must follow speed limits and park in designated areas within the factory.</span></p>
+            <p>2.超過二分鐘以上務必熄火。<br>
+            <span style="font-size:0.93em;color:#888;">2. Turn off your engine if stationary for more than two minutes.</span></p>
+            <p>3.非經許可禁止使用及操作任何機具。<br>
+            <span style="font-size:0.93em;color:#888;">3. Do not use or operate any equipment without permission.</span></p>
+            <p>4.廠商操作依法令規範之危險性機械，應出示相關證明。<br>
+            <span style="font-size:0.93em;color:#888;">4. Contractors operating hazardous machinery must present relevant certificates as required by law.</span></p>
+            <p>5.施工前應簽署「承攬作業危害因素告知單」。<br>
+            <span style="font-size:0.93em;color:#888;">5. Sign the "Contractor Hazard Notification Form" before construction.</span></p>
+            <p>6.其他臨時注意事項：<br>
+            <span style="font-size:0.93em;color:#888;">6. Other temporary instructions:</span></p>
+            <p>附件編號：HR-P08-07</p>
         </div>
         <div id="agreeSection">
             <label>
@@ -360,15 +339,27 @@
                 <div class="form-row-reason">
                     <label style="font-size:1.13rem;">事由(Purpose)：</label>
                     <div class="checkbox">
-                        <div><input type="radio" name="reason" class="reason">廠商領料<br><span style="font-size:0.93em;color:#888;">Material Pickup</span></div>
-                        <div><input type="radio" name="reason" class="reason">廠商退貨<br><span style="font-size:0.93em;color:#888;">Material Return</span></div>
-                        <div><input type="radio" name="reason" class="reason">轉廠、調撥<br><span style="font-size:0.93em;color:#888;">Transfer/Allocation</span></div>
-                        <div><input type="radio" name="reason" class="reason">出貨<br><span style="font-size:0.93em;color:#888;">Shipment</span></div>
-                        <div>
+                        <label>
+                            <input type="radio" name="reason" class="reason">廠商領料
+                            <br><span style="font-size:0.93em;color:#888;">Material Pickup</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="reason" class="reason">廠商退貨
+                            <br><span style="font-size:0.93em;color:#888;">Material Return</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="reason" class="reason">轉廠、調撥
+                            <br><span style="font-size:0.93em;color:#888;">Transfer/Allocation</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="reason" class="reason">出貨
+                            <br><span style="font-size:0.93em;color:#888;">Shipment</span>
+                        </label>
+                        <label>
                             <input type="radio" name="reason" class="reason">其他
                             <input type="text" id="other" placeholder="請輸入說明">
                             <br><span style="font-size:0.93em;color:#888;">Other (please specify)</span>
-                        </div>
+                        </label>
                     </div>
                 </div>
                 <div class="form-row">
@@ -398,7 +389,6 @@
                 <div class="form-row">
                     <label for="remark">備註(Remarks)：</label>
                     <input type="text" id="remark" autocomplete="off" placeholder="其他事項說明">
-                    <br><span style="font-size:0.93em;color:#888;">Other notes or remarks.</span>
                 </div>
                 <div class="form-row">
                     <label for="npeople">人數(Number of People)：</label>
@@ -418,7 +408,10 @@
                 </div>
                 <div class="signature-row">
                     <label style="font-size:1.1rem; color:#243271; margin-bottom: 2px;">簽名(Signature)：</label>
-                    <canvas id="signbox" width="400" height="150"></canvas>
+                    <div>
+                        <canvas id="signbox" style="width:100%;height:180px;display:block;"></canvas>
+                    </div>
+
                     <button type="button" onclick="Clear()">清除簽名(Clear Signature)</button>
                 </div>
             </div>
@@ -429,11 +422,17 @@
         </div>
     </div>
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        document.getElementById('agreeCheck').addEventListener('change', function() {
-            document.getElementById('registerForm').style.display = this.checked ? "block" : "none";
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById('agreeCheck').addEventListener('change', function () {
+                document.getElementById('registerForm').style.display = this.checked ? "block" : "none";
+                setTimeout(fitCanvas, 50); // 等動畫/顯示完再調整
+            });
         });
-    });
+        fitCanvas();
+            window.signaturePad = new SignaturePad(document.getElementById("signbox"), {
+                backgroundColor: "rgba(255,255,255,0)",
+                penColor: "black"
+        });
     </script>
 </body>
 </html>

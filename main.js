@@ -1,13 +1,35 @@
+let signbox = null;
 
-var signbox;
-window.onload = function() {
-    if(document.getElementById("signbox")){
-            signbox = new SignaturePad(
-            document.getElementById("signbox"),
+function fitCanvas() {
+    const canvas = document.getElementById('signbox');
+    if (!canvas) return;
+    const parent = canvas.parentElement;
+    const width = parent.offsetWidth;
+    const height = 180; // 跟 HTML 一樣
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+    const ctx = canvas.getContext("2d");
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.scale(dpr, dpr);
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const canvas = document.getElementById("signbox");
+    if (canvas) {
+        fitCanvas(canvas); // 初始化fit
+        signbox = new SignaturePad(
+            canvas,
             { backgroundColor: "rgba(255,255,255,0)", penColor: "black" }
         );
+        window.addEventListener("resize", function () {
+            fitCanvas(canvas);
+        });
     }
-}
+});
+
 function jump(filname){
     window.location.href = filname + ".html";
 }
@@ -22,7 +44,7 @@ function getNowDatetime() {
     return `${yyyy}-${mm}-${dd} ${hh}:${min}:${ss}`;
 }
 function Clear(){
-    signbox.clear();
+    if(signbox) signbox.clear();
 }
 
 function send_data(type){
@@ -38,8 +60,7 @@ function send_data(type){
         let Npeople = document.getElementById("npeople");
 
         let Reason_string = ""
-        let Reason_dic = ["廠商領料", "廠商退貨", "轉發、調撥", "出貨"];
-
+        let Reason_dic = ["廠商領料", "廠商退貨", "轉廠、調撥", "出貨"];
 
         if(!Agree){
             Alertstr += "閱讀須知並勾選同意 ";
@@ -123,6 +144,7 @@ function send_data(type){
             alert("fetch 發生錯誤:" + err);
         });
     }
+
     else if(type == 1){
         let Ename = document.getElementById("name");
         let Eid = document.getElementById("eid");
