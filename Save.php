@@ -2,12 +2,16 @@
 // 錯誤回報（開發階段建議開啟）
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
+require __DIR__ . '/vendor/autoload.php';
 
-// 資料庫連線設定
-$servername = "localhost";
-$username = "benson";
-$password = "benson25";
-$dbname = "mydb";
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+$servername = $_ENV['DB_HOST'];
+$username   = $_ENV['DB_USER'];
+$password   = $_ENV['DB_PASS'];
+$dbname     = $_ENV['DB_NAME'];
+
 
 // 建立連線
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -31,7 +35,7 @@ $remark = isset($_POST['Remark']) ? $_POST['Remark'] : '';
 $npeople = isset($_POST['Npeople']) ? $_POST['Npeople'] : '';
 $image = isset($_POST['Image']) ? $_POST['Image'] : '';
 
-$signature_path = ""; // 簽名圖片儲存路徑
+$signature_dir = $_ENV['SIGNATURE_PATH'] ?? '/var/www/html/signatures'; // 簽名圖片儲存路徑
 
 // 如果有收到圖片才進行存檔
 if ($image) {
@@ -44,7 +48,7 @@ if ($image) {
             die("圖片解碼失敗");
         }
         // 指定儲存路徑與檔名（用時間+隨機數確保不重複）
-        $filename = '/var/www/html/signatures/sign_' . date('Ymd_H:i:s.') . $ext;
+        $filename = rtrim($signature_dir, '/') . '/sign_' . date('Ymd_His') . '.' . $ext;
         if (file_put_contents($filename, $data)) {
             $signature_path = $filename;
         }
