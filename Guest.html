@@ -134,6 +134,7 @@
             word-break: keep-all;
             white-space: nowrap;
             display: inline;
+            color: #888;
         }
         .form-row {
             display: flex;
@@ -154,7 +155,7 @@
         .form-row .en {
             display: block;
             font-size: 0.96em;
-            color: #6472a2;
+            color: #888;
             font-weight: 400;
             margin-top: 2px;
         }
@@ -237,7 +238,7 @@
         .grid-reason .en {
             display: block;
             font-size: 0.97em;
-            color: #4462ea;
+            color: #4568e8;
             font-weight: 400;
             margin-top: 2px;
         }
@@ -342,7 +343,7 @@
         }
         .grid-reason .en {
             display: inline;
-            color: #7c3aed;
+            color: #3a3737;
             margin-left: 2px;
             font-size: 1em;
             font-weight: 500;
@@ -392,7 +393,7 @@
             </div>
         </div>
         <div class="notice-card">
-            <p class="Sub">一、一般注意事項(General Instructions)：</p>
+            <p class="Sub">一、一般注意事項  General Instructions：</p>
             <p>1.本公司全面禁止吸煙及食用橫榔。<br>
             <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Smoking and betel nut chewing are strictly prohibited in the company.</span></p>
             <p>2.各室內場所均有緊急出口標示燈，提供緊急逃生路線。<br>
@@ -415,7 +416,7 @@
             <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Visitor badges must be worn on the chest.</span></p>
             <p>11.注意車輛。<br>
             <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Be cautious of moving vehicles.</span></p>
-            <p class="Sub">二、進入生產區域應注意事項(Precautions for Entering Production Areas):</p>
+            <p class="Sub">二、進入生產區域應注意事項  Precautions for Entering Production Areas:</p>
             <p>1.進入生產區域請注意地板潛在危險（混滑、積水或油漬）。<br>
             <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Beware of potential floor hazards (slipperiness, puddles, or oil) in production areas.</span></p>
             <p>2.請儘量穿著平底鞋或換穿現場專用之防滑拖鞋。<br>
@@ -438,7 +439,7 @@
             <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Beware of moving equipment and the ends of long workpieces to avoid injury.</span></p>
             <p>11.參訪人員若配戴領帶、識別證或其他證件之吊帶，請取下收好，以免不慎捲入機器設備，造成嚴重傷害。<br>
             <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Remove ties, ID lanyards, or any hanging straps to avoid getting caught in machinery.</span></p>
-            <p class="Sub">三、廠商應注意事項(Notes for Contractors)：</p>
+            <p class="Sub">三、廠商應注意事項  Notes for Contractors：</p>
             <p>1.廠區內車輛依現場標示速限行駛，並停放於指定區域。<br>
             <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Vehicles must follow speed limits and park in designated areas within the factory.</span></p>
             <p>2.超過二分鐘以上務必熄火。<br>
@@ -456,7 +457,7 @@
         <div id="agreeSection">
             <label>
                 <input type="checkbox" id="agreeCheck">
-                我已詳細閱讀上述須知內容並同意入場
+                    我已詳細閱讀上述須知內容並同意入場
                 <br><span style="font-size:0.93em;color:#888;">I have read and agree to the above instructions.</span>
             </label>
         </div>
@@ -464,48 +465,48 @@
             <form autocomplete="off" onsubmit="return false;">
             <div class="IP">
                 <div class="form-row">
-                    <label for="name">姓名<br><span class="en">(Name)</span></label>
-                    <input type="text" id="name" autocomplete="off" placeholder="請輸入姓名 (Please enter your name)">
+                    <label for="name">姓名  <spqn style = "color: #888;">Name</span></label>
+                    <input type="text" id="name" autocomplete="off" placeholder="請輸入姓名 Please enter your name">
                 </div>
                 <div class="checkbox grid-reason" style="grid-template-columns: 1fr 1fr;">
             <label>
-                <input type="radio" name="reason" class="reason" value="Material Pickup">
-                廠商領料 <span class="en" style="color:#7c3aed; font-weight:500;">(Material Pickup)</span>
+                <input type="radio" name="reason" class="reason;" value="Material Pickup">
+                廠商領料 <span class="en" style=" font-weight:500;color: #888;">Material Pickup</span>
             </label>
             <label>
                 <input type="radio" name="reason" class="reason" value="Material Return">
-                廠商退貨 <span class="en" style="color:#7c3aed; font-weight:500;">(Material Return)</span>
+                廠商退貨 <span class="en" style=" font-weight:500;color: #888;">Material Return</span>
             </label>
             <label>
                 <input type="radio" name="reason" class="reason" value="Transfer/Allocation">
-                轉廠、調撥 <span class="en" style="color:#7c3aed; font-weight:500;">(Transfer/Allocation)</span>
+                轉廠、調撥 <span class="en" style=" font-weight:500;color: #888;">Transfer/Allocation</span>
             </label>
             <label>
                 <input type="radio" name="reason" class="reason" value="Shipment">
-                出貨 <span class="en" style="color:#7c3aed; font-weight:500;">(Shipment)</span>
+                出貨 <span class="en" style=" font-weight:500;color: #888;">Shipment</span>
             </label>
             <!-- 其他（Other） -->
             <div class="full-row other-row" style="display: flex; align-items: center; gap: 10px; margin-top: 4px;">
                 <input type="radio" name="reason" class="reason" value="Other" id="reason-other">
                 <label for="reason-other" style="margin:0;display:flex;align-items:center;gap:2px;">
-                    其他 <span class="en" style="color:#7c3aed; font-weight:500;">(Other)</span>
+                    其他 <span class="en" style="font-weight:500;color: #888;">Other</span>
                 </label>
-                <input type="text" id="other" placeholder="請輸入說明 (Please enter a description)" style="flex:1; min-width:160px;">
+                <input type="text" id="other" placeholder="請輸入說明 Please enter a description" style="flex:1; min-width:160px;">
             </div>
         </div>
 
                 <div class="form-row">
-                    <label for="unit">單位<br><span class="en">(Department)</span></label>
-                    <input type="text" id="unit" autocomplete="off" placeholder="請輸入單位 (Please enter department)">
+                    <label for="unit">單位  <span style = "color: #888;">Department</span></label>
+                    <input type="text" id="unit" autocomplete="off" placeholder="請輸入單位 Please enter department">
                 </div>
                 <div class="form-row">
-                    <label for="visited">受訪者<br><span class="en">(Contact Person)</span></label>
-                    <input type="text" id="visited" autocomplete="off" placeholder="請輸入受訪者姓名 (Please enter contact person’s name)">
+                    <label for="visited">受訪者  <span style = "color: #888;">Contact Person</span></label>
+                    <input type="text" id="visited" autocomplete="off" placeholder="請輸入受訪者姓名 Please enter contact person’s name">
                 </div>
                 <div class="form-row">
-                    <label for="identity">證號<br><span class="en">(Badge Number)</span></label>
+                    <label for="identity">證號  <span style = "color: #888;">Badge Number</span></label>
                     <select id="identity" name="identity">
-                        <option value="">請選擇 (Please select)</option>
+                        <option value="">請選擇  Please select</option>
                         <option value="1">1</option><option value="2">2</option>
                         <option value="3">3</option><option value="4">4</option>
                         <option value="5">5</option><option value="6">6</option>
@@ -519,13 +520,13 @@
                     </select>
                 </div>
                 <div class="form-row">
-                    <label for="remark">備註<br><span class="en">(Remarks)</span></label>
-                    <input type="text" id="remark" autocomplete="off" placeholder="其他事項說明 (Other remarks)">
+                    <label for="remark">備註  <span style = "color: #888;">Remarks</span></label>
+                    <input type="text" id="remark" autocomplete="off" placeholder="其他事項說明 Other remarks">
                 </div>
                 <div class="form-row">
-                    <label for="npeople">人數<br><span class="en">(Number of People)</span></label>
+                    <label for="npeople">人數  <span style = "color: #888;">Number of People</span></label>
                     <select id="npeople" name="npeople">
-                        <option value="">請選擇 (Please select)</option>
+                        <option value="">請選擇 Please select</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -539,15 +540,15 @@
                     </select>
                 </div>
                 <div class="signature-row">
-                    <label style="font-size:1.5rem; color:#243271; margin-bottom: 2px;">簽名<br><span class="en">(Signature)</span></label>
+                    <label style="font-size:1.5rem; color:#243271; margin-bottom: 2px;">簽名  <span style = "color: #888;">Signature</span></label>
                     <div>
                         <canvas id="signbox" style="width:100%;height:180px;display:block;"></canvas>
                     </div>
-                    <button type="button" onclick="Clear()">清除簽名<br>(Clear Signature)</button>
+                    <button type="button" onclick="Clear()">清除簽名<br>Clear Signature</button>
                 </div>
             </div>
             <div class="button-row">
-                <button type="button" onclick="send_data(0)">送出<br>(Submit)</button>
+                <button type="button" onclick="send_data(0)">送出<span>Submit</span></button>
             </div>
             </form>
         </div>
