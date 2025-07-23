@@ -137,43 +137,54 @@
         }
         .form-row {
             display: flex;
-            align-items: center;
-            gap: 18px;
-            margin-bottom: 2px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+            margin-bottom: 16px;
         }
         .form-row label {
-            min-width: 92px;
-            font-size: 1.18rem;
+            min-width: unset;
+            font-size: 1.08rem;
             color: #234;
+            text-align: left;
+            display: block;
+            line-height: 1.3;
+            margin-bottom: 2px;
         }
-        .form-row input[type="text"], 
-        .form-row input[type="number"] ,
-        select{
-            font-size: 1.15rem;
+        .form-row .en {
+            display: block;
+            font-size: 0.96em;
+            color: #6472a2;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+        .form-row input[type="text"],
+        .form-row input[type="number"],
+        .form-row select {
+            font-size: 1.18rem;
             border: 1.5px solid #b6bfd8;
             border-radius: 8px;
-            padding: 7px 12px;
+            padding: 14px 14px;
             background: #f4f7fd;
             transition: border 0.18s;
             outline: none;
             width: 100%;
+            box-sizing: border-box;
+            min-height: 48px;
         }
-        .form-row input:focus {
-            border: 2px solid #4462ea;
-            background: #eaf1ff;
-        }
-        .form-row select {
-            font-size: 1.13rem;
-            border: 1.5px solid #b6bfd8;
-            border-radius: 8px;
-            padding: 6px 18px;
-            background: #f6faff;
-            transition: border 0.18s;
-        }
+        .form-row input:focus,
         .form-row select:focus {
             border: 2px solid #4462ea;
             background: #eaf1ff;
         }
+
+
+        .form-row input:focus,
+        .form-row select:focus {
+            border: 2px solid #4462ea;
+            background: #eaf1ff;
+        }
+
         .checkbox {
             border: 1.5px solid #b9c2d1;
             border-radius: 13px;
@@ -207,6 +218,36 @@
             outline: none;
             box-sizing: border-box;
         }
+        /* 兩欄排版 - 事由(Purpose)專用 */
+        .grid-reason {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 30px;
+        }
+        .grid-reason > .full-row {
+            grid-column: 1 / span 2;   /* 讓最後一個佔滿整行 */
+        }
+        .grid-reason label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.13rem;
+            line-height: 1.3;
+        }
+        .grid-reason .en {
+            display: block;
+            font-size: 0.97em;
+            color: #4462ea;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+        .other-input-wrap input[type="text"] {
+            width: 100%;
+            margin-top: 7px;
+            font-size: 1.1rem;
+            background: #f6f6fb;
+        }
+        /* --------- */
         .form-row-reason {
             display: flex;
             align-items: flex-start;
@@ -226,19 +267,6 @@
         .other-input-wrap {
             width: 100%;
         }
-        .other-input-wrap input[type="text"] {
-            width: 100%;
-            margin-top: 5px;
-            box-sizing: border-box;
-            padding: 17px 12px;
-            font-size: 1.15rem;
-            border: 1.5px solid #b6bfd8;
-            border-radius: 8px;
-            background: #f4f7fd;
-            transition: border 0.18s;
-            outline: none;
-        }
-
         .signature-row {
             display: flex;
             flex-direction: column;
@@ -300,15 +328,53 @@
             background: #22399a;
             transform: translateY(-2px) scale(1.05);
         }
+        .grid-reason {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px 36px;
+        }
+        .grid-reason > label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.13rem;
+            line-height: 1.3;
+        }
+        .grid-reason .en {
+            display: inline;
+            color: #7c3aed;
+            margin-left: 2px;
+            font-size: 1em;
+            font-weight: 500;
+        }
+        .other-row label .en {
+            display: block;
+            margin-top: -1px;
+            text-align: center;
+        }
+        @media (max-width: 900px) {
+            .grid-reason {
+                grid-template-columns: 1fr;
+                gap: 12px 0;
+            }
+            .other-row { width: 100%; }
+        }
+
         @media (max-width: 900px) {
             .container { max-width: 99vw; padding: 5vw 2vw; }
             .IP, #agreeSection { padding: 6vw 2vw; }
+            .grid-reason {
+                grid-template-columns: 1fr;
+            }
         }
         @media (max-width: 650px) {
             .container, .IP, #agreeSection { max-width: 100vw !important; width: 98vw !important; padding: 3vw 1vw; }
             .notice-card, .form-row label { font-size: 1rem; }
             .header .Head { font-size: 1.5rem; }
             .signature-row { width: 100%; }
+            .grid-reason {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -398,44 +464,48 @@
             <form autocomplete="off" onsubmit="return false;">
             <div class="IP">
                 <div class="form-row">
-                    <label for="name">姓名(Name)：</label>
-                    <input type="text" id="name" autocomplete="off" placeholder="請輸入姓名(Please enter your name)">
+                    <label for="name">姓名<br><span class="en">(Name)</span></label>
+                    <input type="text" id="name" autocomplete="off" placeholder="請輸入姓名 (Please enter your name)">
                 </div>
-                <div class="form-row-reason">
-                    <label style="font-size:1.13rem;">事由(Purpose)</label>
-                    <div class="checkbox">
-                        <label>
-                            <input type="radio" name="reason" class="reason">廠商領料(Material Pickup)
-                        </label>
-                        <label>
-                            <input type="radio" name="reason" class="reason">廠商退貨(Material Return)
-                        </label>
-                        <label>
-                            <input type="radio" name="reason" class="reason">轉廠、調撥(Transfer/Allocation)
-                        </label>
-                        <label>
-                            <input type="radio" name="reason" class="reason">出貨(Shipment)
-                        </label>
-                        <label class="reason-other-label">
-                            <input type="radio" name="reason" class="reason">其他(Other)
-                            <div class="other-input-wrap">
-                                <input type="text" id="other" placeholder="請輸入說明(Please enter a description)">
-                            </div>
-                        </label>
-                    </div>
+                <div class="checkbox grid-reason" style="grid-template-columns: 1fr 1fr;">
+            <label>
+                <input type="radio" name="reason" class="reason" value="Material Pickup">
+                廠商領料 <span class="en" style="color:#7c3aed; font-weight:500;">(Material Pickup)</span>
+            </label>
+            <label>
+                <input type="radio" name="reason" class="reason" value="Material Return">
+                廠商退貨 <span class="en" style="color:#7c3aed; font-weight:500;">(Material Return)</span>
+            </label>
+            <label>
+                <input type="radio" name="reason" class="reason" value="Transfer/Allocation">
+                轉廠、調撥 <span class="en" style="color:#7c3aed; font-weight:500;">(Transfer/Allocation)</span>
+            </label>
+            <label>
+                <input type="radio" name="reason" class="reason" value="Shipment">
+                出貨 <span class="en" style="color:#7c3aed; font-weight:500;">(Shipment)</span>
+            </label>
+            <!-- 其他（Other） -->
+            <div class="full-row other-row" style="display: flex; align-items: center; gap: 10px; margin-top: 4px;">
+                <input type="radio" name="reason" class="reason" value="Other" id="reason-other">
+                <label for="reason-other" style="margin:0;display:flex;align-items:center;gap:2px;">
+                    其他 <span class="en" style="color:#7c3aed; font-weight:500;">(Other)</span>
+                </label>
+                <input type="text" id="other" placeholder="請輸入說明 (Please enter a description)" style="flex:1; min-width:160px;">
+            </div>
+        </div>
+
+                <div class="form-row">
+                    <label for="unit">單位<br><span class="en">(Department)</span></label>
+                    <input type="text" id="unit" autocomplete="off" placeholder="請輸入單位 (Please enter department)">
                 </div>
                 <div class="form-row">
-                    <label for="unit">單位(<span class="en">Department</span>)</label>
-                    <input type="text" id="unit" autocomplete="off" placeholder="請輸入單位(Please enter department)">
+                    <label for="visited">受訪者<br><span class="en">(Contact Person)</span></label>
+                    <input type="text" id="visited" autocomplete="off" placeholder="請輸入受訪者姓名 (Please enter contact person’s name)">
                 </div>
                 <div class="form-row">
-                    <label for="visited">受訪者(<span class="en">Contact Person</span>)</label>
-                    <input type="text" id="visited" autocomplete="off" placeholder="請輸入受訪者姓名(Please enter contact person’s name)">
-                </div>
-                <div class="form-row">
-                    <label for="identity">證號(<span class="en">Badge Number</span>)</label>
+                    <label for="identity">證號<br><span class="en">(Badge Number)</span></label>
                     <select id="identity" name="identity">
-                        <option value="">請選擇(Please select)</option>
+                        <option value="">請選擇 (Please select)</option>
                         <option value="1">1</option><option value="2">2</option>
                         <option value="3">3</option><option value="4">4</option>
                         <option value="5">5</option><option value="6">6</option>
@@ -449,13 +519,13 @@
                     </select>
                 </div>
                 <div class="form-row">
-                    <label for="remark">備註(<span class="en">Remarks</span>)</label>
-                    <input type="text" id="remark" autocomplete="off" placeholder="其他事項說明">
+                    <label for="remark">備註<br><span class="en">(Remarks)</span></label>
+                    <input type="text" id="remark" autocomplete="off" placeholder="其他事項說明 (Other remarks)">
                 </div>
                 <div class="form-row">
-                    <label for="npeople">人數(<span class="en">Number of People</span>)</label>
+                    <label for="npeople">人數<br><span class="en">(Number of People)</span></label>
                     <select id="npeople" name="npeople">
-                        <option value="">請選擇(Please select)</option>
+                        <option value="">請選擇 (Please select)</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -469,7 +539,7 @@
                     </select>
                 </div>
                 <div class="signature-row">
-                    <label style="font-size:1.5rem; color:#243271; margin-bottom: 2px;">簽名(Signature)</label>
+                    <label style="font-size:1.5rem; color:#243271; margin-bottom: 2px;">簽名<br><span class="en">(Signature)</span></label>
                     <div>
                         <canvas id="signbox" style="width:100%;height:180px;display:block;"></canvas>
                     </div>
@@ -477,7 +547,7 @@
                 </div>
             </div>
             <div class="button-row">
-                <button type="button" onclick="send_data(0)">送出(Submit)</button>
+                <button type="button" onclick="send_data(0)">送出<br>(Submit)</button>
             </div>
             </form>
         </div>
@@ -490,9 +560,9 @@
             });
         });
         fitCanvas();
-            window.signaturePad = new SignaturePad(document.getElementById("signbox"), {
-                backgroundColor: "rgba(255,255,255,0)",
-                penColor: "black"
+        window.signaturePad = new SignaturePad(document.getElementById("signbox"), {
+            backgroundColor: "rgba(255,255,255,0)",
+            penColor: "black"
         });
     </script>
 </body>
