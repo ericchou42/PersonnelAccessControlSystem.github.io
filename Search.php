@@ -1,11 +1,6 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 
-$servername = "localhost";
-$username = "acs";
-$password = "Acs@0721";
-$dbname = "mydb";
-
 // 連線資料庫
 $conn = new mysqli($servername, $username, $password, $dbname);
 

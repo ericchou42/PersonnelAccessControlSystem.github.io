@@ -1,2 +1,4 @@
-\signatures
-\.env
+.env
+vendor/
+signatures/
+update/
