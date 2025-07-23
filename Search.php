@@ -1,17 +1,5 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-require __DIR__ . '/vendor/autoload.php';
-
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
-
-$servername = $_ENV['DB_HOST'];
-$username   = $_ENV['DB_USER'];
-$password   = $_ENV['DB_PASS'];
-$dbname     = $_ENV['DB_NAME'];
-
 
 // 連線資料庫
 $conn = new mysqli($servername, $username, $password, $dbname);
