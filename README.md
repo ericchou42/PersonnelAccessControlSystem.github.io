@@ -52,4 +52,7 @@
 ## 隱藏資料夾 .gitignore
 
 ## 環境變數檔案.env
+
+## PHP套件
+$sudo yum install php-json
 </pre>
