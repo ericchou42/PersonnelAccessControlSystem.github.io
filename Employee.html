@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <title>員工</title>
+    <title>員工(Employee)</title>
     <script src="main.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
@@ -20,21 +20,33 @@
             margin: 32px auto 0 auto;
             max-width: 510px;
         }
-        .topbar button {
+        .btn-main {
             width: 130px;
             height: 48px;
             font-size: 19px;
-            background: #4568e8;
+            background: #673be6;
             border: none;
             color: #fff;
             border-radius: 14px;
             box-shadow: 0 2px 10px #4063e812;
             transition: background 0.18s, transform 0.13s;
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.13;
+            gap: 2px;
         }
-        .topbar button:hover {
+        .btn-main:hover {
             background: #2d49b2;
             transform: translateY(-2px) scale(1.04);
+        }
+        .btn-main .en {
+            font-size: 0.85em;
+            color: #d3caff;
+            font-weight: 400;
+            letter-spacing: 0.02em;
         }
         .IP {
             display: flex;
@@ -59,8 +71,20 @@
             justify-content: flex-start;
         }
         .form-row label {
-            min-width: 94px;
-            color: #26348a;
+            min-width: 120px;
+            color: #673be6;
+            font-size: 1.17rem;
+            line-height: 1.17;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .form-row label .en {
+            font-size: 0.95em;
+            color: #4462ea;
+            font-weight: 400;
+            margin-top: 2px;
+            letter-spacing: 0.02em;
         }
         .form-row input[type="text"] {
             font-size: 1.15rem;
@@ -83,53 +107,55 @@
             justify-content: center;
             margin-top: 18px;
         }
-        .button-row button {
-            width: 120px;
-            height: 42px;
-            font-size: 1.12rem;
-            background: #4568e8;
-            border: none;
-            color: #fff;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px #4063e812;
-            transition: background 0.17s, transform 0.12s;
-            cursor: pointer;
-        }
-        .button-row button:hover {
-            background: #22399a;
-            transform: translateY(-2px) scale(1.05);
-        }
         @media (max-width: 600px) {
             .IP, .topbar { width: 98vw !important; max-width: 98vw !important; padding: 5vw 2vw; }
-            .form-row label { min-width: 72px; font-size: 1rem; }
+            .form-row label { min-width: 86px; font-size: 1rem; }
             .form-row input { font-size: 1rem; }
         }
     </style>
 </head>
-<body>
-    <div class="topbar">
-        <button onclick="jump('index')">回首頁</button>
-    </div>
-    <div class="IP">
-        <div class="form-row">
-            <label for="name">姓名：</label>
-            <input type="text" id="name" placeholder="請輸入姓名">
+    <body>
+        <div class="topbar">
+            <button class="btn-main" onclick="jump('index')">
+                <span>回首頁</span>
+                <span class="en">(Back to Home)</span>
+            </button>
         </div>
-        <div class="form-row">
-            <label for="eid">工號：</label>
-            <input type="text" id="eid" placeholder="請輸入工號">
+        <div class="IP">
+            <div class="form-row">
+                <label for="name">
+                    姓名
+                    <span class="en">(Name)</span>
+                </label>
+                <input type="text" id="name" placeholder="請輸入姓名 (Name)">
+            </div>
+            <div class="form-row">
+                <label for="eid">
+                    工號
+                    <span class="en">(Employee ID)</span>
+                </label>
+                <input type="text" id="eid" placeholder="請輸入工號 (ID)">
+            </div>
+            <div class="form-row">
+                <label for="department">
+                    部門編號
+                    <span class="en">(Department No.)</span>
+                </label>
+                <input type="text" id="department" placeholder="部門編號 (Dept No.)">
+            </div>
+            <div class="form-row">
+                <label for="remark">
+                    備註
+                    <span class="en">(Remarks)</span>
+                </label>
+                <input type="text" id="remark" placeholder="其他說明 (Remarks)">
+            </div>
+            <div class="button-row">
+                <button class="btn-main" onclick="send_data(1)">
+                    <span>送出</span>
+                    <span class="en">(Submit)</span>
+                </button>
+            </div>
         </div>
-        <div class="form-row">
-            <label for="department">部門編號：</label>
-            <input type="text" id="department" placeholder="請輸入部門編號">
-        </div>
-        <div class="form-row">
-            <label for="remark">備註：</label>
-            <input type="text" id="remark" placeholder="其他事項說明">
-        </div>
-        <div class="button-row">
-            <button type="button" onclick="send_data(1)">送出</button>
-        </div>
-    </div>
-</body>
+    </body>
 </html>
