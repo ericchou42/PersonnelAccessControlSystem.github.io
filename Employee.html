@@ -16,9 +16,25 @@
         .topbar {
             display: flex;
             justify-content: flex-end;
-            align-items: center;
-            margin: 32px auto 0 auto;
-            max-width: 510px;
+            align-items: end;
+            margin: 20px auto 0 auto;
+            width: 100%;
+        }
+        .topbar button {
+            min-width: 100px;
+            height: 60px;
+            font-size: 19px;
+            background: #4568e8;
+            border: none;
+            color: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 10px #4063e812;
+            transition: background 0.18s, transform 0.13s;
+            cursor: pointer;
+        }
+        .topbar button:hover {
+            background: #2d49b2;
+            transform: translateY(-2px) scale(1.04);
         }
         .btn-main {
             width: 200px;
@@ -57,7 +73,7 @@
             background: #fafdff;
             box-shadow: 0 4px 18px #abb2c83a;
             padding: 38px 34px 34px 34px;
-            width: 580px;
+            width: 900px;
             margin: 24px auto 0 auto;
             box-sizing: border-box;
             border: none;
@@ -89,7 +105,7 @@
             letter-spacing: 0.02em;
         }
         .form-row input[type="text"] {
-            font-size: 1.15rem;
+            font-size: 1.5rem;
             border: 1.5px solid #b6bfd8;
             border-radius: 8px;
             padding: 7px 12px;
@@ -106,8 +122,12 @@
             display: flex;
             gap: 30px;
             width: 100%;
-            justify-content: center;
+            justify-content: end;
             margin-top: 18px;
+        }
+        .button-row button{
+            height: 55px;
+            background: #4568e8;
         }
         @media (max-width: 600px) {
             .IP, .topbar { width: 98vw !important; max-width: 98vw !important; padding: 5vw 2vw; }
@@ -117,13 +137,13 @@
     </style>
 </head>
 <body>
-    <div class="topbar">
+    <div class="IP">
+        <div class="topbar">
         <button class="btn-main" onclick="jump('index')">
             <span>回首頁</span>
             <span class="en">Back to Home</span>
         </button>
     </div>
-    <div class="IP">
         <div class="form-row">
             <label for="name">
                 姓名 <span class="en">Name</span>
@@ -151,7 +171,7 @@
         <div class="button-row">
             <button class="btn-main" onclick="send_data(1)">
                 <span>送出</span>
-                <span class="en">(Submit)</span>
+                <span class="en">Submit</span>
             </button>
         </div>
     </div>

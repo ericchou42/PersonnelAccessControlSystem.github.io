@@ -20,9 +20,9 @@
             margin: 36px auto 0 auto;
         }
         .topbar button {
-            width: 130px;
-            height: 48px;
-            font-size: 20px;
+            min-width: 100px;
+            height: 60px;
+            font-size: 19px;
             background: #4568e8;
             border: none;
             color: #fff;
@@ -111,7 +111,6 @@
             box-shadow: 0 2px 12px #4063e818;
             transition: background 0.18s, transform 0.15s;
             cursor: pointer;
-            font-weight: bold;
         }
         .button-row button:hover {
             background: #22399a;
@@ -142,7 +141,7 @@
 </head>
 <body>
     <div class="topbar">
-        <button onclick="jump('index')">回首頁</button>
+        <button onclick="jump('index')" style = "width: 200px;">回首頁 <br><span style = "color:#d3caff;">Back to home</span></button>
     </div>
     <div class="IP">
         <div class="section-card">
@@ -168,7 +167,7 @@
             </table>
         </div>
         <div class="button-row">
-            <button onclick="send()">送出</button>
+            <button onclick="send()">送出 <br> <span style = "color:#d3caff;">Submit</spqn></button>
         </div>
     </div>
     <script src="loadtable_basic.js"></script>

@@ -28,11 +28,12 @@
         .topbar {
             display: flex;
             justify-content: flex-end;
-            align-items: center;
-            margin-bottom: 6px;
+            align-items: end;
+            margin: 20px auto 0 auto;
+            width: 100%;
         }
         .topbar button {
-            min-width: 130px;
+            min-width: 200px;
             height: 60px;
             font-size: 19px;
             background: #4568e8;
@@ -311,11 +312,11 @@
             display: flex;
             gap: 48px;
             justify-content: flex-end;
-            margin-top: 24px;
+            margin-top: 18px;
         }
         .button-row button {
-            width: 120px;
-            height: 42px;
+            width: 200px;
+            height: 55px;
             font-size: 1.12rem;
             background: #4568e8;
             border: none;
@@ -382,7 +383,7 @@
 <body>
     <div class="container">
         <div class="topbar">
-            <button onclick="jump('index')">回首頁<br><span style = "color:#888;">Back to Home</span></button>
+            <button onclick="jump('index')">回首頁<br><span style = "color:#d3caff;">Back to Home</span></button>
         </div>
         <div class="header">
             <div class="Head">光紅建聖股份有限公司</div>
@@ -546,11 +547,11 @@
                     <div>
                         <canvas id="signbox" style="width:100%;height:180px;display:block;"></canvas>
                     </div>
-                    <button type="button" onclick="Clear()">清除簽名<br><span style = "color:#888;">Clear Signature</span></button>
+                    <button type="button" onclick="Clear()">清除簽名<br><span style = "color:#d3caff;;">Clear Signature</span></button>
                 </div>
             </div>
             <div class="button-row">
-                <button type="button" onclick="send_data(0)">送出<br><span style = "color:#888;">Submit</span></button>
+                <button type="button" onclick="send_data(0)">送出<br><span style = "color:#d3caff;">Submit</span></button>
             </div>
             </form>
         </div>
