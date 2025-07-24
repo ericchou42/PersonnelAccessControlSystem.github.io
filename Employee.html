@@ -21,8 +21,8 @@
             max-width: 510px;
         }
         .btn-main {
-            width: 130px;
-            height: 48px;
+            width: 200px;
+            height: 70px;
             font-size: 19px;
             background: #673be6;
             border: none;
@@ -57,14 +57,15 @@
             background: #fafdff;
             box-shadow: 0 4px 18px #abb2c83a;
             padding: 38px 34px 34px 34px;
-            width: 420px;
+            width: 580px;
             margin: 24px auto 0 auto;
             box-sizing: border-box;
             border: none;
         }
         .form-row {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
+            flex-direction: column;
             gap: 15px;
             font-size: 1.19rem;
             width: 100%;
@@ -72,18 +73,19 @@
         }
         .form-row label {
             min-width: 120px;
-            color: #673be6;
+            color: #000;
             font-size: 1.17rem;
             line-height: 1.17;
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+            flex-direction: row;
+            align-items: center;
+            gap: 6px;
         }
         .form-row label .en {
-            font-size: 0.95em;
-            color: #4462ea;
+            font-size: 0.97em;
+            color: #888;
             font-weight: 400;
-            margin-top: 2px;
+            margin-top: 0;
             letter-spacing: 0.02em;
         }
         .form-row input[type="text"] {
@@ -94,7 +96,7 @@
             background: #f4f7fd;
             transition: border 0.18s;
             outline: none;
-            width: 210px;
+            width: 100%;
         }
         .form-row input[type="text"]:focus {
             border: 2px solid #4462ea;
@@ -114,48 +116,44 @@
         }
     </style>
 </head>
-    <body>
-        <div class="topbar">
-            <button class="btn-main" onclick="jump('index')">
-                <span>回首頁</span>
-                <span class="en">(Back to Home)</span>
+<body>
+    <div class="topbar">
+        <button class="btn-main" onclick="jump('index')">
+            <span>回首頁</span>
+            <span class="en">Back to Home</span>
+        </button>
+    </div>
+    <div class="IP">
+        <div class="form-row">
+            <label for="name">
+                姓名 <span class="en">Name</span>
+            </label>
+            <input type="text" id="name" placeholder="請輸入姓名  Please enter Name">
+        </div>
+        <div class="form-row">
+            <label for="eid">
+                工號 <span class="en">Employee ID</span>
+            </label>
+            <input type="text" id="eid" placeholder="請輸入工號  Please enter Employee ID">
+        </div>
+        <div class="form-row">
+            <label for="department">
+                部門編號 <span class="en">Department No.</span>
+            </label>
+            <input type="text" id="department" placeholder="請輸入部門編號  Please enter Dept No.">
+        </div>
+        <div class="form-row">
+            <label for="remark">
+                備註 <span class="en">Remarks</span>
+            </label>
+            <input type="text" id="remark" placeholder="請輸入其他說明  Please enter Remarks">
+        </div>
+        <div class="button-row">
+            <button class="btn-main" onclick="send_data(1)">
+                <span>送出</span>
+                <span class="en">(Submit)</span>
             </button>
         </div>
-        <div class="IP">
-            <div class="form-row">
-                <label for="name">
-                    姓名
-                    <span class="en">(Name)</span>
-                </label>
-                <input type="text" id="name" placeholder="請輸入姓名 (Name)">
-            </div>
-            <div class="form-row">
-                <label for="eid">
-                    工號
-                    <span class="en">(Employee ID)</span>
-                </label>
-                <input type="text" id="eid" placeholder="請輸入工號 (ID)">
-            </div>
-            <div class="form-row">
-                <label for="department">
-                    部門編號
-                    <span class="en">(Department No.)</span>
-                </label>
-                <input type="text" id="department" placeholder="部門編號 (Dept No.)">
-            </div>
-            <div class="form-row">
-                <label for="remark">
-                    備註
-                    <span class="en">(Remarks)</span>
-                </label>
-                <input type="text" id="remark" placeholder="其他說明 (Remarks)">
-            </div>
-            <div class="button-row">
-                <button class="btn-main" onclick="send_data(1)">
-                    <span>送出</span>
-                    <span class="en">(Submit)</span>
-                </button>
-            </div>
-        </div>
-    </body>
+    </div>
+</body>
 </html>
