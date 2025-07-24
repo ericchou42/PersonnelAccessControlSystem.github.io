@@ -28,12 +28,13 @@
         .topbar {
             display: flex;
             justify-content: flex-end;
-            align-items: center;
-            margin-bottom: 6px;
+            align-items: end;
+            margin: 20px auto 0 auto;
+            width: 100%;
         }
         .topbar button {
-            width: 130px;
-            height: 48px;
+            min-width: 200px;
+            height: 60px;
             font-size: 19px;
             background: #4568e8;
             border: none;
@@ -126,44 +127,66 @@
             margin: 0;
             box-sizing: border-box;
         }
+        .en {
+            font-family: 'Segoe UI', Arial, 'Liberation Sans', 'Helvetica Neue', sans-serif;
+            font-size: 0.97em;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            word-break: keep-all;
+            white-space: nowrap;
+            display: inline;
+            color: #888;
+        }
         .form-row {
             display: flex;
-            align-items: center;
-            gap: 18px;
-            margin-bottom: 2px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+            margin-bottom: 16px;
         }
         .form-row label {
-            min-width: 92px;
-            font-size: 1.18rem;
+            min-width: unset;
+            font-size: 1.08rem;
             color: #234;
+            text-align: left;
+            display: block;
+            line-height: 1.3;
+            margin-bottom: 2px;
         }
-        .form-row input[type="text"], 
-        .form-row input[type="number"] {
-            font-size: 1.15rem;
+        .form-row .en {
+            display: block;
+            font-size: 0.96em;
+            color: #888;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+        .form-row input[type="text"],
+        .form-row input[type="number"],
+        .form-row select {
+            font-size: 1.18rem;
             border: 1.5px solid #b6bfd8;
             border-radius: 8px;
-            padding: 7px 12px;
+            padding: 14px 14px;
             background: #f4f7fd;
             transition: border 0.18s;
             outline: none;
-            width: 230px;
+            width: 100%;
+            box-sizing: border-box;
+            min-height: 48px;
         }
-        .form-row input:focus {
-            border: 2px solid #4462ea;
-            background: #eaf1ff;
-        }
-        .form-row select {
-            font-size: 1.13rem;
-            border: 1.5px solid #b6bfd8;
-            border-radius: 8px;
-            padding: 6px 18px;
-            background: #f6faff;
-            transition: border 0.18s;
-        }
+        .form-row input:focus,
         .form-row select:focus {
             border: 2px solid #4462ea;
             background: #eaf1ff;
         }
+
+
+        .form-row input:focus,
+        .form-row select:focus {
+            border: 2px solid #4462ea;
+            background: #eaf1ff;
+        }
+
         .checkbox {
             border: 1.5px solid #b9c2d1;
             border-radius: 13px;
@@ -185,13 +208,66 @@
             transform: scale(1.33);
         }
         .checkbox input[type="text"] {
-            margin-left: 18px;
-            width: 120px;
+            width: 100%;
+            margin-top: 5px;
+            margin-left: 0;
+            padding: 17px 12px;
+            font-size: 1.15rem;
+            border: 1.5px solid #b6bfd8;
+            border-radius: 8px;
+            background: #f4f7fd;
+            transition: border 0.18s;
+            outline: none;
+            box-sizing: border-box;
         }
+        /* 兩欄排版 - 事由(Purpose)專用 */
+        .grid-reason {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 30px;
+        }
+        .grid-reason > .full-row {
+            grid-column: 1 / span 2;   /* 讓最後一個佔滿整行 */
+        }
+        .grid-reason label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.13rem;
+            line-height: 1.3;
+        }
+        .grid-reason .en {
+            display: block;
+            font-size: 0.97em;
+            color: #4568e8;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+        .other-input-wrap input[type="text"] {
+            width: 100%;
+            margin-top: 7px;
+            font-size: 1.1rem;
+            background: #f6f6fb;
+        }
+        /* --------- */
         .form-row-reason {
             display: flex;
             align-items: flex-start;
             gap: 18px;
+            width:100%;
+        }
+        .form-row-reason .checkbox {
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .reason-other-label {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 3px;
+        }
+        .other-input-wrap {
+            width: 100%;
         }
         .signature-row {
             display: flex;
@@ -201,6 +277,26 @@
             width: 100%;
         }
         .signature-row > div { width: 100%; }
+        .signature-row > button {
+            align-self: center;
+            margin-top: 10px;
+            font-size: 1.23rem;
+            width: 200px;
+            height: 55px;
+            background: #ecf0ff;
+            color: #4568e8;
+            border: 2px solid #4568e8;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px #4063e81a;
+            cursor: pointer;
+            transition: 
+            background 0.16s, color 0.16s, border 0.16s;
+        }
+        .signature-row > button:hover {
+            background: #4568e8;
+            color: #fff;
+            border: 2px solid #22399a;
+        }
         #signbox {
             border: 2px solid #4462ea;
             border-radius: 9px;
@@ -215,12 +311,12 @@
         .button-row {
             display: flex;
             gap: 48px;
-            justify-content: center;
-            margin-top: 24px;
+            justify-content: flex-end;
+            margin-top: 18px;
         }
         .button-row button {
-            width: 120px;
-            height: 42px;
+            width: 200px;
+            height: 55px;
             font-size: 1.12rem;
             background: #4568e8;
             border: none;
@@ -234,98 +330,135 @@
             background: #22399a;
             transform: translateY(-2px) scale(1.05);
         }
+        .grid-reason {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px 36px;
+        }
+        .grid-reason > label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.13rem;
+            line-height: 1.3;
+        }
+        .grid-reason .en {
+            display: inline;
+            color: #3a3737;
+            margin-left: 2px;
+            font-size: 1em;
+            font-weight: 500;
+        }
+        .other-row label .en {
+            display: block;
+            margin-top: -1px;
+            text-align: center;
+        }
+        @media (max-width: 900px) {
+            .grid-reason {
+                grid-template-columns: 1fr;
+                gap: 12px 0;
+            }
+            .other-row { width: 100%; }
+        }
+
         @media (max-width: 900px) {
             .container { max-width: 99vw; padding: 5vw 2vw; }
             .IP, #agreeSection { padding: 6vw 2vw; }
+            .grid-reason {
+                grid-template-columns: 1fr;
+            }
         }
         @media (max-width: 650px) {
             .container, .IP, #agreeSection { max-width: 100vw !important; width: 98vw !important; padding: 3vw 1vw; }
             .notice-card, .form-row label { font-size: 1rem; }
             .header .Head { font-size: 1.5rem; }
             .signature-row { width: 100%; }
+            .grid-reason {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="topbar">
-            <button onclick="jump('index')">回首頁</button>
-            <br><span style="font-size:0.93em;color:#888;">Back to Home</span>
+            <button onclick="jump('index')">回首頁<br><span style = "color:#d3caff;">Back to Home</span></button>
         </div>
         <div class="header">
-            <div class="Head">光紅建聖股份有限公司
-                <br><span style="font-size:0.93em;color:#888;">Kuang Hong Jian Sheng Co., Ltd.</span>
-            </div>
-            <div class="Head" style="font-size: 1.8rem;">入廠安全衛生須知
-                <br><span style="font-size:0.93em;color:#888;">Factory Safety and Health Instructions</span>
+            <div class="Head">光紅建聖股份有限公司</div>
+            <div class="Head">入廠安全衛生須知</div>
+            <div>
+                <br><span style="font-size:1.2em;color:#888;">Kuang Hong Jian Sheng Co., Ltd.</span>
+                <br><span style="font-size:1.2em;color:#888;">Factory Safety and Health Instructions</span>
             </div>
         </div>
         <div class="notice-card">
-            <p class="Sub">一、一般注意事項(General Instructions)：</p>
+            <p class="Sub">一、一般注意事項  General Instructions：</p>
             <p>1.本公司全面禁止吸煙及食用橫榔。<br>
-            <span style="font-size:0.93em;color:#888;">1. Smoking and betel nut chewing are strictly prohibited in the company.</span></p>
+            <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Smoking and betel nut chewing are strictly prohibited in the company.</span></p>
             <p>2.各室內場所均有緊急出口標示燈，提供緊急逃生路線。<br>
-            <span style="font-size:0.93em;color:#888;">2. All indoor areas have emergency exit signs for evacuation routes.</span></p>
+            <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;All indoor areas have emergency exit signs for evacuation routes.</span></p>
             <p>3.於聽到緊急疏散廣播時，應依照相關人員的指示，迅速疏散至安全地點。<br>
-            <span style="font-size:0.93em;color:#888;">3. Upon hearing emergency evacuation announcements, follow instructions to evacuate to a safe location promptly.</span></p>
+            <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Follow instructions and evacuate quickly during an emergency announcement.</span></p>
             <p>4.廠內火警電話：119，急救電話：110。<br>
-            <span style="font-size:0.93em;color:#888;">4. Factory fire emergency number: 119; medical emergency: 110.</span></p>
+            <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Factory fire emergency number: 119; medical emergency: 110.</span></p>
             <p>5.非經許可禁止攜帶危險物、有害物入廠。<br>
-            <span style="font-size:0.93em;color:#888;">5. Do not bring dangerous or hazardous items into the factory without permission.</span></p>
+            <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Do not bring dangerous or hazardous items into the factory without permission.</span></p>
             <p>6.禁止攜帶酒精性飲料、麻藥、毒品、刀械及槍炮彈藥等達禁品入廠。<br>
-            <span style="font-size:0.93em;color:#888;">6. Alcohol, narcotics, drugs, knives, guns, ammunition, and other prohibited items are forbidden in the factory.</span></p>
+            <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Alcohol, narcotics, drugs, knives, guns, ammunition, and other prohibited items are forbidden in the factory.</span></p>
             <p>7.注意地板潛在危險（潺滑或積水）。<br>
-            <span style="font-size:0.93em;color:#888;">7. Beware of potential hazards on the floor (slipperiness or puddles).</span></p>
+            <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Beware of potential hazards on the floor (slipperiness or puddles).</span></p>
             <p>8.上下樓梯請手扶樓梯扶手。<br>
-            <span style="font-size:0.93em;color:#888;">8. Please hold the handrail when using stairs.</span></p>
+            <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Please hold the handrail when using stairs.</span></p>
             <p>9.若有任何疑問，請詢問陪同人員。<br>
-            <span style="font-size:0.93em;color:#888;">9. If you have any questions, please ask the accompanying personnel.</span></p>
+            <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;If you have any questions, please ask the accompanying personnel.</span></p>
             <p>10.來賓識別證需佩掛於胸前。<br>
-            <span style="font-size:0.93em;color:#888;">10. Visitor badges must be worn on the chest.</span></p>
+            <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Visitor badges must be worn on the chest.</span></p>
             <p>11.注意車輛。<br>
-            <span style="font-size:0.93em;color:#888;">11. Be cautious of moving vehicles.</span></p>
-            <p class="Sub">二、進入生產區域應注意事項(Precautions for Entering Production Areas):</p>
+            <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Be cautious of moving vehicles.</span></p>
+            <p class="Sub">二、進入生產區域應注意事項  Precautions for Entering Production Areas:</p>
             <p>1.進入生產區域請注意地板潛在危險（混滑、積水或油漬）。<br>
-            <span style="font-size:0.93em;color:#888;">1. Beware of potential floor hazards (slipperiness, puddles, or oil) in production areas.</span></p>
+            <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Beware of potential floor hazards (slipperiness, puddles, or oil) in production areas.</span></p>
             <p>2.請儘量穿著平底鞋或換穿現場專用之防滑拖鞋。<br>
-            <span style="font-size:0.93em;color:#888;">2. Please wear flat shoes or use anti-slip slippers provided on site.</span></p>
+            <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Please wear flat shoes or use anti-slip slippers provided on site.</span></p>
             <p>3.進入無塵室前須穿著防塵帽、無塵衣、靜電拖鞋或鞋套。<br>
-            <span style="font-size:0.93em;color:#888;">3. Wear dust caps, cleanroom suits, and anti-static slippers or shoe covers before entering the cleanroom.</span></p>
+            <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Wear cleanroom clothing and anti-static footwear before entry.</span></p>
             <p>4.換裝完畢後須進入空氣洗淨室作空氣浴後，始得進入無塵室。<br>
-            <span style="font-size:0.93em;color:#888;">4. After changing, you must enter the air shower room before entering the cleanroom.</span></p>
+            <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;After changing, you must enter the air shower room before entering the cleanroom.</span></p>
             <p>5.進入高分貝生產區域請穿戴耳塞。<br>
-            <span style="font-size:0.93em;color:#888;">5. Please wear earplugs in high-decibel production areas.</span></p>
+            <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Please wear earplugs in high-decibel production areas.</span></p>
             <p>6.非經許可禁止攜帶攝影器材進入生產區域。<br>
-            <span style="font-size:0.93em;color:#888;">6. Do not bring photographic equipment into production areas without permission.</span></p>
+            <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Do not bring photographic equipment into production areas without permission.</span></p>
             <p>7.如需照相，請透過本廠陪同人員代為申請。<br>
-            <span style="font-size:0.93em;color:#888;">7. For photography, please ask accompanying staff to apply for permission.</span></p>
+            <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;For photography, please ask accompanying staff to apply for permission.</span></p>
             <p>8.參訪人員請依參觀路線，非經許可不得私自進入機器操作區。<br>
-            <span style="font-size:0.93em;color:#888;">8. Visitors should follow the tour route and do not enter machinery operation areas without permission.</span></p>
+            <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Follow the tour route. Do not enter machine areas without permission.</span></p>
             <p>9.遵守各項警告標示及告示牌之注意事項。<br>
-            <span style="font-size:0.93em;color:#888;">9. Follow all warning signs and posted instructions.</span></p>
+            <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Follow all warning signs and posted instructions.</span></p>
             <p>10.注意移動式機具及長工件的端面，以避免被撞、被割。<br>
-            <span style="font-size:0.93em;color:#888;">10. Beware of moving equipment and the ends of long workpieces to avoid injury.</span></p>
+            <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Beware of moving equipment and the ends of long workpieces to avoid injury.</span></p>
             <p>11.參訪人員若配戴領帶、識別證或其他證件之吊帶，請取下收好，以免不慎捲入機器設備，造成嚴重傷害。<br>
-            <span style="font-size:0.93em;color:#888;">11. Remove ties, ID lanyards, or any hanging straps to avoid getting caught in machinery.</span></p>
-            <p class="Sub">三、廠商應注意事項(Notes for Contractors)：</p>
+            <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Remove ties, ID lanyards, or any hanging straps to avoid getting caught in machinery.</span></p>
+            <p class="Sub">三、廠商應注意事項  Notes for Contractors：</p>
             <p>1.廠區內車輛依現場標示速限行駛，並停放於指定區域。<br>
-            <span style="font-size:0.93em;color:#888;">1. Vehicles must follow speed limits and park in designated areas within the factory.</span></p>
+            <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Vehicles must follow speed limits and park in designated areas within the factory.</span></p>
             <p>2.超過二分鐘以上務必熄火。<br>
-            <span style="font-size:0.93em;color:#888;">2. Turn off your engine if stationary for more than two minutes.</span></p>
+            <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Turn off your engine if stationary for more than two minutes.</span></p>
             <p>3.非經許可禁止使用及操作任何機具。<br>
-            <span style="font-size:0.93em;color:#888;">3. Do not use or operate any equipment without permission.</span></p>
+            <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Do not use or operate any equipment without permission.</span></p>
             <p>4.廠商操作依法令規範之危險性機械，應出示相關證明。<br>
-            <span style="font-size:0.93em;color:#888;">4. Contractors operating hazardous machinery must present relevant certificates as required by law.</span></p>
+            <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Contractors must provide certification when operating regulated hazardous machinery.</span></p>
             <p>5.施工前應簽署「承攬作業危害因素告知單」。<br>
-            <span style="font-size:0.93em;color:#888;">5. Sign the "Contractor Hazard Notification Form" before construction.</span></p>
+            <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Sign the "Contractor Hazard Notification Form" before construction.</span></p>
             <p>6.其他臨時注意事項：<br>
-            <span style="font-size:0.93em;color:#888;">6. Other temporary instructions:</span></p>
+            <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Other temporary instructions:</span></p>
             <p>附件編號：HR-P08-07</p>
         </div>
         <div id="agreeSection">
             <label>
                 <input type="checkbox" id="agreeCheck">
-                我已詳細閱讀上述須知內容並同意入場
+                    我已詳細閱讀上述須知內容並同意入場
                 <br><span style="font-size:0.93em;color:#888;">I have read and agree to the above instructions.</span>
             </label>
         </div>
@@ -333,47 +466,50 @@
             <form autocomplete="off" onsubmit="return false;">
             <div class="IP">
                 <div class="form-row">
-                    <label for="name">姓名(Name)：</label>
-                    <input type="text" id="name" autocomplete="off" placeholder="請輸入姓名">
-                </div>
-                <div class="form-row-reason">
-                    <label style="font-size:1.13rem;">事由(Purpose)：</label>
-                    <div class="checkbox">
-                        <label>
-                            <input type="radio" name="reason" class="reason">廠商領料
-                            <br><span style="font-size:0.93em;color:#888;">Material Pickup</span>
-                        </label>
-                        <label>
-                            <input type="radio" name="reason" class="reason">廠商退貨
-                            <br><span style="font-size:0.93em;color:#888;">Material Return</span>
-                        </label>
-                        <label>
-                            <input type="radio" name="reason" class="reason">轉廠、調撥
-                            <br><span style="font-size:0.93em;color:#888;">Transfer/Allocation</span>
-                        </label>
-                        <label>
-                            <input type="radio" name="reason" class="reason">出貨
-                            <br><span style="font-size:0.93em;color:#888;">Shipment</span>
-                        </label>
-                        <label>
-                            <input type="radio" name="reason" class="reason">其他
-                            <input type="text" id="other" placeholder="請輸入說明">
-                            <br><span style="font-size:0.93em;color:#888;">Other (please specify)</span>
-                        </label>
-                    </div>
+                    <label for="name">姓名  <spqn style = "color: #888;">Name</span></label>
+                    <input type="text" id="name" autocomplete="off" placeholder="請輸入姓名 Please enter your name">
                 </div>
                 <div class="form-row">
-                    <label for="unit">單位(Department/Unit)：</label>
-                    <input type="text" id="unit" autocomplete="off" placeholder="請輸入單位">
+                    <label for="name">事由   <spqn style = "color: #888;">Reason</span></label>
+                <div class="checkbox grid-reason" style="grid-template-columns: 1fr 1fr;">
+            <label>
+                <input type="radio" name="reason" class="reason;" value="Material Pickup">
+                廠商領料 <span class="en" style=" font-weight:500;color: #888;">Material Pickup</span>
+            </label>
+            <label>
+                <input type="radio" name="reason" class="reason" value="Material Return">
+                廠商退貨 <span class="en" style=" font-weight:500;color: #888;">Material Return</span>
+            </label>
+            <label>
+                <input type="radio" name="reason" class="reason" value="Transfer/Allocation">
+                轉廠、調撥 <span class="en" style=" font-weight:500;color: #888;">Transfer/Allocation</span>
+            </label>
+            <label>
+                <input type="radio" name="reason" class="reason" value="Shipment">
+                出貨 <span class="en" style=" font-weight:500;color: #888;">Shipment</span>
+            </label>
+            <div class="full-row other-row" style="display: flex; align-items: center; gap: 10px; margin-top: 4px;">
+                <input type="radio" name="reason" class="reason" value="Other" id="reason-other">
+                <label for="reason-other" style="margin:0;display:flex;align-items:center;gap:2px;">
+                    其他 <span class="en" style="font-weight:500;color: #888;">Other</span>
+                </label>
+                <input type="text" id="other" placeholder="請輸入說明 Please enter a description" style="flex:1; min-width:160px;">
+                </div>
+            </div>
+        </div>
+
+                <div class="form-row">
+                    <label for="unit">單位  <span style = "color: #888;">Department</span></label>
+                    <input type="text" id="unit" autocomplete="off" placeholder="請輸入單位 Please enter department">
                 </div>
                 <div class="form-row">
-                    <label for="visited">受訪者(Contact Person)：</label>
-                    <input type="text" id="visited" autocomplete="off" placeholder="請輸入受訪者姓名">
+                    <label for="visited">受訪者  <span style = "color: #888;">Contact Person</span></label>
+                    <input type="text" id="visited" autocomplete="off" placeholder="請輸入受訪者姓名 Please enter contact person’s name">
                 </div>
                 <div class="form-row">
-                    <label for="identity">證號(Badge Number:)：</label>
+                    <label for="identity">證號  <span style = "color: #888;">Badge Number</span></label>
                     <select id="identity" name="identity">
-                        <option value="">請選擇</option>
+                        <option value="">請選擇  Please select</option>
                         <option value="1">1</option><option value="2">2</option>
                         <option value="3">3</option><option value="4">4</option>
                         <option value="5">5</option><option value="6">6</option>
@@ -387,36 +523,35 @@
                     </select>
                 </div>
                 <div class="form-row">
-                    <label for="remark">備註(Remarks)：</label>
-                    <input type="text" id="remark" autocomplete="off" placeholder="其他事項說明">
+                    <label for="remark">備註  <span style = "color: #888;">Remarks</span></label>
+                    <input type="text" id="remark" autocomplete="off" placeholder="其他事項說明 Other remarks">
                 </div>
                 <div class="form-row">
-                    <label for="npeople">人數(Number of People)：</label>
+                    <label for="npeople">人數  <span style = "color: #888;">Number of People</span></label>
                     <select id="npeople" name="npeople">
-                        <option value="">請選擇</option>
-                        <option value="1">1人</option>
-                        <option value="2">2人</option>
-                        <option value="3">3人</option>
-                        <option value="4">4人</option>
-                        <option value="5">5人</option>
-                        <option value="6">6人</option>
-                        <option value="7">7人</option>
-                        <option value="8">8人</option>
-                        <option value="9">9人</option>
-                        <option value="10">10人</option>
+                        <option value="">請選擇 <span style = "color:#888;">Please select</span></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
                     </select>
                 </div>
                 <div class="signature-row">
-                    <label style="font-size:1.1rem; color:#243271; margin-bottom: 2px;">簽名(Signature)：</label>
+                    <label style="font-size:1.5rem; color:#243271; margin-bottom: 2px;">簽名  <span style = "color: #888;">Signature</span></label>
                     <div>
                         <canvas id="signbox" style="width:100%;height:180px;display:block;"></canvas>
                     </div>
-
-                    <button type="button" onclick="Clear()">清除簽名(Clear Signature)</button>
+                    <button type="button" onclick="Clear()">清除簽名<br><span style = "color:#d3caff;;">Clear Signature</span></button>
                 </div>
             </div>
             <div class="button-row">
-                <button type="button" onclick="send_data(0)">送出(Submit)</button>
+                <button type="button" onclick="send_data(0)">送出<br><span style = "color:#d3caff;">Submit</span></button>
             </div>
             </form>
         </div>
@@ -429,9 +564,9 @@
             });
         });
         fitCanvas();
-            window.signaturePad = new SignaturePad(document.getElementById("signbox"), {
-                backgroundColor: "rgba(255,255,255,0)",
-                penColor: "black"
+        window.signaturePad = new SignaturePad(document.getElementById("signbox"), {
+            backgroundColor: "rgba(255,255,255,0)",
+            penColor: "black"
         });
     </script>
 </body>
