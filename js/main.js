@@ -116,7 +116,7 @@ function send_data(type){
             return;
         }
 
-        fetch("Save.php",{
+        fetch("php/Save.php",{
             method: "POST",
             headers: {'Content-Type':'application/x-www-form-urlencoded'},
             body: "Type=0" +
@@ -173,7 +173,7 @@ function send_data(type){
             return;
         }
 
-        fetch("Save.php",{
+        fetch("php/Save.php",{
             method:"POST",
             headers:{'Content-Type':'application/x-www-form-urlencoded'},
             body: 'Type=' + "1" + '&' +

@@ -2,9 +2,8 @@
 // 錯誤回報（開發階段建議開啟）
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-require __DIR__ . '/vendor/autoload.php';
-
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+require __DIR__ . '/../vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
 
 $servername = $_ENV['DB_HOST'];
@@ -48,6 +47,7 @@ if ($image) {
             die("圖片解碼失敗");
         }
         // 指定儲存路徑與檔名（用時間+隨機數確保不重複）
+        date_default_timezone_set('Asia/Taipei');
         $filename = rtrim($signature_dir, '/') . '/sign_' . date('Ymd_His') . '.' . $ext;
         if (file_put_contents($filename, $data)) {
             $signature_path = $filename;
