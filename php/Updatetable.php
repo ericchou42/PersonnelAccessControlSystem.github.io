@@ -20,20 +20,12 @@ $data = json_decode(file_get_contents("php://input"), true);
 
 $CheckedNameList = $data['CheckedNameList'] ?? [];
 $UncheckedNameList = $data['UncheckedNameList'] ?? [];
-$NameList = $data['NameList'] ?? [];
 $LeaveTimeList = $data['LeaveTimeList'] ?? [];
 $Commit = intval($data['Commit']);
 
 date_default_timezone_set('Asia/Taipei');
 $now = date('Y-m-d H:i:s');
 
-if(!empty($NameList)){
-    foreach ($NameList as $name) {
-        $stmt = $conn->prepare("UPDATE user SET Leave_time=?,`Commit`=? WHERE name=?");
-        $stmt->bind_param('sis', $now, $Commit, $name);
-        $stmt->execute();
-    }
-}
 
 if(!empty($CheckedNameList) && !empty($LeaveTimeList)){
     foreach ($CheckedNameList as $i => $name) {

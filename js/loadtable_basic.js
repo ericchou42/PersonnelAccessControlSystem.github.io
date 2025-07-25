@@ -1,87 +1,129 @@
-function getTimeStr() {
-    let now = new Date();
-    return now.getHours().toString().padStart(2, '0') + ":" +
-           now.getMinutes().toString().padStart(2, '0') + ":" +
-           now.getSeconds().toString().padStart(2, '0');
+function getTimeStr(timeStr) {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = (today.getMonth() + 1).toString().padStart(2, '0');
+    const dd = today.getDate().toString().padStart(2, '0');
+    return `${yyyy}-${mm}-${dd} ${timeStr}:00`;
 }
-function load_list(num, time) {
-    let url = (num == 0) ? 'php/Search.php?type=0&' + time : 'php/Search.php?type=1&' + time;
-    let table = (num == 0) ? document.getElementById("Guest_Table") : document.getElementById("Employee_Table");
+
+function load_list(num) {
+    let url = (num === 0) ? 'php/Search.php?type=0' : 'php/Search.php?type=1';
+    let table = (num === 0) ? document.getElementById("Guest_Table") : document.getElementById("Employee_Table");
+
     fetch(url)
         .then(response => response.json())
         .then(data => {
             while (table.rows.length > 1) table.deleteRow(1);
 
-            data.forEach(row => {
+            data.forEach((row, index) => {
                 let tr = document.createElement('tr');
-                let maskName = "";
                 tr.style.fontSize = "20px";
                 tr.style.textAlign = "center";
-                if (row.Name.length == 2) {
-                    maskName = row.Name[0] + "O";
-                } else if (row.Name.length > 2) {
-                    maskName = row.Name[0] + "O".repeat(row.Name.length - 2) + row.Name[row.Name.length - 1];
-                }
-                else{
-                    maskName = row.Name;
-                }
-                tr.innerHTML = `
-                    <td class="Name" data-realname="${row.Name}">${maskName}</td>
-                    <td>${row.Enter_time}</td>
-                    <td>
-                        <input type="checkbox"
-                            style="width:25px;height:25px"
-                            class = "LeaveBT"
-                            ${row.Leave_time != null ? 'checked disabled' : ''}>
-                    </td>
-                `;
+
+                const now = new Date();
+                const currentTime = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+
+                let maskName = row.Name.length === 2
+                    ? row.Name[0] + "O"
+                    : row.Name.length > 2
+                    ? row.Name[0] + "O".repeat(row.Name.length - 2) + row.Name[row.Name.length - 1]
+                    : row.Name;
+
+                const checkboxId = `leaveCheck_${num}_${index}`;
+                const timeInputId = `leaveTime_${num}_${index}`;
+
+                tr.innerHTML = (num === 0)
+                    ? `
+                        <td class="Name" data-realname="${row.Name}">${maskName}</td>
+                        <td>${row.Unit}</td>
+                        <td>${row.Reason}</td>
+                        <td>${row.Interviewee}</td>
+                        <td>${row.Certificate_num}</td>
+                        <td>${row.Remark}</td>
+                        <td>${row.Enter_time}</td>
+                        <td><input type="time" id="${timeInputId}" class="t_Time" value="${currentTime}" style="display:none;"></td>
+                        <td><input type="checkbox" id="${checkboxId}" class="LeaveBT" style="width:25px;height:25px;"></td>
+                        <td>${row.Commit}</td>
+                    `
+                    : `
+                        <td class="Name" data-realname="${row.Name}">${maskName}</td>
+                        <td>${row.Department_id}</td>
+                        <td>${row.Remark}</td>
+                        <td>${row.Enter_time}</td>
+                        <td><input type="time" id="${timeInputId}" class="t_Time" value="${currentTime}" style="display:none;"></td>
+                        <td><input type="checkbox" id="${checkboxId}" class="LeaveBT" style="width:25px;height:25px;"></td>
+                        <td>${row.Commit}</td>
+                    `;
+
                 table.appendChild(tr);
+
+                const checkbox = document.getElementById(checkboxId);
+                const timeInput = document.getElementById(timeInputId);
+                checkbox.addEventListener('change', () => {
+                    timeInput.style.display = checkbox.checked ? 'inline-block' : 'none';
+                });
             });
         });
 }
-function jump(filname){
+
+function jump(filname) {
     window.location.href = filname + ".html";
 }
-function send(){
+
+function send() {
     let CheckBox = document.getElementsByClassName("LeaveBT");
     let Name = document.getElementsByClassName("Name");
-    let NameList = []
-    let CheckName = "【請再次確認資料】\n\n";
-    for (let boxind = 0 ; boxind < CheckBox.length;boxind++){
-        let realName = Name[boxind].getAttribute('data-realname');
-        if(CheckBox[boxind].checked  && !CheckBox[boxind].disabled){
-            NameList.push(realName);
-            CheckName += Name[boxind].innerText;
-            CheckName += " ";
+    let t_Time = document.getElementsByClassName("t_Time");
+
+    let CheckedNameList = [];
+    let UncheckedNameList = [];
+    let LeaveTimeList = [];
+    let LeaveName = "【請再次確認資料】\n\n離場:\n";
+    let UnLeaveName = "\n未離場:\n";
+
+    for (let i = 0; i < CheckBox.length; i++) {
+        let realName = Name[i].getAttribute('data-realname');
+        if (CheckBox[i].checked) {
+            CheckedNameList.push(realName);
+            let timeStr = t_Time[i].value;
+            if (timeStr === "") {
+                alert("【請填寫離場時間】");
+                return;
+            }
+            let fullTime = getTimeStr(timeStr);
+            LeaveTimeList.push(fullTime);
+            LeaveName += `${Name[i].innerText}：離場時間 ${timeStr}\n`;
+        } else {
+            UncheckedNameList.push(realName);
+            UnLeaveName += Name[i].innerText + " ";
         }
     }
-    if (NameList.length === 0) {
-        alert("請至少勾選一位要離場的人員！");
+
+    if (!confirm(LeaveName + UnLeaveName + "\n\n目前時間：" + new Date().toTimeString().slice(0, 9))) {
         return;
     }
-    if(!confirm(CheckName += "\n\n是否都要離場?" + "\n\n" + "目前時間" + getTimeStr())){
-        return;
-    }
-    fetch("php/Updatetable.php",{
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body: JSON.stringify({
-        NameList: NameList,
-        LeaveTime: new Date().toISOString().slice(0, 19).replace('T', ' '),
-        Commit : 1
+
+    fetch("php/Updatetable.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            CheckedNameList: CheckedNameList,
+            LeaveTimeList: LeaveTimeList,
+            Commit: 2
+        })
     })
-    })
-    .then(res=>res.json())
-    .then(data=>{
-        if(data.success) {
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
             alert('更新成功！');
             location.reload();
+        } else {
+            alert('更新失敗');
         }
-        else alert('更新失敗');
-    })
+    });
 }
-window.onload = function() {
-    let today = new Date().toISOString().slice(0, 10);
-    load_list(1, 'time=' + today);
-    load_list(0, 'time=' + today);
+
+window.onload = function () {
+    load_list(1); // 內部
+    load_list(0); // 外部
 };
