@@ -1,17 +1,14 @@
 <?php
+
+
 // 錯誤回報（開發階段建議開啟）
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-require __DIR__ . '/vendor/autoload.php';
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
-
-$servername = $_ENV['DB_HOST'];
-$username   = $_ENV['DB_USER'];
-$password   = $_ENV['DB_PASS'];
-$dbname     = $_ENV['DB_NAME'];
-
+$servername = "localhost";
+$username = "acs";
+$password = "Acs@0721";
+$dbname = "mydb";
 
 // 建立連線
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -35,7 +32,7 @@ $remark = isset($_POST['Remark']) ? $_POST['Remark'] : '';
 $npeople = isset($_POST['Npeople']) ? $_POST['Npeople'] : '';
 $image = isset($_POST['Image']) ? $_POST['Image'] : '';
 
-$signature_dir = $_ENV['SIGNATURE_PATH'] ?? '/var/www/html/signatures'; // 簽名圖片儲存路徑
+$signature_path = ""; // 簽名圖片儲存路徑
 
 // 如果有收到圖片才進行存檔
 if ($image) {
@@ -48,7 +45,7 @@ if ($image) {
             die("圖片解碼失敗");
         }
         // 指定儲存路徑與檔名（用時間+隨機數確保不重複）
-        $filename = rtrim($signature_dir, '/') . '/sign_' . date('Ymd_His') . '.' . $ext;
+        $filename = '/var/www/html/signatures/sign_' . date('Ymd_H:i:s.') . $ext;
         if (file_put_contents($filename, $data)) {
             $signature_path = $filename;
         }
@@ -59,6 +56,7 @@ if ($image) {
         die("圖片格式錯誤");
     }
 }
+
 
 // 判斷訪客(0)或員工(1)來決定欄位
 if ($type == "1") { // 員工
