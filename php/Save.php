@@ -32,7 +32,7 @@ $remark = isset($_POST['Remark']) ? $_POST['Remark'] : '';
 $npeople = isset($_POST['Npeople']) ? $_POST['Npeople'] : '';
 $image = isset($_POST['Image']) ? $_POST['Image'] : '';
 
-$signature_path = ""; // 簽名圖片儲存路徑
+$signature_dir = $_ENV['SIGNATURE_PATH'] ?? '/var/www/html/signatures'; // 簽名圖片儲存路徑
 
 // 判斷訪客(0)或員工(1)來決定欄位
 if ($type == "1") { // 員工
