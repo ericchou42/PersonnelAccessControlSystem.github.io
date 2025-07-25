@@ -38,10 +38,33 @@ function load_list(num, time) {
                         timeInputValue = parts[1].slice(0,5); // "09:32"
                     }
                 }
-                tr.innerHTML = `
-                    <td class="Name" data-realname="${row.Name}">${maskName}</td>
-                    <td>${row.Enter_time}</td>
-                    <td>
+                tr.innerHTML = (num === 0)
+                    ? `
+                        <td class="Name" data-realname="${row.Name}">${maskName}</td>
+                        <td>${row.Unit}</td>
+                        <td>${row.Reason}</td>
+                        <td>${row.Interviewee}</td>
+                        <td>${row.Certificate_num}</td>
+                        <td>${row.Remark}</td>
+                        <td>${row.Enter_time}</td>
+                        <td>
+                        <input type="time" class="t_Time" 
+                            style="display:${timeInputDisplay}" 
+                            value="${timeInputValue}">
+                        </td>
+                        <td>
+                        <input type="checkbox"
+                            style="width:25px;height:25px"
+                            class="LeaveBT"
+                            ${row.Leave_time != null ? 'checked' : ''}>
+                        </td>
+                    `
+                    : `
+                        <td class="Name" data-realname="${row.Name}">${maskName}</td>
+                        <td>${row.Department_id}</td>
+                        <td>${row.Remark}</td>
+                        <td>${row.Enter_time}</td>
+                        <td>
                         <input type="time" class="t_Time" 
                             style="display:${timeInputDisplay}" 
                             value="${timeInputValue}">
@@ -52,12 +75,7 @@ function load_list(num, time) {
                             class="LeaveBT"
                             ${row.Leave_time != null ? 'checked' : ''}>
                     </td>
-                `;
-                if(num == 0){
-                    tr.innerHTML += `
-                        <td onclick="Download('${row.Name}')">下載</td>
-                    `
-                }
+                    `;
                 table.appendChild(tr);
             });
         });

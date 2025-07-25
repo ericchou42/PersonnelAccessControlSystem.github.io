@@ -43,7 +43,6 @@ function load_list(num) {
                         <td>${row.Enter_time}</td>
                         <td><input type="time" id="${timeInputId}" class="t_Time" value="${currentTime}" style="display:none;"></td>
                         <td><input type="checkbox" id="${checkboxId}" class="LeaveBT" style="width:25px;height:25px;"></td>
-                        <td>${row.Commit}</td>
                     `
                     : `
                         <td class="Name" data-realname="${row.Name}">${maskName}</td>
@@ -52,7 +51,6 @@ function load_list(num) {
                         <td>${row.Enter_time}</td>
                         <td><input type="time" id="${timeInputId}" class="t_Time" value="${currentTime}" style="display:none;"></td>
                         <td><input type="checkbox" id="${checkboxId}" class="LeaveBT" style="width:25px;height:25px;"></td>
-                        <td>${row.Commit}</td>
                     `;
 
                 table.appendChild(tr);
@@ -109,7 +107,7 @@ function send() {
         body: JSON.stringify({
             CheckedNameList: CheckedNameList,
             LeaveTimeList: LeaveTimeList,
-            Commit: 2
+            Commit: 1
         })
     })
     .then(res => res.json())
