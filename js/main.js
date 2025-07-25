@@ -157,7 +157,7 @@ function send_data(type){
             Alertstr += "填寫工號 ";
         }
         if(Department.value == ""){
-            Alertstr += "填寫完整資料 ";
+            Alertstr += "填寫部門編號 ";
         }
         if(Alertstr != "請 "){
             alert(Alertstr);
@@ -179,7 +179,7 @@ function send_data(type){
             body: 'Type=' + "1" + '&' +
                 'Name=' + encodeURIComponent(Ename.value) + '&' +
                 'Employee_id=' + encodeURIComponent(Eid.value) + '&' +
-                'Unit=' + encodeURIComponent(Department.value) + '&' +
+                'Department_id=' + encodeURIComponent(Department.value) + '&' +
                 'Remark=' + encodeURIComponent(Remark.value) + '&' +
                 "&Enter_time=" + encodeURIComponent(getNowDatetime())
 
