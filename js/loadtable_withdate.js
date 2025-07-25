@@ -99,7 +99,7 @@ async function Download(name){
     // 貼上去（x, y 以左下角為原點，可依需求自訂座標）
     page.drawImage(img, {
         x: 375,   // 水平位置
-        y: 25,    // 垂直位置
+        y: 30,    // 垂直位置
         width: imgDims.width,
         height: imgDims.height,
     });
