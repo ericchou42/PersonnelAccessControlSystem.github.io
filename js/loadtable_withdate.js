@@ -62,27 +62,63 @@ function load_list(num, time) {
             });
         });
 }
-function Download(name){
-    fetch("php/Find_signature.php", {
+async function Download(name){
+    // 1. 取得簽名圖檔案路徑
+    const sigRes = await fetch("php/Find_signature.php", {
         method: "POST",
         headers: {"Content-Type":"application/json"},
         body: JSON.stringify({name: name})
-    })
-    .then(res => res.json())
-    .then(data => {
-        if(data.success){
-            // 觸發下載
-            const a = document.createElement('a');
-            a.href = data.file;
-            a.download = data.file.split('/').pop();
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-        }else{
-            alert(data.msg);
-        }
     });
+    const sigData = await sigRes.json();
+
+    if (!sigData.success) {
+        alert(sigData.msg);
+        return;
+    }
+
+    // 2. 取得 PDF 範本（假設用固定範本檔案，可根據需求更換）
+    const pdfBytes = await fetch('/測試PDF.pdf').then(res => res.arrayBuffer());
+
+    // 3. 取得簽名圖片 (imgBytes)
+    const imgBytes = await fetch(sigData.file).then(res => res.arrayBuffer());
+
+    // 4. 用 pdf-lib 組合 PDF+簽名圖
+    const pdfDoc = await PDFLib.PDFDocument.load(pdfBytes);
+    const pages = pdfDoc.getPages();
+    const page = pages[0]; // 貼在第一頁（可依需求調整）
+
+    // 載入圖片
+    let img;
+    if (sigData.file.toLowerCase().endsWith('.png')) {
+        img = await pdfDoc.embedPng(imgBytes);
+    } else {
+        img = await pdfDoc.embedJpg(imgBytes);
+    }
+    const imgDims = img.scale(0.4); // 你可調整大小
+
+    // 貼上去（x, y 以左下角為原點，可依需求自訂座標）
+    page.drawImage(img, {
+        x: 375,   // 水平位置
+        y: 25,    // 垂直位置
+        width: imgDims.width,
+        height: imgDims.height,
+    });
+
+    // 5. 產生新 PDF blob
+    const newPdfBytes = await pdfDoc.save();
+    const blob = new Blob([newPdfBytes], { type: 'application/pdf' });
+    const url = URL.createObjectURL(blob);
+
+    // 6. 自動下載
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = name + '_signed.pdf';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
 }
+
 
 
 function jump(filname) {
