@@ -36,30 +36,6 @@ $image = isset($_POST['Image']) ? $_POST['Image'] : '';
 
 $signature_dir = $_ENV['SIGNATURE_PATH'] ?? '/var/www/html/signatures'; // 簽名圖片儲存路徑
 
-// 如果有收到圖片才進行存檔
-if ($image) {
-    if (preg_match('/^data:image\/(\w+);base64,/', $image, $typeimg)) {
-        $ext = strtolower($typeimg[1]); // png/jpg...
-        $data = substr($image, strpos($image, ',') + 1);
-        $data = base64_decode($data);
-
-        if ($data === false) {
-            die("圖片解碼失敗");
-        }
-        // 指定儲存路徑與檔名（用時間+隨機數確保不重複）
-        date_default_timezone_set('Asia/Taipei');
-        $filename = rtrim($signature_dir, '/') . '/sign_' . date('Ymd_His') . '.' . $ext;
-        if (file_put_contents($filename, $data)) {
-            $signature_path = $filename;
-        }
-        else {
-            die("圖片儲存失敗");
-        }
-    } else {
-        die("圖片格式錯誤");
-    }
-}
-
 // 判斷訪客(0)或員工(1)來決定欄位
 if ($type == "1") { // 員工
     $stmt = $conn->prepare("INSERT INTO user (Type, Name, Employee_id, Unit, Remark, Enter_time) VALUES (?, ?, ?, ?, ?, ?)");
@@ -80,8 +56,31 @@ if ($stmt->execute()) {
     echo "success";
 } else {
     echo "寫入失敗: " . $conn->error . " 參數: " . json_encode([$type, $name, $unit, $interviewee, $certificate_num, $remark, $npeople, $reason, $enter_time, $signature_path]);
+    exit();
 }
+$user_id = $conn->insert_id;
+// 如果有收到圖片才進行存檔
+$signature_path = '';
+if ($image) {
+    if (preg_match('/^data:image\/(\w+);base64,/', $image, $typeimg)) {
+        $ext = strtolower($typeimg[1]); // 例如 png/jpg
+        $data = substr($image, strpos($image, ',') + 1);
+        $data = base64_decode($data);
 
+        if ($data === false) die("圖片解碼失敗");
+        date_default_timezone_set('Asia/Taipei');
+        $date_str = date('Ymd_His'); // 20250724_173233
+        $filename = "{$user_id}_{$date_str}.{$ext}";
+        $save_path = rtrim($signature_dir, '/') . '/' . $filename;
+
+        if (!file_put_contents($save_path, $data)) {
+            die("圖片儲存失敗");
+        }
+    }
+    else {
+        die("圖片格式錯誤");
+    }
+}
 $stmt->close();
 $conn->close();
 ?>

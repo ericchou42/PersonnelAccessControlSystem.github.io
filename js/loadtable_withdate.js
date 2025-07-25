@@ -53,10 +53,37 @@ function load_list(num, time) {
                             ${row.Leave_time != null ? 'checked' : ''}>
                     </td>
                 `;
+                if(num == 0){
+                    tr.innerHTML += `
+                        <td onclick="Download('${row.Name}')">下載</td>
+                    `
+                }
                 table.appendChild(tr);
             });
         });
 }
+function Download(name){
+    fetch("php/Find_signature.php", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({name: name})
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.success){
+            // 觸發下載
+            const a = document.createElement('a');
+            a.href = data.file;
+            a.download = data.file.split('/').pop();
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }else{
+            alert(data.msg);
+        }
+    });
+}
+
 
 function jump(filname) {
     window.location.href = filname + ".html";
