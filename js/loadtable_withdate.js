@@ -76,6 +76,11 @@ function load_list(num, time) {
                             ${row.Leave_time != null ? 'checked' : ''}>
                     </td>
                     `;
+                 if(num == 0){
+                    tr.innerHTML += `
+                        <td onclick="Download('${row.Name}')">下載</td>
+                    `
+                    }
                 table.appendChild(tr);
             });
         });
