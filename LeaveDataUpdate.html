@@ -4,157 +4,7 @@
     <meta charset="UTF-8">
     <title>離場</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: 'Microsoft JhengHei', Arial, sans-serif;
-            background: linear-gradient(120deg, #eaf0ff 60%, #f7fafd 100%);
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-        }
-        .topbar {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            max-width: 900px;
-            margin: 36px auto 0 auto;
-        }
-        .topbar button {
-            width: 130px;
-            height: 48px;
-            font-size: 20px;
-            background: #4568e8;
-            border: none;
-            color: #fff;
-            border-radius: 14px;
-            box-shadow: 0 2px 10px #4063e812;
-            transition: background 0.18s, transform 0.13s;
-            cursor: pointer;
-        }
-        .topbar button:hover {
-            background: #2d49b2;
-            transform: translateY(-2px) scale(1.04);
-        }
-        .IP {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 32px;
-            max-width: 900px;
-            margin: 24px auto 0 auto;
-            padding-bottom: 38px;
-        }
-        #Time {
-            width: 220px;
-            height: 48px;
-            font-size: 1.26rem;
-            padding: 7px 16px;
-            border: 1.5px solid #b9c2d1;
-            border-radius: 9px;
-            background: #f6f8fa;
-            margin-bottom: 8px;
-            outline: none;
-            transition: border 0.18s, background 0.18s;
-            box-shadow: 0 1px 6px #c3d0ed1a;
-        }
-        #Time:focus {
-            border: 2px solid #4568e8;
-            background: #eaf1ff;
-        }
-        .section-card {
-            background: #fff;
-            border-radius: 24px;
-            box-shadow: 0 6px 28px #4568e81a;
-            padding: 34px 28px 28px 28px;
-            width: 98%;
-            margin-bottom: 12px;
-            max-width: 850px;
-            min-width: 300px;
-        }
-        .section-title {
-            font-size: 2.1rem;
-            font-weight: bold;
-            color: #26348a;
-            letter-spacing: 1.2px;
-            margin-bottom: 18px;
-            margin-top: 0;
-            text-align: left;
-            padding-left: 12px;
-        }
-        table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            background: #f9fbfe;
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px #4568e81c;
-        }
-        th, td {
-            font-size: 1.36rem;
-            padding: 18px 26px;
-            text-align: center;
-        }
-        th {
-            background: #eaf1ff;
-            color: #2b3145;
-            font-weight: bold;
-            font-size: 1.5rem;
-            border-bottom: 3px solid #d0d7ee;
-        }
-        tr:not(:last-child) td {
-            border-bottom: 1.5px solid #e6ebf6;
-        }
-        td {
-            color: #34415e;
-            background: none;
-        }
-        /* 斑馬紋 */
-        #Employee_Table tr:nth-child(even),
-        #Guest_Table tr:nth-child(even) {
-            background: #fff;
-        }
-        #Employee_Table tr:nth-child(odd),
-        #Guest_Table tr:nth-child(odd) {
-            background: #dbe9fa;
-        }
-        .button-row {
-            width: 98%;
-            max-width: 850px;
-            margin: 0 auto;
-            margin-top: 14px;
-            display: flex;
-            justify-content: flex-end;
-        }
-        .button-row button {
-            width: 240px;
-            height: 54px;
-            font-size: 1.32rem;
-            background: #4568e8;
-            border: none;
-            color: #fff;
-            border-radius: 14px;
-            box-shadow: 0 2px 12px #4063e818;
-            transition: background 0.18s, transform 0.15s;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        .button-row button:hover {
-            background: #22399a;
-            transform: translateY(-2px) scale(1.04);
-        }
-        @media (max-width: 800px) {
-            .section-card, .button-row { width: 99vw; max-width: 99vw; }
-            th, td { font-size: 1.09rem; padding: 13px 7vw; }
-            .section-title { font-size: 1.5rem; }
-        }
-        @media (max-width: 540px) {
-            .section-card, .button-row { padding: 6vw 2vw; }
-            .section-title { font-size: 1.1rem; }
-            th, td { font-size: 0.92rem; padding: 9px 3vw; }
-            #Time { width: 94vw; font-size: 1rem; }
-        }
-    </style>
+    <link rel="stylesheet" href="css/WithDateLeave.css">
 </head>
 <body>
     <div class="topbar">
@@ -189,6 +39,7 @@
                     <th>進場時間</th>
                     <th>離場時間</th>
                     <th>離場補登</th>
+                    <th>須知下載</th>
                 </tr>
                 <!-- 訪客資料會 JS append 在這裡 -->
             </table>
@@ -197,6 +48,7 @@
             <button onclick="send()">送出</button>
         </div>
     </div>
-    <script src="loadtable_withdate.js"></script>
+    <script src="/js/loadtable_withdate.js"></script>
+    <script src = "/js/pdf-lib.js"></script>
 </body>
 </html>

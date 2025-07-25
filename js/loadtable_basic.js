@@ -5,7 +5,7 @@ function getTimeStr() {
            now.getSeconds().toString().padStart(2, '0');
 }
 function load_list(num, time) {
-    let url = (num == 0) ? 'Search.php?type=0&' + time : 'Search.php?type=1&' + time;
+    let url = (num == 0) ? 'php/Search.php?type=0&' + time : 'php/Search.php?type=1&' + time;
     let table = (num == 0) ? document.getElementById("Guest_Table") : document.getElementById("Employee_Table");
     fetch(url)
         .then(response => response.json())
@@ -62,7 +62,7 @@ function send(){
     if(!confirm(CheckName += "\n\n是否都要離場?" + "\n\n" + "目前時間" + getTimeStr())){
         return;
     }
-    fetch("Updatetable.php",{
+    fetch("php/Updatetable.php",{
     method:"POST",
     headers:{"Content-Type":"application/json"},
     body: JSON.stringify({

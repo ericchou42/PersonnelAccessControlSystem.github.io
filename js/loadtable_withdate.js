@@ -7,7 +7,7 @@ function getTimeStr() {
 
 // 載入名單並動態產生表格內容
 function load_list(num, time) {
-    let url = (num == 0) ? 'Search.php?type=0&' + time : 'Search.php?type=1&' + time;
+    let url = (num == 0) ? 'php/Search.php?type=0&' + time : 'php/Search.php?type=1&' + time;
     let table = (num == 0) ? document.getElementById("Guest_Table") : document.getElementById("Employee_Table");
     fetch(url)
         .then(response => response.json())
@@ -53,10 +53,73 @@ function load_list(num, time) {
                             ${row.Leave_time != null ? 'checked' : ''}>
                     </td>
                 `;
+                if(num == 0){
+                    tr.innerHTML += `
+                        <td onclick="Download('${row.Name}')">下載</td>
+                    `
+                }
                 table.appendChild(tr);
             });
         });
 }
+async function Download(name){
+    // 1. 取得簽名圖檔案路徑
+    const sigRes = await fetch("php/Find_signature.php", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({name: name})
+    });
+    const sigData = await sigRes.json();
+
+    if (!sigData.success) {
+        alert(sigData.msg);
+        return;
+    }
+
+    // 2. 取得 PDF 範本（假設用固定範本檔案，可根據需求更換）
+    const pdfBytes = await fetch('/N-4-C-HR-47B (240723) 入廠安全衛生須知.pdf').then(res => res.arrayBuffer());
+
+    // 3. 取得簽名圖片 (imgBytes)
+    const imgBytes = await fetch(sigData.file).then(res => res.arrayBuffer());
+
+    // 4. 用 pdf-lib 組合 PDF+簽名圖
+    const pdfDoc = await PDFLib.PDFDocument.load(pdfBytes);
+    const pages = pdfDoc.getPages();
+    const page = pages[0]; // 貼在第一頁（可依需求調整）
+
+    // 載入圖片
+    let img;
+    if (sigData.file.toLowerCase().endsWith('.png')) {
+        img = await pdfDoc.embedPng(imgBytes);
+    } else {
+        img = await pdfDoc.embedJpg(imgBytes);
+    }
+    const imgDims = img.scale(0.4); // 你可調整大小
+
+    // 貼上去（x, y 以左下角為原點，可依需求自訂座標）
+    page.drawImage(img, {
+        x: 375,   // 水平位置
+        y: 25,    // 垂直位置
+        width: imgDims.width,
+        height: imgDims.height,
+    });
+
+    // 5. 產生新 PDF blob
+    const newPdfBytes = await pdfDoc.save();
+    const blob = new Blob([newPdfBytes], { type: 'application/pdf' });
+    const url = URL.createObjectURL(blob);
+
+    // 6. 自動下載
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = name + '_signed.pdf';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+
 
 function jump(filname) {
     window.location.href = filname + ".html";
@@ -104,7 +167,7 @@ function send() {
     if (!confirm(LeaveName + UnLeaveName + "\n\n目前時間:" + getTimeStr())) {
         return;
     }
-    fetch("Updatetable.php", {
+    fetch("php/Updatetable.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
