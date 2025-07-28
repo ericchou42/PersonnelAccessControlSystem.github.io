@@ -29,11 +29,11 @@ body {
     transform: translateY(-2px) scale(1.04);
 }
 .IP {
-    display: flex;
+    display: block;
     flex-direction: column;
     align-items: center;
     gap: 32px;
-    max-width: 900px;
+    max-width: 100%;
     margin: 24px auto 0 auto;
     padding-bottom: 38px;
 }
@@ -42,10 +42,11 @@ body {
     border-radius: 24px;
     box-shadow: 0 6px 28px #4568e81a;
     padding: 34px 28px 28px 28px;
-    width: 98%;
-    margin-bottom: 12px;
-    max-width: 850px;
-    min-width: 300px;
+
+    width: 95vw;            /* ⭐️ 重點，寬度以畫面為基準 */
+    max-width: 1200px;      /* 限制最大寬度 */
+    margin: 0 auto 20px auto;
+    overflow-x: auto;       /* ⭐️ 若內容超出可橫向滑動 */
 }
 .table-title {
     font-size: 2.1rem;
@@ -58,7 +59,9 @@ body {
     padding-left: 12px;
 }
 table {
-    width: 100%;
+    width: max-content;
+    min-width: 100%;
+    table-layout: auto;
     border-collapse: separate;
     border-spacing: 0;
     background: #f9fbfe;
@@ -70,6 +73,9 @@ th, td {
     font-size: 1.36rem;
     padding: 18px 26px;
     text-align: center;
+    white-space: nowrap;
+    overflow: visible;
+    text-overflow: unset;
 }
 th {
     background: #eaf1ff;
