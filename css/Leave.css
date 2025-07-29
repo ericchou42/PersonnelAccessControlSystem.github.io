@@ -42,11 +42,12 @@ body {
     border-radius: 24px;
     box-shadow: 0 6px 28px #4568e81a;
     padding: 34px 28px 28px 28px;
-
-    width: 95vw;            /* ⭐️ 重點，寬度以畫面為基準 */
-    max-width: 1200px;      /* 限制最大寬度 */
+    width: 45%;
+    max-width: 800px;
+    min-width: 300px;
+    max-width: 1200px;
     margin: 0 auto 20px auto;
-    overflow-x: auto;       /* ⭐️ 若內容超出可橫向滑動 */
+    overflow-x: auto;
 }
 .table-title {
     font-size: 2.1rem;
@@ -68,6 +69,11 @@ table {
     border-radius: 14px;
     overflow: hidden;
     box-shadow: 0 2px 8px #4568e81c;
+}
+.table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
 }
 th, td {
     font-size: 1.36rem;

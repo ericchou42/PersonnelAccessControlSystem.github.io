@@ -13,34 +13,38 @@
     <div class="IP">
         <div class="section-card">
             <div class="table-title">內部</div>
-            <table id="Employee_Table">
-                <tr>
-                    <th>姓名</th>
-                    <th>部門編號</th>
-                    <th>備註</th>
-                    <th>進場時間</th>
-                    <th>離場時間</th>
-                    <th>離場</th>
-                </tr>
-                <!-- 員工資料會 JS append 在這裡 -->
-            </table>
+            <div class="table-wrapper">
+                <table id="Employee_Table">
+                    <tr>
+                        <th>姓名</th>
+                        <th>部門編號</th>
+                        <th>備註</th>
+                        <th>進場時間</th>
+                        <th>離場時間</th>
+                        <th>離場</th>
+                    </tr>
+                    <!-- 員工資料會 JS append 在這裡 -->
+                </table>
+            </div>
         </div>
         <div class="section-card">
             <div class="table-title">外部</div>
-            <table id="Guest_Table">
-                <tr>
-                    <th>姓名</th>
-                    <th>來訪公司</th>
-                    <th>事由</th>
-                    <th>受訪者</th>
-                    <th>證號</th>
-                    <th>備註</th>
-                    <th>進場時間</th>
-                    <th>離場時間</th>
-                    <th>離場</th> 
-                </tr>
-                <!-- 訪客資料會 JS append 在這裡 -->
-            </table>
+            <div class="table-wrapper">
+                <table id="Guest_Table">
+                    <tr>
+                        <th>姓名</th>
+                        <th>來訪公司</th>
+                        <th>事由</th>
+                        <th>受訪者</th>
+                        <th>證號</th>
+                        <th>備註</th>
+                        <th>進場時間</th>
+                        <th>離場時間</th>
+                        <th>離場</th> 
+                    </tr>
+                    <!-- 訪客資料會 JS append 在這裡 -->
+                </table>
+            </div>
         </div>
         <div class="button-row">
             <button onclick="send()">送出 <br> <span style = "color:#d3caff;">Submit</spqn></button>
