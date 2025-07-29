@@ -76,6 +76,9 @@ function load_list(num, time) {
                             ${row.Leave_time != null ? 'checked' : ''}>
                     </td>
                     `;
+                if(num == 0){
+                    tr.innerHTML+= `<td onclick="Download('${row.Name}')">下載</td>`
+                }
                 table.appendChild(tr);
             });
         });
@@ -95,7 +98,7 @@ async function Download(name){
     }
 
     // 2. 取得 PDF 範本（假設用固定範本檔案，可根據需求更換）
-    const pdfBytes = await fetch('/N-4-C-HR-47B (240723) 入廠安全衛生須知.pdf').then(res => res.arrayBuffer());
+    const pdfBytes = await fetch('須知截圖.pdf').then(res => res.arrayBuffer());
 
     // 3. 取得簽名圖片 (imgBytes)
     const imgBytes = await fetch(sigData.file).then(res => res.arrayBuffer());
