@@ -29,9 +29,6 @@ function load_list(num) {
                     ? row.Name[0] + "O".repeat(row.Name.length - 2) + row.Name[row.Name.length - 1]
                     : row.Name;
 
-                const checkboxId = `leaveCheck_${num}_${index}`;
-                const timeInputId = `leaveTime_${num}_${index}`;
-
                 tr.innerHTML = (num === 0)
                     ? `
                         <td class="Name" data-realname="${row.Name}">${maskName}</td>
@@ -41,24 +38,31 @@ function load_list(num) {
                         <td>${row.Certificate_num}</td>
                         <td>${row.Remark}</td>
                         <td>${row.Enter_time}</td>
-                        <td><input type="time" id="${timeInputId}" class="t_Time" value="${currentTime}" style="display:none;"></td>
-                        <td><input type="checkbox" id="${checkboxId}" class="LeaveBT" style="width:25px;height:25px;"></td>
                     `
                     : `
                         <td class="Name" data-realname="${row.Name}">${maskName}</td>
                         <td>${row.Department_id}</td>
                         <td>${row.Remark}</td>
                         <td>${row.Enter_time}</td>
-                        <td><input type="time" id="${timeInputId}" class="t_Time" value="${currentTime}" style="display:none;"></td>
-                        <td><input type="checkbox" id="${checkboxId}" class="LeaveBT" style="width:25px;height:25px;"></td>
                     `;
-
+                if(row.Leave_time == null){
+                    tr.innerHTML += `
+                    <td><input type = "time" class = "t_Time" value = "${currentTime}" style = "display:none;"></td>
+                    <td><input type = "checkbox" class = "LeaveBT" style = "width:25px;height:25px;"></td>
+                    `;
+                }
+                else{
+                    let leaveTimeValue = row.Leave_time ? row.Leave_time.split(' ')[1].substring(0,5) : '';
+                    tr.innerHTML +=`
+                    <td><input type = "time" class = "t_Time" value = "${leaveTimeValue}" readonly></td>
+                    <td><input type = "checkbox" class = "LeaveBT" style = "width:25px;height:25px;"disabled checked></td>
+                    `
+                }
                 table.appendChild(tr);
-
-                const checkbox = document.getElementById(checkboxId);
-                const timeInput = document.getElementById(timeInputId);
-                checkbox.addEventListener('change', () => {
-                    timeInput.style.display = checkbox.checked ? 'inline-block' : 'none';
+                const checkbox = tr.querySelector('.LeaveBT');
+                const timeInput = tr.querySelector('.t_Time');
+                checkbox.addEventListener('change', function() {
+                    timeInput.style.display = this.checked ? 'inline-block' : 'none';
                 });
             });
         });
