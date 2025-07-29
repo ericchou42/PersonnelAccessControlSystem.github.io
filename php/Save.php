@@ -5,13 +5,9 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-// $servername = "localhost";
-// $username = "acs";
-// $password = "Acs@0721";
-// $dbname = "mydb";
 $servername = "localhost";
-$username = "benson";
-$password = "benson25";
+$username = "acs";
+$password = "Acs@0721";
 $dbname = "mydb";
 
 // 建立連線
