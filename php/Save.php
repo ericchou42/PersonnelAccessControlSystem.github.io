@@ -37,7 +37,7 @@ $signature_dir = $_ENV['SIGNATURE_PATH'] ?? '/var/www/html/signatures'; // 簽�
 
 // 判斷訪客(0)或員工(1)來決定欄位
 if ($type == "1") { // 員工
-    $stmt = $conn->prepare("INSERT INTO user (Type, Name, Employee_id, Department_id, Remark, Enter_time) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO user (Type, $factory, Name, Employee_id, Department_id, Remark, Enter_time) VALUES (?, ?, ?, ?, ?, ?, ?)");
     if (!$stmt) {
         die("prepare fail: " . $conn->error);
     }
