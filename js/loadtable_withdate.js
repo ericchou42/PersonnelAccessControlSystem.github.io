@@ -77,18 +77,18 @@ function load_list(num, time) {
                     </td>
                     `;
                 if(num == 0){
-                    tr.innerHTML+= `<td onclick="Download('${row.Name}')">下載</td>`
+                    tr.innerHTML+= `<td onclick="Download('${row.Id}')">下載</td>`
                 }
                 table.appendChild(tr);
             });
         });
 }
-async function Download(name){
+async function Download(Id){
     // 1. 取得簽名圖檔案路徑
     const sigRes = await fetch("php/Find_signature.php", {
         method: "POST",
         headers: {"Content-Type":"application/json"},
-        body: JSON.stringify({name: name})
+        body: JSON.stringify({Id:Id})
     });
     const sigData = await sigRes.json();
 
