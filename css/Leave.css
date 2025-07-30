@@ -115,7 +115,18 @@ td {
     background: #22399a;
     transform: translateY(-2px) scale(1.04);
 }
+.select-factory-row {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 32px;
+}
 
+.select-factory-row label, .select-factory-row select {
+    font-size: 1.75rem;
+    margin-right: 8px;
+}
 @media (max-width: 800px) {
     .section-card, .button-row { width: 99vw; max-width: 99vw; }
     th, td { font-size: 1.09rem; padding: 13px 7vw; }

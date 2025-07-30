@@ -54,6 +54,18 @@ body {
     border: 2px solid #4568e8;
     background: #eaf1ff;
 }
+.select-factory-row {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.select-factory-row label, .select-factory-row select {
+    font-size: 1.75rem;
+    margin-right: 8px;
+}
 .section-card {
     background: #fff;
     border-radius: 24px;

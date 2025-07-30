@@ -24,6 +24,7 @@ $conn->set_charset("utf8mb4"); // 支援中文
 // 接收欄位
 $type = isset($_POST['Type']) ? $_POST['Type'] : '';
 $name = isset($_POST['Name']) ? $_POST['Name'] : '';
+$factory = isset($_POST['Factory']) ? $_POST['Factory'] : '';
 $unit = isset($_POST['Unit']) ? $_POST['Unit'] : '';
 $employee_id = isset($_POST['Employee_id']) ? $_POST['Employee_id'] : '';
 $department_id = isset($_POST['Department_id']) ? $_POST['Department_id'] : '';
@@ -40,17 +41,17 @@ $signature_dir = $_ENV['SIGNATURE_PATH'] ?? '/var/www/html/signatures'; // 簽�
 
 // 判斷訪客(0)或員工(1)來決定欄位
 if ($type == "1") { // 員工
-    $stmt = $conn->prepare("INSERT INTO user (Type, Name, Employee_id, Department_id, Remark, Enter_time) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO user (Type, Factory, Name, Employee_id, Department_id, Remark, Enter_time) VALUES (?, ?, ?, ?, ?, ?, ?)");
     if (!$stmt) {
         die("prepare fail: " . $conn->error);
     }
-    $stmt->bind_param("isssss", $type, $name, $employee_id, $department_id, $remark, $enter_time);
+    $stmt->bind_param("iisssss", $type, $factory, $name, $employee_id, $department_id, $remark, $enter_time);
 } else { // 訪客
-    $stmt = $conn->prepare("INSERT INTO user (Type, Name, Unit, Interviewee, Certificate_num, Remark, Npeople, Reason, Enter_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO user (Type, Factory, Name, Unit, Interviewee, Certificate_num, Remark, Npeople, Reason, Enter_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     if (!$stmt) {
         die("prepare fail: " . $conn->error);
     }
-    $stmt->bind_param("issssssss", $type, $name, $unit, $interviewee, $certificate_num, $remark, $npeople, $reason, $enter_time);
+    $stmt->bind_param("iissssssss", $type, $factory ,$name, $unit, $interviewee, $certificate_num, $remark, $npeople, $reason, $enter_time);
 }
 
 // 執行

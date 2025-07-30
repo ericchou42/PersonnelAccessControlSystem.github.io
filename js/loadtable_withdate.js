@@ -7,8 +7,10 @@ function getTimeStr() {
 
 // 載入名單並動態產生表格內容
 function load_list(num, time) {
-    let url = (num == 0) ? 'php/Search.php?type=0&' + time : 'php/Search.php?type=1&' + time;
-    let table = (num == 0) ? document.getElementById("Guest_Table") : document.getElementById("Employee_Table");
+    Factory = document.getElementById("factory").value;
+    let url = 'php/Search.php?type=' + num.toString();
+    url += "&factory=" + Factory.toString();
+    let table = (num === 0) ? document.getElementById("Guest_Table") : document.getElementById("Employee_Table");
     fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -214,6 +216,10 @@ window.onload = function () {
     document.getElementById('Time').value = today;
     load_list(1, 'time=' + today);
     load_list(0, 'time=' + today);
+    document.getElementById('factory').addEventListener('change', function () {
+        load_list(1);
+        load_list(0);
+    });
 };
 
 document.getElementById('Time').addEventListener('change', function () {

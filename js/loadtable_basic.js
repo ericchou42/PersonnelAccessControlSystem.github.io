@@ -7,12 +7,15 @@ function getTimeStr(timeStr) {
 }
 
 function load_list(num) {
-    let url = (num === 0) ? 'php/Search.php?type=0' : 'php/Search.php?type=1';
+    Factory = document.getElementById("factory").value;
+    let url = 'php/Search.php?type=' + num.toString();
+    url += "&factory=" + Factory.toString();
     let table = (num === 0) ? document.getElementById("Guest_Table") : document.getElementById("Employee_Table");
 
     fetch(url)
         .then(response => response.json())
         .then(data => {
+            
             while (table.rows.length > 1) table.deleteRow(1);
 
             data.forEach((row, index) => {
@@ -124,4 +127,8 @@ function send() {
 window.onload = function () {
     load_list(1); // 內部
     load_list(0); // 外部
+    document.getElementById('factory').addEventListener('change', function () {
+        load_list(1);
+        load_list(0);
+    });
 };

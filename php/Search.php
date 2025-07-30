@@ -23,7 +23,7 @@ if($conn->connect_error){
 }
 
 // 函式：依類型與日期取得資料
-function GetData($Num, $Time, &$error = null) {
+function GetData($Num, $Time, $Factory,&$error = null) {
     global $conn;
 
     $Num = intval($Num);
@@ -35,12 +35,20 @@ function GetData($Num, $Time, &$error = null) {
     }
     else if($Num == 1){
         $sql = "SELECT * FROM user WHERE Type = 1 AND DATE(Enter_time) = '$Time'";
-    } else {
+    } 
+    else {
         // 如果傳入的 $Num 不是 0 或 1，也可自訂錯誤代碼與訊息
         $error = "錯誤：無效的資料類型參數";
         return false;
     }
 
+    if($Factory != ""){
+        $sql .= " AND Factory=" . intval($Factory);
+    }
+    else{
+        $error = "錯誤:無法辨識廠區";
+        return false;
+    }
     $result = $conn->query($sql);
 
     // 查詢錯誤處理
@@ -60,10 +68,10 @@ function GetData($Num, $Time, &$error = null) {
 // 取得傳入參數
 $type = isset($_GET['type']) ? intval($_GET['type']) : 0;
 $time = isset($_GET['time']) ? $_GET['time'] : date('Y-m-d');
-
+$factory = isset($_GET['factory']) ? $_GET["factory"] : "";
 // 呼叫函式並處理錯誤
 $error = null;
-$data = GetData($type, $time, $error);
+$data = GetData($type, $time, $factory ,$error);
 
 // 如果有錯誤，回傳錯誤資訊
 if ($error) {
