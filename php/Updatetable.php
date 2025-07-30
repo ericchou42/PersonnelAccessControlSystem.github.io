@@ -32,14 +32,5 @@ if(!empty($CheckedNameList) && !empty($LeaveTimeList)){
         }
     }
 }
-
-if(!empty($UncheckedNameList)){
-    foreach ($UncheckedNameList as $name) {
-        $stmt = $conn->prepare("UPDATE user SET Leave_time=NULL, `Commit`=? WHERE name=?");
-        $stmt->bind_param('is', $Commit, $name);
-        $stmt->execute();
-    }
-}
-
 echo json_encode(['success' => true]);
 ?>
