@@ -156,7 +156,6 @@ function send() {
     let UncheckedNameList = [];   
     let LeaveTimeList = [];
     let LeaveName = "【請再次確認資料】\n\n離場:\n";
-    let UnLeaveName = "\n未離場:\n";
 
     // 取使用者選擇的日期
     let selectedDate = document.getElementById('Time').value; // ex: "2025-07-22"
@@ -182,20 +181,16 @@ function send() {
                 }
                 LeaveTimeList.push(leaveTimeVal);
             }
-        } else {
-            UncheckedNameList.push(realName);
-            UnLeaveName += Name[boxind].innerText + " ";
         }
     }
-    if (!confirm(LeaveName + UnLeaveName + "\n\n目前時間:" + getTimeStr())) {
+    if (!confirm(LeaveName + "\n\n目前時間:" + getTimeStr())) {
         return;
     }
     fetch("php/Updatetable.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            CheckedNameList: CheckedNameList,    
-            UncheckedNameList: UncheckedNameList, 
+            CheckedNameList: CheckedNameList,     
             LeaveTimeList: LeaveTimeList,
             Commit: 2,
             LeaveTime: new Date().toISOString().slice(0, 19).replace('T', ' ')
