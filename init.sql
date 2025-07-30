@@ -1,6 +1,7 @@
 CREATE TABLE `user` (
     `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT '流水號',
     `Type` tinyint(4) NOT NULL COMMENT '0: 訪客，1: 員工' CHECK (`Type` in (0,1)),
+    `Factory` tinyint(4) DEFAULT NULL COMMENT '0:紅樹林、1:上達、2:立德、3:菲律賓',
     `Name` varchar(30) NOT NULL COMMENT '名稱',
     `Unit` varchar(30) DEFAULT NULL COMMENT '單位',
     `Employee_id` varchar(6) DEFAULT NULL COMMENT '工號',

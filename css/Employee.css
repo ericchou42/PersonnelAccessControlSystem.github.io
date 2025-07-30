@@ -96,6 +96,18 @@ body {
     margin-top: 0;
     letter-spacing: 0.02em;
 }
+.form-row select {
+    font-size: 1.18rem;
+    border: 1.5px solid #b6bfd8;
+    border-radius: 8px;
+    padding: 14px 14px;
+    background: #f4f7fd;
+    transition: border 0.18s;
+    outline: none;
+    width: 103.5%;
+    box-sizing: border-box;
+    min-height: 48px;
+}
 .form-row input[type="text"] {
     font-size: 1.5rem;
     border: 1.5px solid #b6bfd8;

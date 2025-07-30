@@ -46,6 +46,17 @@ body {
     max-width: 1500px;      /* 限制最大寬度 */
     margin: 0 auto 20px auto;
 }
+.select-factory-row {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 28px;
+}
+.select-factory-row label, .select-factory-row select {
+    font-size: 1.75rem;
+    margin-right: 8px;
+}
 .table-title {
     font-size: 2.1rem;
     font-weight: bold;
