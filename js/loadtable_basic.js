@@ -39,12 +39,12 @@ function load_list(num) {
                         <td>${row.Interviewee}</td>
                         <td>${row.Certificate_num}</td>
                         <td>${row.Remark}</td>
-                        <td class = "EnterTime">${row.EnterTime}</td>                    `
+                        <td class = "EnterTime">${EnterTime}</td>                    `
                     : `
                         <td class="Name" data-realname="${row.Name}">${maskName}</td>
                         <td>${row.Department_id}</td>
                         <td>${row.Remark}</td>
-                        <td class = "EnterTime">${row.EnterTime}</td>
+                        <td class = "EnterTime">${EnterTime}</td>
                     `;
                 if(row.Leave_time == null){
                     tr.innerHTML += `

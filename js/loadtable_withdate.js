@@ -49,7 +49,7 @@ function load_list(num, time) {
                         <td>${row.Interviewee}</td>
                         <td>${row.Certificate_num}</td>
                         <td>${row.Remark}</td>
-                        <td class = "EnterTime">${row.EnterTime}</td>
+                        <td class = "EnterTime">${EnterTime}</td>
                         <td>
                         <input type="time" class="t_Time" 
                             style="display:${timeInputDisplay}" 
@@ -66,7 +66,7 @@ function load_list(num, time) {
                         <td class="Name" data-realname="${row.Name}">${maskName}</td>
                         <td>${row.Department_id}</td>
                         <td>${row.Remark}</td>
-                        <td class = "EnterTime">${row.EnterTime}</td>
+                        <td class = "EnterTime">${EnterTime}</td>
                         <td>
                         <input type="time" class="t_Time" 
                             style="display:${timeInputDisplay}" 
