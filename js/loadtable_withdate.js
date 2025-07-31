@@ -22,6 +22,7 @@ function load_list(num, time) {
                 tr.style.fontSize = "20px";
                 tr.style.textAlign = "center";
                 // 名字遮罩處理
+                let EnterTime = row.Enter_time.split(" ")[1];
                 if (row.Name.length == 2) {
                     maskName = row.Name[0] + "O";
                 }
@@ -48,7 +49,7 @@ function load_list(num, time) {
                         <td>${row.Interviewee}</td>
                         <td>${row.Certificate_num}</td>
                         <td>${row.Remark}</td>
-                        <td>${row.Enter_time}</td>
+                        <td>${EnterTime}</td>
                         <td>
                         <input type="time" class="t_Time" 
                             style="display:${timeInputDisplay}" 
@@ -65,7 +66,7 @@ function load_list(num, time) {
                         <td class="Name" data-realname="${row.Name}">${maskName}</td>
                         <td>${row.Department_id}</td>
                         <td>${row.Remark}</td>
-                        <td>${row.Enter_time}</td>
+                        <td>${EnterTime}</td>
                         <td>
                         <input type="time" class="t_Time" 
                             style="display:${timeInputDisplay}" 

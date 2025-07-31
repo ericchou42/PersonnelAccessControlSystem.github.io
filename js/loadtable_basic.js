@@ -30,7 +30,7 @@ function load_list(num) {
                     : row.Name.length > 2
                     ? row.Name[0] + "O".repeat(row.Name.length - 2) + row.Name[row.Name.length - 1]
                     : row.Name;
-
+                let EnterTime = row.Enter_time.split(" ")[1];
                 tr.innerHTML = (num === 0)
                     ? `
                         <td class="Name" data-realname="${row.Name}">${maskName}</td>
@@ -39,13 +39,13 @@ function load_list(num) {
                         <td>${row.Interviewee}</td>
                         <td>${row.Certificate_num}</td>
                         <td>${row.Remark}</td>
-                        <td>${row.Enter_time}</td>
+                        <td>${EnterTime}</td>
                     `
                     : `
                         <td class="Name" data-realname="${row.Name}">${maskName}</td>
                         <td>${row.Department_id}</td>
                         <td>${row.Remark}</td>
-                        <td>${row.Enter_time}</td>
+                        <td>${EnterTime}</td>
                     `;
                 if(row.Leave_time == null){
                     tr.innerHTML += `
