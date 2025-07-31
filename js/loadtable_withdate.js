@@ -58,7 +58,7 @@ function load_list(num, time) {
                         <input type="checkbox"
                             style="width:25px;height:25px"
                             class="LeaveBT"
-                            ${row.Leave_time != null ? 'checked' : ''}>
+                            ${row.Leave_time != null ? 'checked disabled' : ''}>
                         </td>
                     `
                     : `
@@ -75,7 +75,7 @@ function load_list(num, time) {
                         <input type="checkbox"
                             style="width:25px;height:25px"
                             class="LeaveBT"
-                            ${row.Leave_time != null ? 'checked' : ''}>
+                            ${row.Leave_time != null ? 'checked disabled' : ''}>
                     </td>
                     `;
                 if(num == 0){
