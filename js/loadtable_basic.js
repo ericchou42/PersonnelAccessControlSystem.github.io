@@ -39,13 +39,12 @@ function load_list(num) {
                         <td>${row.Interviewee}</td>
                         <td>${row.Certificate_num}</td>
                         <td>${row.Remark}</td>
-                        <td>${row.EnterTime}</td>
-                    `
+                        <td class = "EnterTime">${row.EnterTime}</td>                    `
                     : `
                         <td class="Name" data-realname="${row.Name}">${maskName}</td>
                         <td>${row.Department_id}</td>
                         <td>${row.Remark}</td>
-                        <td>${row.EnterTime}</td>
+                        <td class = "EnterTime">${row.EnterTime}</td>
                     `;
                 if(row.Leave_time == null){
                     tr.innerHTML += `
@@ -78,10 +77,11 @@ function send() {
     let CheckBox = document.getElementsByClassName("LeaveBT");
     let Name = document.getElementsByClassName("Name");
     let t_Time = document.getElementsByClassName("t_Time");
-
+    let t_EnterTime = document.getElementsByClassName("EnterTime");
     let CheckedNameList = [];
     let UncheckedNameList = [];
     let LeaveTimeList = [];
+    let Checked_EnterTimeList = [];
     let LeaveName = "【請再次確認資料】\n\n離場:\n";
     let UnLeaveName = "\n未離場:\n";
 
@@ -96,6 +96,7 @@ function send() {
             }
             let fullTime = getTimeStr(timeStr);
             LeaveTimeList.push(fullTime);
+            Checked_EnterTimeList.push(t_EnterTime[i].innerText);
             LeaveName += `${Name[i].innerText}：離場時間 ${timeStr}\n`;
         } else {
             UncheckedNameList.push(realName);
@@ -112,6 +113,7 @@ function send() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             CheckedNameList: CheckedNameList,
+            Checked_EnterTimeList:Checked_EnterTimeList,
             LeaveTimeList: LeaveTimeList,
             Commit: 1
         })

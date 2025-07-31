@@ -49,7 +49,7 @@ function load_list(num, time) {
                         <td>${row.Interviewee}</td>
                         <td>${row.Certificate_num}</td>
                         <td>${row.Remark}</td>
-                        <td>${row.EnterTime}</td>
+                        <td class = "EnterTime">${row.EnterTime}</td>
                         <td>
                         <input type="time" class="t_Time" 
                             style="display:${timeInputDisplay}" 
@@ -66,7 +66,7 @@ function load_list(num, time) {
                         <td class="Name" data-realname="${row.Name}">${maskName}</td>
                         <td>${row.Department_id}</td>
                         <td>${row.Remark}</td>
-                        <td>${row.EnterTime}</td>
+                        <td class = "EnterTime">${row.EnterTime}</td>
                         <td>
                         <input type="time" class="t_Time" 
                             style="display:${timeInputDisplay}" 
@@ -153,9 +153,12 @@ function send() {
     let CheckBox = document.getElementsByClassName("LeaveBT");
     let Name = document.getElementsByClassName("Name");
     let t_Time = document.getElementsByClassName("t_Time");
+    let t_EnterTime = document.getElementsByClassName("EnterTime");
     let CheckedNameList = [];  
     let UncheckedNameList = [];   
     let LeaveTimeList = [];
+    let Checked_EnterTimeList = [];
+    let Unchecked_EnterTimeList = [];
     let LeaveName = "【請再次確認資料】\n\n離場:\n";
 
     // 取使用者選擇的日期
@@ -181,7 +184,12 @@ function send() {
                     leaveTimeVal = selectedDate + ' ' + leaveTimeVal + ':00'; // "2025-07-22 09:32:00"
                 }
                 LeaveTimeList.push(leaveTimeVal);
+                Checked_EnterTimeList.push(t_EnterTime[boxind].innerText);
             }
+        } else {
+            UncheckedNameList.push(realName);
+            Unchecked_EnterTimeList.push(t_EnterTime[boxind].innerText);
+            UnLeaveName += Name[boxind].innerText + " ";
         }
     }
     if (!confirm(LeaveName + "\n\n目前時間:" + getTimeStr())) {
@@ -192,9 +200,11 @@ function send() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             CheckedNameList: CheckedNameList,
+            UncheckedNameList: UncheckedNameList,
+            Unchecked_EnterTimeList: Unchecked_EnterTimeList, 
             LeaveTimeList: LeaveTimeList,
+            Checked_EnterTimeList: Checked_EnterTimeList,
             Commit: 2,
-            LeaveTime: new Date().toISOString().slice(0, 19).replace('T', ' ')
         })
     })
     .then(res => res.json())
