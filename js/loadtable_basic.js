@@ -96,14 +96,14 @@ function send() {
             }
             let fullTime = getTimeStr(timeStr);
             LeaveTimeList.push(fullTime);
-            Checked_EnterTimeList.push(t_EnterTime[i].innerText);
+            Checked_EnterTimeList.push(getTimeStr("").split(" ")[0] + " " + t_EnterTime[i].innerText);
             LeaveName += `${Name[i].innerText}：離場時間 ${timeStr}\n`;
         } else {
             UncheckedNameList.push(realName);
             UnLeaveName += Name[i].innerText + " ";
         }
     }
-
+    
     if (!confirm(LeaveName + UnLeaveName + "\n\n目前時間：" + new Date().toTimeString().slice(0, 9))) {
         return;
     }
