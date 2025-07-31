@@ -24,7 +24,7 @@ function load_list(num) {
 
                 const now = new Date();
                 const currentTime = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
-
+                let EnterTime = row.Enter_time.split(" ")[1];
                 let maskName = row.Name.length === 2
                     ? row.Name[0] + "O"
                     : row.Name.length > 2
@@ -39,13 +39,13 @@ function load_list(num) {
                         <td>${row.Interviewee}</td>
                         <td>${row.Certificate_num}</td>
                         <td>${row.Remark}</td>
-                        <td>${row.Enter_time}</td>
+                        <td>${EnterTime}</td>
                     `
                     : `
                         <td class="Name" data-realname="${row.Name}">${maskName}</td>
                         <td>${row.Department_id}</td>
                         <td>${row.Remark}</td>
-                        <td>${row.Enter_time}</td>
+                        <td>${EnterTime}</td>
                     `;
                 if(row.Leave_time == null){
                     tr.innerHTML += `
