@@ -184,7 +184,7 @@ function send() {
                     leaveTimeVal = selectedDate + ' ' + leaveTimeVal + ':00'; // "2025-07-22 09:32:00"
                 }
                 LeaveTimeList.push(leaveTimeVal);
-                Checked_EnterTimeList.push(t_EnterTime[boxind].innerText);
+                Checked_EnterTimeList.push(selectedDate + " " + t_EnterTime[boxind].innerText);
             }
         } else {
             UncheckedNameList.push(realName);
