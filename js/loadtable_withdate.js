@@ -34,6 +34,7 @@ function load_list(num, time) {
                 // 判斷離場狀態，決定 time input 是否顯示
                 let timeInputDisplay = (row.Leave_time != null) ? '' : 'none';
                 let timeInputValue = "";
+                let EnterTime = row.Enter_time.split(" ")[1];
                 if (row.Leave_time) {
                     let parts = row.Leave_time.split(' ');
                     if (parts.length === 2) {
@@ -48,7 +49,7 @@ function load_list(num, time) {
                         <td>${row.Interviewee}</td>
                         <td>${row.Certificate_num}</td>
                         <td>${row.Remark}</td>
-                        <td>${row.Enter_time}</td>
+                        <td>${row.EnterTime}</td>
                         <td>
                         <input type="time" class="t_Time" 
                             style="display:${timeInputDisplay}" 
@@ -65,7 +66,7 @@ function load_list(num, time) {
                         <td class="Name" data-realname="${row.Name}">${maskName}</td>
                         <td>${row.Department_id}</td>
                         <td>${row.Remark}</td>
-                        <td>${row.Enter_time}</td>
+                        <td>${row.EnterTime}</td>
                         <td>
                         <input type="time" class="t_Time" 
                             style="display:${timeInputDisplay}" 
