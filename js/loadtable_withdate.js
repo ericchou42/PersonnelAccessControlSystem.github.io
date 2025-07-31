@@ -121,8 +121,8 @@ async function Download(name){
 
     // 貼上去（x, y 以左下角為原點，可依需求自訂座標）
     page.drawImage(img, {
-        x: 375,   // 水平位置
-        y: 30,    // 垂直位置
+        x: 50,   // 水平位置
+        y: 20,    // 垂直位置
         width: imgDims.width,
         height: imgDims.height,
     });
@@ -156,6 +156,7 @@ function send() {
     let UncheckedNameList = [];   
     let LeaveTimeList = [];
     let LeaveName = "【請再次確認資料】\n\n離場:\n";
+    let UnLeaveName = "\n未離場:\n";
 
     // 取使用者選擇的日期
     let selectedDate = document.getElementById('Time').value; // ex: "2025-07-22"
@@ -181,9 +182,12 @@ function send() {
                 }
                 LeaveTimeList.push(leaveTimeVal);
             }
+        } else {
+            UncheckedNameList.push(realName);
+            UnLeaveName += Name[boxind].innerText + " ";
         }
     }
-    if (!confirm(LeaveName + "\n\n目前時間:" + getTimeStr())) {
+    if (!confirm(LeaveName + UnLeaveName + "\n\n目前時間:" + getTimeStr())) {
         return;
     }
     fetch("php/Updatetable.php", {
@@ -191,6 +195,7 @@ function send() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             CheckedNameList: CheckedNameList,
+            UncheckedNameList: UncheckedNameList, 
             LeaveTimeList: LeaveTimeList,
             Commit: 2,
             LeaveTime: new Date().toISOString().slice(0, 19).replace('T', ' ')
