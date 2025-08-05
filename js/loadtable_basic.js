@@ -5,7 +5,14 @@ function getTimeStr(timeStr) {
     const dd = today.getDate().toString().padStart(2, '0');
     return `${yyyy}-${mm}-${dd} ${timeStr}:00`;
 }
-
+function maskString(str) {
+    if (typeof str !== "string") return "";
+    str = str.replace(/\s+/g, "");
+    const len = str.length;
+    if (len === 2) return str[0] + "O";
+    if (len > 2) return str[0] + "O".repeat(len - 2) + str[len - 1];
+    return str;
+}
 function load_list(num) {
     Factory = document.getElementById("factory").value;
     let url = 'php/Search.php?type=' + num.toString();
@@ -25,16 +32,13 @@ function load_list(num) {
                 const now = new Date();
                 const currentTime = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
                 let EnterTime = row.Enter_time.split(" ")[1];
-                let maskName = row.Name.length === 2
-                    ? row.Name[0] + "O"
-                    : row.Name.length > 2
-                    ? row.Name[0] + "O".repeat(row.Name.length - 2) + row.Name[row.Name.length - 1]
-                    : row.Name;
+                let maskName = maskString(row.Name);
+                let maskUnit = maskString(row.Unit);
 
                 tr.innerHTML = (num === 0)
                     ? `
                         <td class="Name" data-realname="${row.Name}">${maskName}</td>
-                        <td>${row.Unit}</td>
+                        <td data-realname="${row.Unit}">${maskUnit}</td>
                         <td>${row.Reason}</td>
                         <td>${row.Interviewee}</td>
                         <td>${row.Certificate_num}</td>
