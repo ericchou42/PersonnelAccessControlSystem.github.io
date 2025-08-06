@@ -262,7 +262,7 @@ body {
     width: 100%;
 }
 .signature-row {
-    display: flex;
+    display: block;
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;

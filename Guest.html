@@ -10,9 +10,6 @@
 </head>
 <body>
     <div class="container">
-        <div class="topbar">
-            <button onclick="jump('index')">回首頁<br><span style = "color:#d3caff;">Back to Home</span></button>
-        </div>
         <div class="header">
             <div class="Head">光紅建聖股份有限公司</div>
             <div class="Head">入廠安全衛生須知</div>
@@ -149,6 +146,7 @@
                     <label for="identity">來賓證號  <span style = "color: #888;">Guest ID Number</span></label>
                     <select id="identity" name="identity">
                         <option value="">請選擇  Please select</option>
+                        <option value="0">X</option>
                         <option value="1">1</option><option value="2">2</option>
                         <option value="3">3</option><option value="4">4</option>
                         <option value="5">5</option><option value="6">6</option>
@@ -183,14 +181,17 @@
                 </div>
                 <div class="signature-row">
                     <label style="font-size:1.5rem; color:#243271; margin-bottom: 2px;">簽名  <span style = "color: #888;">Signature</span></label>
+                    <button type="button" onclick="Clear()">清除簽名<br><span style = "color:#d3caff;;">Clear Signature</span></button>
                     <div>
                         <canvas id="signbox" style="width:100%;height:180px;display:block;"></canvas>
                     </div>
-                    <button type="button" onclick="Clear()">清除簽名<br><span style = "color:#d3caff;;">Clear Signature</span></button>
                 </div>
             </div>
             <div class="button-row">
                 <button type="button" onclick="send_data(0)">送出<br><span style = "color:#d3caff;">Submit</span></button>
+                <button onclick="jump('index')">回首頁<br>
+                    <span style = "color:#d3caff;">Back to Home</span>
+                </button>
             </div>
             </form>
         </div>
