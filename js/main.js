@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function jump(filname){
-    window.location.href = filname + ".html";
+    window.location.href = filname + ".html?factory=" + document.getElementById('factorySite').value;
 }
 function getNowDatetime() {
     let now = new Date();
@@ -53,7 +53,6 @@ function send_data(type){
         let Agree = document.getElementById("agreeCheck").checked;
         let Gname = document.getElementById("name");
         let Reason = document.getElementsByClassName("reason");
-        let Factory = document.getElementById("factory");
         let Unit = document.getElementById("unit");
         let Visited = document.getElementById("visited");
         let Identity = document.getElementById("identity");
@@ -85,9 +84,6 @@ function send_data(type){
         if(Gname.value == "" ){
             Alertstr += "填寫名稱 ";
         }
-        if(Factory.value == ""){
-            Alertstr += "填寫廠區"
-        }
         if(Unit.value == ""){
             Alertstr += "填寫來訪公司";
         }
@@ -112,7 +108,6 @@ function send_data(type){
             "姓名：" + Gname.value + "\n" +
             "來訪公司：" + Unit.value + "\n" +
             "事由：" + Unit.value + "\n" +
-            "廠區：" + Factory.options[Factory.selectedIndex].text + "\n" +
             "受訪者：" + Visited.value + "\n" +
             "證號：" + Identity.value + "\n" +
             "備註：" + Remark.value + "\n" +
@@ -135,7 +130,7 @@ function send_data(type){
                 "&Reason=" + encodeURIComponent(Reason_string) +
                 "&Enter_time=" + encodeURIComponent(getNowDatetime()) +
                 "&Image=" + encodeURIComponent(signbox.toDataURL()) +
-                "&Factory=" + encodeURIComponent(Factory.value)
+                "&Factory=" + document.getElementById('factorySite').value
         })
         .then(response => response.text())
         .then(msg => {

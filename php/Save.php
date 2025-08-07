@@ -21,6 +21,19 @@ $conn->set_charset("utf8mb4"); // 支援中文
 $type = isset($_POST['Type']) ? $_POST['Type'] : '';
 $name = isset($_POST['Name']) ? $_POST['Name'] : '';
 $factory = isset($_POST['Factory']) ? $_POST['Factory'] : '';
+//指定數字
+if($factory == "hongshulin"){
+    $factory = 0; // 紅樹林
+} else if($factory == "shangda"){
+    $factory = 1; // 上達
+} else if($factory == "lide"){
+    $factory = 2; // 立德
+} else if($factory == "feilubin"){
+     $factory = 3; // 菲律賓
+}
+else{
+    die("錯誤: 無法辨識廠區");
+}
 $unit = isset($_POST['Unit']) ? $_POST['Unit'] : '';
 $employee_id = isset($_POST['Employee_id']) ? $_POST['Employee_id'] : '';
 $department_id = isset($_POST['Department_id']) ? $_POST['Department_id'] : '';

@@ -7,7 +7,19 @@ function getTimeStr(timeStr) {
 }
 
 function load_list(num) {
-    Factory = document.getElementById("factory").value;
+    Factory = document.getElementById('factorySite').value;
+    if(Factory == "hongshulin"){
+        Factory = 0; // 紅樹林
+    } else if(Factory == "shangda"){
+        Factory = 1; // 上達
+    } else if(Factory == "lide"){
+        Factory = 2; // 立德
+    } else if(Factory == "feilubin"){
+        Factory = 3; // 菲律賓
+    }
+    else{
+        die("錯誤: 無法辨識廠區");
+    }
     let url = 'php/Search.php?type=' + num.toString();
     url += "&factory=" + Factory.toString();
     let table = (num === 0) ? document.getElementById("Guest_Table") : document.getElementById("Employee_Table");
@@ -70,7 +82,7 @@ function load_list(num) {
 }
 
 function jump(filname) {
-    window.location.href = filname + ".html";
+    window.location.href = filname + ".html?factory=" + document.getElementById('factorySite').value;
 }
 
 function send() {

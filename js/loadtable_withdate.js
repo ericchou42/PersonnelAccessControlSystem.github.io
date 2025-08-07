@@ -7,8 +7,20 @@ function getTimeStr() {
 
 // 載入名單並動態產生表格內容
 function load_list(num, time) {
-    Factory = document.getElementById("factory").value;
-    let url = 'php/Search.php?type=' + num.toString();
+    Factory = document.getElementById('factorySite').value;
+    if(Factory == "hongshulin"){
+        Factory = 0; // 紅樹林
+    } else if(Factory == "shangda"){
+        Factory = 1; // 上達
+    } else if(Factory == "lide"){
+        Factory = 2; // 立德
+    } else if(Factory == "feilubin"){
+        Factory = 3; // 菲律賓
+    }
+    else{
+        die("錯誤: 無法辨識廠區");
+    }
+    let url = 'php/Search.php?type=' + num.toString() + "&" + time;
     url += "&factory=" + Factory.toString();
     let table = (num === 0) ? document.getElementById("Guest_Table") : document.getElementById("Employee_Table");
     fetch(url)
@@ -146,7 +158,7 @@ async function Download(name){
 
 
 function jump(filname) {
-    window.location.href = filname + ".html";
+    window.location.href = filname + ".html?factory=" + document.getElementById('factorySite').value;
 }
 
 function send() {

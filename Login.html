@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="topbar">
-        <button onclick="window.location.href='index.html'">首頁</button>
+        <button onclick="jump('index')">首頁</button>
     </div>
     <div class="login-container">
         <div class="login-title">後台登入</div>
@@ -23,9 +23,14 @@
             </div>
             <button class="login-btn" type="submit">登入</button>
             <div class="tips" id="tips"></div>
+            <input type="hidden" id="factorySite" name="factorySite" value="">
         </form>
+        <input type="hidden" id="factorySite" name="factorySite" value="">
     </div>
     <script>
+        function jump(filname){
+            window.location.href = filname + ".html?factory=" + document.getElementById('factorySite').value;
+        }
         document.getElementById("loginForm").addEventListener("submit", function(e){
             const user = document.getElementById("username").value.trim();
             const pwd = document.getElementById("password").value.trim();
@@ -38,11 +43,17 @@
             if(user === "admin" && pwd === "123456"){
                 tips.style.color = "#2c7";
                 tips.textContent = "登入成功，跳轉中...";
-                window.location.href = "LeaveDataUpdate.html";
+                jump("LeaveDataUpdate");
             }else{
                 tips.style.color = "#c22";
                 tips.textContent = "帳號或密碼錯誤";
             }
+        });
+        document.addEventListener("DOMContentLoaded", function() {
+            // 帶入 factorySite 隱藏欄位
+            const params = new URLSearchParams(window.location.search);
+            const factory = params.get("factory") || "";
+            document.getElementById('factorySite').value = factory;
         });
     </script>
 </body>
