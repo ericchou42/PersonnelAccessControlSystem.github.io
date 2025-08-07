@@ -6,8 +6,8 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 $servername = "localhost";
-$username = "acs";
-$password = "Acs@0721";
+$username = "benson";
+$password = "benson25";
 $dbname = "mydb";
 
 // 建立連線
@@ -45,16 +45,17 @@ $leave_time = isset($_POST['Leave_time']) ? $_POST['Leave_time'] : '';
 $remark = isset($_POST['Remark']) ? $_POST['Remark'] : '';
 $npeople = isset($_POST['Npeople']) ? $_POST['Npeople'] : '';
 $image = isset($_POST['Image']) ? $_POST['Image'] : '';
+$from_factory = isset($_POST['From_factory']) ? $_POST['From_factory'] : '';
 
 $signature_dir = $_ENV['SIGNATURE_PATH'] ?? '/var/www/html/signatures'; // 簽名圖片儲存路徑
 
 // 判斷訪客(0)或員工(1)來決定欄位
 if ($type == "1") { // 員工
-    $stmt = $conn->prepare("INSERT INTO user (Type, Factory, Name, Employee_id, Department_id, Remark, Enter_time) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO user (Type, Factory, From_factory, Name, Employee_id, Department_id, Remark, Enter_time) VALUES (?, ?, ?, ?, ?, ?, ? ,?)");
     if (!$stmt) {
         die("prepare fail: " . $conn->error);
     }
-    $stmt->bind_param("iisssss", $type, $factory, $name, $employee_id, $department_id, $remark, $enter_time);
+    $stmt->bind_param("iiisssss", $type, $factory, $from_factory ,$name, $employee_id, $department_id, $remark, $enter_time);
 } else { // 訪客
     $stmt = $conn->prepare("INSERT INTO user (Type, Factory, Name, Unit, Interviewee, Certificate_num, Remark, Npeople, Reason, Enter_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     if (!$stmt) {

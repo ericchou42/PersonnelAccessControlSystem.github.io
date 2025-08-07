@@ -42,7 +42,16 @@ function load_list(num) {
                     : row.Name.length > 2
                     ? row.Name[0] + "O".repeat(row.Name.length - 2) + row.Name[row.Name.length - 1]
                     : row.Name;
-
+                let fromFactory = row.From_factory == null ? "" : row.From_factory;
+                if(fromFactory == 0){
+                    fromFactory = "紅樹林"; // 紅樹林
+                } else if(fromFactory == 1){
+                    Factory = "上達"; // 上達
+                } else if(fromFactory == 2){
+                    fromFactory = "立德"; // 立德
+                } else if(fromFactory == 3){
+                    fromFactory = "菲律賓"; // 菲律賓
+                }
                 tr.innerHTML = (num === 0)
                     ? `
                         <td class="Name" data-realname="${row.Name}">${maskName}</td>
@@ -54,6 +63,7 @@ function load_list(num) {
                         <td class = "EnterTime">${EnterTime}</td>                    `
                     : `
                         <td class="Name" data-realname="${row.Name}">${maskName}</td>
+                        <td>${fromFactory}</td>
                         <td>${row.Department_id}</td>
                         <td>${row.Remark}</td>
                         <td class = "EnterTime">${EnterTime}</td>
@@ -144,8 +154,4 @@ function send() {
 window.onload = function () {
     load_list(1); // 內部
     load_list(0); // 外部
-        document.getElementById('factory').addEventListener('change', function () {
-        load_list(1);
-        load_list(0);
-    });
 };

@@ -53,6 +53,16 @@ function load_list(num, time) {
                         timeInputValue = parts[1].slice(0,5); // "09:32"
                     }
                 }
+                let fromFactory = row.From_factory == null ? "" : row.From_factory;
+                if(fromFactory == 0){
+                    fromFactory = "紅樹林"; // 紅樹林
+                } else if(fromFactory == 1){
+                    Factory = "上達"; // 上達
+                } else if(fromFactory == 2){
+                    fromFactory = "立德"; // 立德
+                } else if(fromFactory == 3){
+                    fromFactory = "菲律賓"; // 菲律賓
+                }
                 tr.innerHTML = (num === 0)
                     ? `
                         <td class="Name" data-realname="${row.Name}">${maskName}</td>
@@ -76,6 +86,7 @@ function load_list(num, time) {
                     `
                     : `
                         <td class="Name" data-realname="${row.Name}">${maskName}</td>
+                        <td>${fromFactory}</td>
                         <td>${row.Department_id}</td>
                         <td>${row.Remark}</td>
                         <td class = "EnterTime">${EnterTime}</td>
@@ -201,7 +212,6 @@ function send() {
         } else {
             UncheckedNameList.push(realName);
             Unchecked_EnterTimeList.push(t_EnterTime[boxind].innerText);
-            UnLeaveName += Name[boxind].innerText + " ";
         }
     }
     if (!confirm(LeaveName + "\n\n目前時間:" + getTimeStr())) {
@@ -234,10 +244,7 @@ window.onload = function () {
     document.getElementById('Time').value = today;
     load_list(1, 'time=' + today);
     load_list(0, 'time=' + today);
-    document.getElementById('factory').addEventListener('change', function () {
-        load_list(1);
-        load_list(0);
-    });
+
 };
 
 document.getElementById('Time').addEventListener('change', function () {
