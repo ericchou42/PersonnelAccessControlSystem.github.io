@@ -7,7 +7,19 @@ function getTimeStr(timeStr) {
 }
 
 function load_list(num) {
-    Factory = document.getElementById("factory").value;
+    Factory = document.getElementById('factorySite').value;
+    if(Factory == "hongshulin"){
+        Factory = 0; // 紅樹林
+    } else if(Factory == "shangda"){
+        Factory = 1; // 上達
+    } else if(Factory == "lide"){
+        Factory = 2; // 立德
+    } else if(Factory == "feilubin"){
+        Factory = 3; // 菲律賓
+    }
+    else{
+        die("錯誤: 無法辨識廠區");
+    }
     let url = 'php/Search.php?type=' + num.toString();
     url += "&factory=" + Factory.toString();
     let table = (num === 0) ? document.getElementById("Guest_Table") : document.getElementById("Employee_Table");
@@ -30,7 +42,16 @@ function load_list(num) {
                     : row.Name.length > 2
                     ? row.Name[0] + "O".repeat(row.Name.length - 2) + row.Name[row.Name.length - 1]
                     : row.Name;
-
+                let fromFactory = row.From_factory == null ? "" : row.From_factory;
+                if(fromFactory == 0){
+                    fromFactory = "紅樹林"; // 紅樹林
+                } else if(fromFactory == 1){
+                    fromFactory = "上達"; // 上達
+                } else if(fromFactory == 2){
+                    fromFactory = "立德"; // 立德
+                } else if(fromFactory == 3){
+                    fromFactory = "菲律賓"; // 菲律賓
+                }
                 tr.innerHTML = (num === 0)
                     ? `
                         <td class="Name" data-realname="${row.Name}">${maskName}</td>
@@ -42,6 +63,7 @@ function load_list(num) {
                         <td class = "EnterTime">${EnterTime}</td>                    `
                     : `
                         <td class="Name" data-realname="${row.Name}">${maskName}</td>
+                        <td>${fromFactory}</td>
                         <td>${row.Department_id}</td>
                         <td>${row.Remark}</td>
                         <td class = "EnterTime">${EnterTime}</td>
@@ -70,7 +92,7 @@ function load_list(num) {
 }
 
 function jump(filname) {
-    window.location.href = filname + ".html";
+    window.location.href = filname + ".html?factory=" + document.getElementById('factorySite').value;
 }
 
 function send() {
@@ -132,8 +154,4 @@ function send() {
 window.onload = function () {
     load_list(1); // 內部
     load_list(0); // 外部
-        document.getElementById('factory').addEventListener('change', function () {
-        load_list(1);
-        load_list(0);
-    });
 };

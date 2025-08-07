@@ -6,8 +6,8 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 $servername = "localhost";
-$username = "acs";
-$password = "Acs@0721";
+$username = "benson";
+$password = "benson25";
 $dbname = "mydb";
 
 $conn = new mysqli($servername, $username, $password, $dbname);

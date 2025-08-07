@@ -11,20 +11,12 @@
         <button onclick="jump('index')" style = "width: 200px;">回首頁 <br><span style = "color:#d3caff;">Back to home</span></button>
     </div>
     <div class="IP">
-        <div class="select-factory-row">
-            <label for="factory">選擇廠區：</label>
-            <select id="factory" name="factory">
-                <option value="0">紅樹林</option>
-                <option value="1">上達</option>
-                <option value="2">立德</option>
-                <option value="3">菲律賓</option>
-            </select>
-        </div>
         <div class="section-card">
             <div class="table-title">內部</div>
             <table id="Employee_Table">
                 <tr>
                     <th>姓名</th>
+                    <th>來訪廠區</th>
                     <th>部門編號</th>
                     <th>備註</th>
                     <th>進場時間</th>
@@ -53,8 +45,17 @@
         </div>
         <div class="button-row">
             <button onclick="send()">送出 <br> <span style = "color:#d3caff;">Submit</spqn></button>
+            <input type="hidden" id="factorySite" name="factorySite" value="">
         </div>
     </div>
     <script src="/js/loadtable_basic.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // 帶入 factorySite 隱藏欄位
+            const params = new URLSearchParams(window.location.search);
+            const factory = params.get("factory") || "";
+            document.getElementById('factorySite').value = factory;
+        });
+    </script>
 </body>
 </html>
