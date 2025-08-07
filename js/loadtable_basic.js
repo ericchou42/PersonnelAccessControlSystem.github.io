@@ -46,7 +46,7 @@ function load_list(num) {
                 if(fromFactory == 0){
                     fromFactory = "紅樹林"; // 紅樹林
                 } else if(fromFactory == 1){
-                    Factory = "上達"; // 上達
+                    fromFactory = "上達"; // 上達
                 } else if(fromFactory == 2){
                     fromFactory = "立德"; // 立德
                 } else if(fromFactory == 3){

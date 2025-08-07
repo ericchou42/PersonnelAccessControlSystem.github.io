@@ -7,20 +7,8 @@ function getTimeStr() {
 
 // 載入名單並動態產生表格內容
 function load_list(num, time) {
-    Factory = document.getElementById('factorySite').value;
-    if(Factory == "hongshulin"){
-        Factory = 0; // 紅樹林
-    } else if(Factory == "shangda"){
-        Factory = 1; // 上達
-    } else if(Factory == "lide"){
-        Factory = 2; // 立德
-    } else if(Factory == "feilubin"){
-        Factory = 3; // 菲律賓
-    }
-    else{
-        die("錯誤: 無法辨識廠區");
-    }
-    let url = 'php/Search.php?type=' + num.toString() + "&" + time;
+    Factory = document.getElementById('factory').value;
+    let url = 'php/Search.php?type=' + num.toString();
     url += "&factory=" + Factory.toString();
     let table = (num === 0) ? document.getElementById("Guest_Table") : document.getElementById("Employee_Table");
     fetch(url)
@@ -57,7 +45,7 @@ function load_list(num, time) {
                 if(fromFactory == 0){
                     fromFactory = "紅樹林"; // 紅樹林
                 } else if(fromFactory == 1){
-                    Factory = "上達"; // 上達
+                    fromFactory = "上達"; // 上達
                 } else if(fromFactory == 2){
                     fromFactory = "立德"; // 立德
                 } else if(fromFactory == 3){
@@ -244,8 +232,11 @@ window.onload = function () {
     document.getElementById('Time').value = today;
     load_list(1, 'time=' + today);
     load_list(0, 'time=' + today);
-
 };
+document.getElementById('factory').addEventListener('change', function () {
+    load_list(1,'time=' + document.getElementById('Time').value);
+    load_list(0,'time=' + document.getElementById('Time').value);
+});
 
 document.getElementById('Time').addEventListener('change', function () {
     let newDate = this.value;
