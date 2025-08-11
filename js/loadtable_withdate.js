@@ -8,7 +8,7 @@ function getTimeStr() {
 // 載入名單並動態產生表格內容
 function load_list(num, time) {
     Factory = document.getElementById("factory").value;
-    let url = 'php/Search.php?type=' + num.toString();
+    let url = 'php/Search.php?type=' + num.toString() + "&" + time;
     url += "&factory=" + Factory.toString();
     let table = (num === 0) ? document.getElementById("Guest_Table") : document.getElementById("Employee_Table");
     fetch(url)
