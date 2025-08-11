@@ -80,6 +80,13 @@
             <span style="font-size:0.93em;color:#888;">&nbsp;&nbsp;&nbsp;&nbsp;Other temporary instructions:</span></p>
             <p>附件編號：N-4-C-HR-47B(240723)</p>
         </div>
+        <div class="signature-row">
+                    <label style="font-size:1.5rem; color:#243271; margin-bottom: 2px;">簽名  <span style = "color: #888;">Signature</span></label>
+                    <button type="button" onclick="Clear()">清除簽名<br><span style = "color:#d3caff;;">Clear Signature</span></button>
+                    <div>
+                        <canvas id="signbox" style="width:100%;height:180px;display:block;"></canvas>
+                    </div>
+                </div>
         <div id="agreeSection">
             <label>
                 <input type="checkbox" id="agreeCheck">
@@ -178,13 +185,6 @@
                         <option value="9">9</option>
                         <option value="10">10</option>
                     </select>
-                </div>
-                <div class="signature-row">
-                    <label style="font-size:1.5rem; color:#243271; margin-bottom: 2px;">簽名  <span style = "color: #888;">Signature</span></label>
-                    <button type="button" onclick="Clear()">清除簽名<br><span style = "color:#d3caff;;">Clear Signature</span></button>
-                    <div>
-                        <canvas id="signbox" style="width:100%;height:180px;display:block;"></canvas>
-                    </div>
                 </div>
             </div>
             <div class="button-row">
