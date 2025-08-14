@@ -43,45 +43,43 @@ function load_list(num, time) {
                 }
                 tr.innerHTML = (num === 0)
                     ? `
+                        <td>
+                            <input type="checkbox"
+                                style="width:25px;height:25px"
+                                class="LeaveBT"
+                                ${row.Leave_time != null ? 'checked disabled' : ''}>
+                        </td>
                         <td class="Name" data-realname="${row.Name}">${maskName}</td>
                         <td>${row.Unit}</td>
                         <td>${row.Reason}</td>
                         <td>${row.Interviewee}</td>
+                        <td class="EnterTime">${EnterTime}</td>
+                        <td>
+                            <input type="time" class="t_Time" 
+                                style="display:${timeInputDisplay}" 
+                                value="${timeInputValue}">
+                        </td>
                         <td>${row.Certificate_num}</td>
                         <td>${row.Remark}</td>
-                        <td class = "EnterTime">${EnterTime}</td>
-                        <td>
-                        <input type="time" class="t_Time" 
-                            style="display:${timeInputDisplay}" 
-                            value="${timeInputValue}">
-                        </td>
-                        <td>
-                        <input type="checkbox"
-                            style="width:25px;height:25px"
-                            class="LeaveBT"
-                            ${row.Leave_time != null ? 'checked disabled' : ''}>
-                        </td>
+                        <td onclick="Download('${row.Name}')">下載</td>
                     `
                     : `
+                        <td>
+                            <input type="checkbox"
+                                style="width:25px;height:25px"
+                                class="LeaveBT"
+                                ${row.Leave_time != null ? 'checked disabled' : ''}>
+                        </td>
                         <td class="Name" data-realname="${row.Name}">${maskName}</td>
                         <td>${row.Department_id}</td>
-                        <td>${row.Remark}</td>
-                        <td class = "EnterTime">${EnterTime}</td>
+                        <td class="EnterTime">${EnterTime}</td>
                         <td>
-                        <input type="time" class="t_Time" 
-                            style="display:${timeInputDisplay}" 
-                            value="${timeInputValue}">
-                    </td>
-                    <td>
-                        <input type="checkbox"
-                            style="width:25px;height:25px"
-                            class="LeaveBT"
-                            ${row.Leave_time != null ? 'checked disabled' : ''}>
-                    </td>
+                            <input type="time" class="t_Time" 
+                                style="display:${timeInputDisplay}" 
+                                value="${timeInputValue}">
+                        </td>
+                        <td>${row.Remark}</td>
                     `;
-                if(num == 0){
-                    tr.innerHTML+= `<td onclick="Download('${row.Name}')">下載</td>`
-                }
                 table.appendChild(tr);
             });
         });

@@ -29,36 +29,44 @@ function load_list(num) {
                     ? row.Name[0] + "O"
                     : row.Name.length > 2
                     ? row.Name[0] + "O".repeat(row.Name.length - 2) + row.Name[row.Name.length - 1]
-                    : row.Name;
-
+                    : row.Name; 
                 tr.innerHTML = (num === 0)
-                    ? `
-                        <td class="Name" data-realname="${row.Name}">${maskName}</td>
-                        <td>${row.Unit}</td>
-                        <td>${row.Reason}</td>
-                        <td>${row.Interviewee}</td>
-                        <td>${row.Certificate_num}</td>
-                        <td>${row.Remark}</td>
-                        <td class = "EnterTime">${EnterTime}</td>                    `
-                    : `
-                        <td class="Name" data-realname="${row.Name}">${maskName}</td>
-                        <td>${row.Department_id}</td>
-                        <td>${row.Remark}</td>
-                        <td class = "EnterTime">${EnterTime}</td>
-                    `;
-                if(row.Leave_time == null){
-                    tr.innerHTML += `
-                    <td><input type = "time" class = "t_Time" value = "${currentTime}" style = "display:none;"></td>
-                    <td><input type = "checkbox" class = "LeaveBT" style = "width:25px;height:25px;"></td>
-                    `;
-                }
-                else{
-                    let leaveTimeValue = row.Leave_time ? row.Leave_time.split(' ')[1].substring(0,5) : '';
-                    tr.innerHTML +=`
-                    <td><input type = "time" class = "t_Time" value = "${leaveTimeValue}" readonly></td>
-                    <td><input type = "checkbox" class = "LeaveBT" style = "width:25px;height:25px;"disabled checked></td>
-                    `
-                }
+                ? `
+                    <td>
+                        ${row.Leave_time == null 
+                            ? `<input type="checkbox" class="LeaveBT" style="width:25px;height:25px;">`
+                            : `<input type="checkbox" class="LeaveBT" style="width:25px;height:25px;" disabled checked>`}
+                    </td>
+                    <td class="Name" data-realname="${row.Name}">${maskName}</td>
+                    <td>${row.Unit}</td>
+                    <td>${row.Reason}</td>
+                    <td>${row.Interviewee}</td>
+                    <td class="EnterTime">${EnterTime}</td>
+                    <td>
+                        ${row.Leave_time == null 
+                            ? `<input type="time" class="t_Time" value="${currentTime}" style="display:none;">`
+                            : `<input type="time" class="t_Time" value="${row.Leave_time.split(' ')[1].substring(0,5)}" readonly>`}
+                    </td>
+                    <td>${row.Certificate_num}</td>
+                    <td>${row.Remark}</td>
+                `
+                : `
+                    <td>
+                        ${row.Leave_time == null 
+                            ? `<input type="checkbox" class="LeaveBT" style="width:25px;height:25px;">`
+                            : `<input type="checkbox" class="LeaveBT" style="width:25px;height:25px;" disabled checked>`}
+                    </td>
+                    <td class="Name" data-realname="${row.Name}">${maskName}</td>
+                    <td>${row.Department_id}</td>
+                    <td class="EnterTime">${EnterTime}</td>
+                    <td>
+                        ${row.Leave_time == null 
+                            ? `<input type="time" class="t_Time" value="${currentTime}" style="display:none;">`
+                            : `<input type="time" class="t_Time" value="${row.Leave_time.split(' ')[1].substring(0,5)}" readonly>`}
+                    </td>
+                    <td>${row.Remark}</td>
+                `;
+
                 table.appendChild(tr);
                 const checkbox = tr.querySelector('.LeaveBT');
                 const timeInput = tr.querySelector('.t_Time');

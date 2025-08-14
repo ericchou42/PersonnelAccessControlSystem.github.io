@@ -1,3 +1,14 @@
+/* ==== 全域：避免整頁橫向滾動（背景跑版） ==== */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden; /* 禁止整頁左右捲動 */
+}
+
+/* ==== 你的原始樣式（保留） + 必要增補 ==== */
 body {
     font-family: 'Microsoft JhengHei', Arial, sans-serif;
     background: linear-gradient(120deg, #eaf0ff 60%, #f7fafd 100%);
@@ -29,7 +40,7 @@ body {
     transform: translateY(-2px) scale(1.04);
 }
 .IP {
-    display: block;
+    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 32px;
@@ -45,6 +56,12 @@ body {
     width: 95%;            /* ⭐️ 重點，寬度以畫面為基準 */
     max-width: 1500px;      /* 限制最大寬度 */
     margin: 0 auto 20px auto;
+
+    /* ✅ 只讓這層可左右滑，避免背景一起晃 */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* iOS 慣性滑動 */
+    overscroll-behavior-x: contain;    /* 阻斷滾動事件串到 body */
+    touch-action: pan-x;               /* 明確宣告横向手勢 */
 }
 .table-title {
     font-size: 2.1rem;
@@ -125,7 +142,7 @@ td {
     margin-right: 8px;
 }
 @media (max-width: 800px) {
-    .section-card, .button-row { width: 99vw; max-width: 99vw; }
+    .section-card, .button-row { width: 100%; max-width: 100%; } /* was: 99vw */
     th, td { font-size: 1.09rem; padding: 13px 7vw; }
     .table-title { font-size: 1.5rem; }
 }
