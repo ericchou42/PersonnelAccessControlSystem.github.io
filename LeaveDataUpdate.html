@@ -26,6 +26,7 @@
             <table id="Employee_Table">
                 <tr>
                     <th>姓名</th>
+                    <th>來訪廠區</th>
                     <th>部門編號</th>
                     <th>備註</th>
                     <th>進場時間</th>
@@ -55,9 +56,18 @@
         </div>
         <div class="button-row">
             <button onclick="send()">送出</button>
+            <input type="hidden" id="factorySite" name="factorySite" value="">
         </div>
     </div>
     <script src="/js/loadtable_withdate.js?v=1.0.0"></script>
     <script src = "/js/pdf-lib.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // 帶入 factorySite 隱藏欄位
+            const params = new URLSearchParams(window.location.search);
+            const factory = params.get("factory") || "";
+            document.getElementById('factorySite').value = factory;
+        });
+    </script>
 </body>
 </html>

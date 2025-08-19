@@ -18,6 +18,15 @@
     </div>
     <div class="DBT">
         <button onclick="jump('Leave')">離場</button>
+        <input type="hidden" id="factorySite" name="factorySite" value="">
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // 帶入 factorySite 隱藏欄位
+            const params = new URLSearchParams(window.location.search);
+            const factory = params.get("factory") || "";
+            document.getElementById('factorySite').value = factory;
+        });
+    </script>
 </body>
 </html>

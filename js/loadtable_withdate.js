@@ -7,7 +7,7 @@ function getTimeStr() {
 
 // 載入名單並動態產生表格內容
 function load_list(num, time) {
-    Factory = document.getElementById("factory").value;
+    Factory = document.getElementById('factory').value;
     let url = 'php/Search.php?type=' + num.toString();
     url += "&factory=" + Factory.toString();
     let table = (num === 0) ? document.getElementById("Guest_Table") : document.getElementById("Employee_Table");
@@ -41,6 +41,16 @@ function load_list(num, time) {
                         timeInputValue = parts[1].slice(0,5); // "09:32"
                     }
                 }
+                let fromFactory = row.From_factory == null ? "" : row.From_factory;
+                if(fromFactory == 0){
+                    fromFactory = "紅樹林"; // 紅樹林
+                } else if(fromFactory == 1){
+                    fromFactory = "上達"; // 上達
+                } else if(fromFactory == 2){
+                    fromFactory = "立德"; // 立德
+                } else if(fromFactory == 3){
+                    fromFactory = "菲律賓"; // 菲律賓
+                }
                 tr.innerHTML = (num === 0)
                     ? `
                         <td class="Name" data-realname="${row.Name}">${maskName}</td>
@@ -64,6 +74,7 @@ function load_list(num, time) {
                     `
                     : `
                         <td class="Name" data-realname="${row.Name}">${maskName}</td>
+                        <td>${fromFactory}</td>
                         <td>${row.Department_id}</td>
                         <td>${row.Remark}</td>
                         <td class = "EnterTime">${EnterTime}</td>
@@ -146,7 +157,7 @@ async function Download(name){
 
 
 function jump(filname) {
-    window.location.href = filname + ".html";
+    window.location.href = filname + ".html?factory=" + document.getElementById('factorySite').value;
 }
 
 function send() {
@@ -189,7 +200,6 @@ function send() {
         } else {
             UncheckedNameList.push(realName);
             Unchecked_EnterTimeList.push(t_EnterTime[boxind].innerText);
-            UnLeaveName += Name[boxind].innerText + " ";
         }
     }
     if (!confirm(LeaveName + "\n\n目前時間:" + getTimeStr())) {
@@ -222,11 +232,11 @@ window.onload = function () {
     document.getElementById('Time').value = today;
     load_list(1, 'time=' + today);
     load_list(0, 'time=' + today);
-    document.getElementById('factory').addEventListener('change', function () {
-        load_list(1);
-        load_list(0);
-    });
 };
+document.getElementById('factory').addEventListener('change', function () {
+    load_list(1,'time=' + document.getElementById('Time').value);
+    load_list(0,'time=' + document.getElementById('Time').value);
+});
 
 document.getElementById('Time').addEventListener('change', function () {
     let newDate = this.value;

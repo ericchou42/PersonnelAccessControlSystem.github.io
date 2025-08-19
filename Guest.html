@@ -126,14 +126,6 @@
                 </div>
             </div>
         </div>
-                <div class = "form-row">
-                    <label for="unit">廠區  <span style = "color: #888;">Factory </span></label>
-                    <select id="factory" name="factory">
-                        <option value="">請選擇  Please select</option>
-                        <option value="0">紅樹林</option><option value="1">上達</option>
-                        <option value="2">立德</option><option value="3">菲律賓</option>
-                    </select>
-                </div>
                 <div class="form-row">
                     <label for="unit">來訪公司  <span style = "color: #888;">Visitor Company</span></label>
                     <input type="text" id="unit" autocomplete="off" placeholder="請輸入單位 Please enter department">
@@ -179,6 +171,7 @@
                         <option value="10">10</option>
                     </select>
                 </div>
+                <input type="hidden" id="factorySite" name="factorySite" value="">
                 <div class="signature-row">
                     <label style="font-size:1.5rem; color:#243271; margin-bottom: 2px;">簽名  <span style = "color: #888;">Signature</span></label>
                     <button type="button" onclick="Clear()">清除簽名<br><span style = "color:#d3caff;;">Clear Signature</span></button>
@@ -198,15 +191,23 @@
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // 顯示/隱藏表單
             document.getElementById('agreeCheck').addEventListener('change', function () {
                 document.getElementById('registerForm').style.display = this.checked ? "block" : "none";
                 setTimeout(fitCanvas, 50); // 等動畫/顯示完再調整
             });
-        });
-        fitCanvas();
-        window.signaturePad = new SignaturePad(document.getElementById("signbox"), {
-            backgroundColor: "rgba(255,255,255,0)",
-            penColor: "black"
+
+            // 帶入 factorySite 隱藏欄位
+            const params = new URLSearchParams(window.location.search);
+            const factory = params.get("factory") || "";
+            document.getElementById('factorySite').value = factory;
+
+            // 其它初始化
+            fitCanvas();
+            window.signaturePad = new SignaturePad(document.getElementById("signbox"), {
+                backgroundColor: "rgba(255,255,255,0)",
+                penColor: "black"
+            });
         });
     </script>
 </body>
