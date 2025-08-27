@@ -189,7 +189,7 @@
             </form>
         </div>
     </div>
-    <script>
+        <script>
         document.addEventListener("DOMContentLoaded", function() {
             // 顯示/隱藏表單
             document.getElementById('agreeCheck').addEventListener('change', function () {
@@ -202,12 +202,7 @@
             const factory = params.get("factory") || "";
             document.getElementById('factorySite').value = factory;
 
-            // 其它初始化
-            fitCanvas();
-            window.signaturePad = new SignaturePad(document.getElementById("signbox"), {
-                backgroundColor: "rgba(255,255,255,0)",
-                penColor: "black"
-            });
+            // 其它初始化由 main.js 處理
         });
     </script>
 </body>
