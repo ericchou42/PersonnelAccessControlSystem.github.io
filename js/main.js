@@ -3,6 +3,13 @@ let signbox = null;
 function fitCanvas() {
     const canvas = document.getElementById('signbox');
     if (!canvas) return;
+
+    // Save signature
+    let data;
+    if (signbox && !signbox.isEmpty()) {
+        data = signbox.toData();
+    }
+
     const parent = canvas.parentElement;
     const width = parent.offsetWidth;
     const height = 180; // 跟 HTML 一樣
@@ -14,6 +21,12 @@ function fitCanvas() {
     const ctx = canvas.getContext("2d");
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.scale(dpr, dpr);
+
+    // Restore signature
+    if (signbox && data) {
+        signbox.fromData(data);
+    }
+
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -136,7 +149,7 @@ function send_data(type){
         .then(msg => {
             if (msg.trim() === "success") {
                 alert("送出成功！");
-                location.reload();
+                window.location.href = 'index.html';
             }
             else{
                   alert("後端未回傳 success，回應內容：" + msg);
@@ -196,7 +209,7 @@ function send_data(type){
         .then(msg => {
             if (msg.trim() === "success") {
                 alert("送出成功！");
-                location.reload();
+                window.location.href = 'index.html';
             }
             else{
                 alert("後端未回傳 success，回應內容：" + msg);

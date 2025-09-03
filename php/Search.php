@@ -2,8 +2,8 @@
 header('Content-Type: application/json; charset=utf-8');
 
 $servername = "localhost";
-$username = "benson";
-$password = "benson25";
+$username = "acs";
+$password = "Acs@0721";
 $dbname = "mydb";
 
 // 連線資料庫

@@ -81,12 +81,29 @@
             <p>附件編號：N-4-C-HR-47B(240723)</p>
         </div>
         <div id="agreeSection">
+
             <label>
                 <input type="checkbox" id="agreeCheck">
                     我已詳細閱讀上述須知內容並同意入場
                 <br><span style="font-size:0.93em;color:#888;">I have read and agree to the above instructions.</span>
             </label>
+	</div>
+
+                <div class="signature-row">
+                    <label style="font-size:1.5rem; color:#243271; margin-bottom: 2px;">簽名  <span style = "color: #888;">Signature</span></label>
+                    <button type="button" onclick="Clear()">清除簽名<br><span style = "color:#d3caff;;">Clear Signature</span></button>
+                    <div>
+                        <canvas id="signbox" style="width:100%;height:180px;display:block;"></canvas>
+                    </div>
+                </div>
+
+            <div class="button-row">
+	        <button onclick="jump('index')">回首頁<br>
+                    <span style = "color:#d3caff;">Back to Home</span>
+                </button>
+
         </div>
+
         <div id="registerForm">
             <form autocomplete="off" onsubmit="return false;">
             <div class="IP">
@@ -172,13 +189,6 @@
                     </select>
                 </div>
                 <input type="hidden" id="factorySite" name="factorySite" value="">
-                <div class="signature-row">
-                    <label style="font-size:1.5rem; color:#243271; margin-bottom: 2px;">簽名  <span style = "color: #888;">Signature</span></label>
-                    <button type="button" onclick="Clear()">清除簽名<br><span style = "color:#d3caff;;">Clear Signature</span></button>
-                    <div>
-                        <canvas id="signbox" style="width:100%;height:180px;display:block;"></canvas>
-                    </div>
-                </div>
             </div>
             <div class="button-row">
                 <button type="button" onclick="send_data(0)">送出<br><span style = "color:#d3caff;">Submit</span></button>
@@ -201,13 +211,6 @@
             const params = new URLSearchParams(window.location.search);
             const factory = params.get("factory") || "";
             document.getElementById('factorySite').value = factory;
-
-            // 其它初始化
-            fitCanvas();
-            window.signaturePad = new SignaturePad(document.getElementById("signbox"), {
-                backgroundColor: "rgba(255,255,255,0)",
-                penColor: "black"
-            });
         });
     </script>
 </body>
