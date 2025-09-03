@@ -56,8 +56,10 @@ body {
     text-align: left;
     padding-left: 12px;
 }
+.table-container {
+    overflow-x: auto;
+}
 table {
-    width: max-content;
     min-width: 100%;
     table-layout: auto;
     border-collapse: separate;
@@ -126,13 +128,18 @@ td {
 }
 @media (max-width: 800px) {
     .section-card, .button-row { width: 99vw; max-width: 99vw; }
-    th, td { font-size: 1.09rem; padding: 13px 7vw; }
+    th, td {
+        font-size: 0.9rem;
+        padding: 10px 6px;
+        white-space: normal; /* Allow text wrapping */
+        vertical-align: middle; /* Center content vertically */
+    }
     .table-title { font-size: 1.5rem; }
 }
 @media (max-width: 540px) {
     .section-card, .button-row { padding: 6vw 2vw; }
     .table-title { font-size: 1.1rem; }
-    th, td { font-size: 0.92rem; padding: 9px 3vw; }
+    th, td { font-size: 0.85rem; padding: 10px 5px; }
 }
 #Employee_Table tr:nth-child(even),
 #Guest_Table tr:nth-child(even) {
