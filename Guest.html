@@ -199,7 +199,7 @@
             </form>
         </div>
     </div>
-    <script>
+        <script>
         document.addEventListener("DOMContentLoaded", function() {
             // 顯示/隱藏表單
             document.getElementById('agreeCheck').addEventListener('change', function () {
@@ -211,6 +211,11 @@
             const params = new URLSearchParams(window.location.search);
             const factory = params.get("factory") || "";
             document.getElementById('factorySite').value = factory;
+<<<<<<< HEAD
+=======
+
+            // 其它初始化由 main.js 處理
+>>>>>>> 5fa2dd0ff32216cc1fbd13b9c95f6c75bf68c4a8
         });
     </script>
 </body>

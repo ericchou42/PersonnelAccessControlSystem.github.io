@@ -1,3 +1,7 @@
+CREATE DATABASE mydb CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+USE mydb;
+
 CREATE TABLE `user` (
     `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT '流水號',
     `Type` tinyint(4) NOT NULL COMMENT '0: 訪客，1: 員工' CHECK (`Type` in (0,1)),

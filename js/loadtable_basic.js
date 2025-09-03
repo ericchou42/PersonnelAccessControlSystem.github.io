@@ -42,6 +42,16 @@ function load_list(num) {
                     : row.Name.length > 2
                     ? row.Name[0] + "O".repeat(row.Name.length - 2) + row.Name[row.Name.length - 1]
                     : row.Name;
+                
+                let maskUnit;
+                if(num === 0 && row.Unit){
+                    maskUnit = row.Unit.length === 2
+                    ? row.Unit[0] + "O"
+                    : row.Unit.length > 2
+                    ? row.Unit[0] + "O".repeat(row.Unit.length - 2) + row.Unit[row.Unit.length - 1]
+                    : row.Unit;
+                }
+
                 let fromFactory = row.From_factory == null ? "" : row.From_factory;
                 if(fromFactory == 0){
                     fromFactory = "紅樹林"; // 紅樹林
@@ -55,7 +65,7 @@ function load_list(num) {
                 tr.innerHTML = (num === 0)
                     ? `
                         <td class="Name" data-realname="${row.Name}">${maskName}</td>
-                        <td>${row.Unit}</td>
+                        <td class="Unit" data-realunit="${row.Unit}">${maskUnit}</td>
                         <td>${row.Reason}</td>
                         <td>${row.Interviewee}</td>
                         <td>${row.Certificate_num}</td>

@@ -26,7 +26,10 @@ function fitCanvas() {
     if (signbox && data) {
         signbox.fromData(data);
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5fa2dd0ff32216cc1fbd13b9c95f6c75bf68c4a8
 }
 
 document.addEventListener("DOMContentLoaded", function () {
