@@ -151,7 +151,7 @@
                     <label for="visited">受訪者  <span style = "color: #888;">Contact Person</span></label>
                     <input type="text" id="visited" autocomplete="off" placeholder="請輸入受訪者姓名 Please enter contact person’s name">
                 </div>
-                <div class="form-row">
+                <div class="form-row" id="guest-id-row">
                     <label for="identity">來賓證號  <span style = "color: #888;">Guest ID Number</span></label>
                     <div class="checkbox grid-identity">
                         <div><input type="radio" name="identity" class="identity" value="1" id="identity-1"><label for="identity-1">1</label></div>
@@ -215,6 +215,14 @@
             const params = new URLSearchParams(window.location.search);
             const factory = params.get("factory") || "";
             document.getElementById('factorySite').value = factory;
+
+            // Check if factory is 'hongshulin' and hide guest ID if true
+            if (factory === 'hongshulin') {
+                const guestIdRow = document.getElementById('guest-id-row');
+                if (guestIdRow) {
+                    guestIdRow.style.display = 'none';
+                }
+            }
         });
     </script>
 </body>

@@ -87,8 +87,19 @@ function send_data(type){
         let Remark = document.getElementById("remark");
 
         // Get Identity
-        let Identity_val = document.querySelector('input[name="identity"]:checked');
-        let Identity = Identity_val ? Identity_val.value : "";
+        let Identity;
+        const params = new URLSearchParams(window.location.search);
+        const factory = params.get("factory") || "";
+
+        if (factory === 'hongshulin') {
+            Identity = "0";
+        } else {
+            let Identity_val = document.querySelector('input[name="identity"]:checked');
+            Identity = Identity_val ? Identity_val.value : "";
+        }
+
+        console.log("Factory value:", factory);
+        console.log("Identity value:", Identity);
 
         // Get Npeople
         let Npeople = "";
@@ -133,7 +144,7 @@ function send_data(type){
         if(Visited.value == ""){
             Alertstr += "填寫受訪者 ";
         }
-        if(Identity == ""){
+        if(Identity == "" && factory !== 'hongshulin'){
             Alertstr += "填寫證號 ";
         }
         if(Npeople == ""){
