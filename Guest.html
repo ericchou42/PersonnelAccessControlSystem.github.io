@@ -153,20 +153,26 @@
                 </div>
                 <div class="form-row">
                     <label for="identity">來賓證號  <span style = "color: #888;">Guest ID Number</span></label>
-                    <select id="identity" name="identity">
-                        <option value="">請選擇  Please select</option>
-                        <option value="0">X</option>
-                        <option value="1">1</option><option value="2">2</option>
-                        <option value="3">3</option><option value="4">4</option>
-                        <option value="5">5</option><option value="6">6</option>
-                        <option value="7">7</option><option value="8">8</option>
-                        <option value="9">9</option><option value="10">10</option>
-                        <option value="11">11</option><option value="12">12</option>
-                        <option value="13">13</option><option value="14">14</option>
-                        <option value="15">15</option><option value="16">16</option>
-                        <option value="17">17</option><option value="18">18</option>
-                        <option value="19">19</option><option value="20">20</option>
-                    </select>
+                    <div class="checkbox grid-identity">
+                        <div><input type="radio" name="identity" class="identity" value="1" id="identity-1"><label for="identity-1">1</label></div>
+                        <div><input type="radio" name="identity" class="identity" value="2" id="identity-2"><label for="identity-2">2</label></div>
+                        <div><input type="radio" name="identity" class="identity" value="3" id="identity-3"><label for="identity-3">3</label></div>
+                        <div><input type="radio" name="identity" class="identity" value="4" id="identity-4"><label for="identity-4">4</label></div>
+                        <div><input type="radio" name="identity" class="identity" value="5" id="identity-5"><label for="identity-5">5</label></div>
+                        <div><input type="radio" name="identity" class="identity" value="6" id="identity-6"><label for="identity-6">6</label></div>
+                        <div><input type="radio" name="identity" class="identity" value="7" id="identity-7"><label for="identity-7">7</label></div>
+                        <div><input type="radio" name="identity" class="identity" value="8" id="identity-8"><label for="identity-8">8</label></div>
+                        <div><input type="radio" name="identity" class="identity" value="9" id="identity-9"><label for="identity-9">9</label></div>
+                        <div><input type="radio" name="identity" class="identity" value="10" id="identity-10"><label for="identity-10">10</label></div>
+                        <div><input type="radio" name="identity" class="identity" value="11" id="identity-11"><label for="identity-11">11</label></div>
+                        <div><input type="radio" name="identity" class="identity" value="12" id="identity-12"><label for="identity-12">12</label></div>
+                        <div><input type="radio" name="identity" class="identity" value="13" id="identity-13"><label for="identity-13">13</label></div>
+                        <div><input type="radio" name="identity" class="identity" value="14" id="identity-14"><label for="identity-14">14</label></div>
+                        <div><input type="radio" name="identity" class="identity" value="15" id="identity-15"><label for="identity-15">15</label></div>
+                        <div><input type="radio" name="identity" class="identity" value="16" id="identity-16"><label for="identity-16">16</label></div>
+                        <div><input type="radio" name="identity" class="identity" value="17" id="identity-17"><label for="identity-17">17</label></div>
+                        <div><input type="radio" name="identity" class="identity" value="18" id="identity-18"><label for="identity-18">18</label></div>
+                    </div>
                 </div>
                 <div class="form-row">
                     <label for="remark">備註  <span style = "color: #888;">Remarks</span></label>
@@ -174,19 +180,17 @@
                 </div>
                 <div class="form-row">
                     <label for="npeople">人數  <span style = "color: #888;">Number of People</span></label>
-                    <select id="npeople" name="npeople">
-                        <option value="">請選擇 <span style = "color:#888;">Please select</span></option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                    </select>
+                    <div class="checkbox grid-npeople">
+                        <div><input type="radio" name="npeople" class="npeople" value="1" id="npeople-1" checked><label for="npeople-1">1</label></div>
+                        <div><input type="radio" name="npeople" class="npeople" value="2" id="npeople-2"><label for="npeople-2">2</label></div>
+                        <div><input type="radio" name="npeople" class="npeople" value="3" id="npeople-3"><label for="npeople-3">3</label></div>
+                        <div class="other-row" style="display: flex; align-items: center; gap: 10px; margin-top: 4px;">
+                            <label style="margin:0;display:flex;align-items:center;gap:2px;">
+                                其他 <span class="en" style="font-weight:500;color: #888;">Other</span>
+                            </label>
+                            <input type="number" id="npeople-other-input" placeholder="請輸入人數" style="flex:1; min-width:160px;">
+                        </div>
+                    </div>
                 </div>
                 <input type="hidden" id="factorySite" name="factorySite" value="">
             </div>

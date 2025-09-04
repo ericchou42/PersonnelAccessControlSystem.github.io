@@ -41,6 +41,22 @@ document.addEventListener("DOMContentLoaded", function () {
             fitCanvas(canvas);
         });
     }
+
+    // Handle npeople radio buttons and input
+    const npeopleRadios = document.querySelectorAll('input[name="npeople"]');
+    const npeopleOtherInput = document.getElementById('npeople-other-input');
+
+    npeopleRadios.forEach(radio => {
+        radio.addEventListener('change', () => {
+            npeopleOtherInput.value = '';
+        });
+    });
+
+    npeopleOtherInput.addEventListener('input', () => {
+        npeopleRadios.forEach(radio => {
+            radio.checked = false;
+        });
+    });
 });
 
 function jump(filname){
@@ -68,9 +84,23 @@ function send_data(type){
         let Reason = document.getElementsByClassName("reason");
         let Unit = document.getElementById("unit");
         let Visited = document.getElementById("visited");
-        let Identity = document.getElementById("identity");
         let Remark = document.getElementById("remark");
-        let Npeople = document.getElementById("npeople");
+
+        // Get Identity
+        let Identity_val = document.querySelector('input[name="identity"]:checked');
+        let Identity = Identity_val ? Identity_val.value : "";
+
+        // Get Npeople
+        let Npeople = "";
+        const npeople_selected = document.querySelector('input[name="npeople"]:checked');
+        const npeople_other = document.getElementById('npeople-other-input').value;
+
+        if (npeople_selected) {
+            Npeople = npeople_selected.value;
+        } else if (npeople_other) {
+            Npeople = npeople_other;
+        }
+
 
         let Reason_string = ""
         let Reason_dic = ["拜訪", "廠商領料", "廠商退貨", "轉廠、調撥", "出貨"];
@@ -103,10 +133,10 @@ function send_data(type){
         if(Visited.value == ""){
             Alertstr += "填寫受訪者 ";
         }
-        if(Identity.value == ""){
+        if(Identity == ""){
             Alertstr += "填寫證號 ";
         }
-        if(Npeople.value == ""){
+        if(Npeople == ""){
             Alertstr += "填寫人數 ";
         }
         if(signbox.isEmpty()){
@@ -120,12 +150,11 @@ function send_data(type){
             "【請再次確認資料】\n\n" +
             "姓名：" + Gname.value + "\n" +
             "來訪公司：" + Unit.value + "\n" +
-            "事由：" + Unit.value + "\n" +
+            "事由：" + Reason_string + "\n" +
             "受訪者：" + Visited.value + "\n" +
-            "證號：" + Identity.value + "\n" +
+            "證號：" + Identity + "\n" +
             "備註：" + Remark.value + "\n" +
-            "人數：" + Npeople.options[Npeople.selectedIndex].text + "\n" +
-            "事由：" + Reason_string + "\n";
+            "人數：" + Npeople + "\n";
         if(!confirm(confirmMsg)){
             return;
         }
@@ -137,9 +166,9 @@ function send_data(type){
                 "&Name=" + encodeURIComponent(Gname.value) +
                 "&Unit=" + encodeURIComponent(Unit.value) +
                 "&Interviewee=" + encodeURIComponent(Visited.value) +
-                "&Certificate_num=" + encodeURIComponent(Identity.value) +
+                "&Certificate_num=" + encodeURIComponent(Identity) +
                 "&Remark=" + encodeURIComponent(Remark.value) +
-                "&Npeople=" + encodeURIComponent(Npeople.value) +
+                "&Npeople=" + encodeURIComponent(Npeople) +
                 "&Reason=" + encodeURIComponent(Reason_string) +
                 "&Enter_time=" + encodeURIComponent(getNowDatetime()) +
                 "&Image=" + encodeURIComponent(signbox.toDataURL()) +
