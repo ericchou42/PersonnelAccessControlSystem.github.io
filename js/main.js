@@ -149,7 +149,7 @@ function send_data(type){
         .then(msg => {
             if (msg.trim() === "success") {
                 alert("送出成功！");
-                window.location.href = 'index.html';
+                window.location.href = 'index.html?factory=' + document.getElementById('factorySite').value;
             }
             else{
                   alert("後端未回傳 success，回應內容：" + msg);
@@ -209,7 +209,7 @@ function send_data(type){
         .then(msg => {
             if (msg.trim() === "success") {
                 alert("送出成功！");
-                window.location.href = 'index.html';
+                window.location.href = 'index.html?factory=' + document.getElementById('factorySite').value;
             }
             else{
                 alert("後端未回傳 success，回應內容：" + msg);
