@@ -138,3 +138,39 @@ body {
     .form-row label { min-width: 86px; font-size: 1rem; }
     .form-row input { font-size: 1rem; }
 }
+
+.checkbox {
+    border: 1.5px solid #b9c2d1;
+    border-radius: 10px;
+    background: #f7faff;
+    padding: 10px 10px;
+    margin: 0;
+}
+
+.grid-factory {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three columns */
+    gap: 1px; /* Reduced gap */
+    width: 100%; /* Ensure it takes full width */
+}
+
+.grid-factory input[type="radio"] {
+    display: none; /* Hide the original radio button */
+}
+
+.grid-factory label {
+    display: inline-block;
+    padding: 15px 30px; /* Reduced padding */
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 1.1rem; /* Slightly smaller font */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.grid-factory input[type="radio"]:checked + label {
+    background-color: #4568e8;
+    color: #fff;
+    border-color: #4568e8;
+}

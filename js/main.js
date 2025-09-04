@@ -194,11 +194,16 @@ function send_data(type){
         let Eid = document.getElementById("eid");
         let Department = document.getElementById("department");
         let Remark = document.getElementById("remark");
-        let Factory = document.getElementById("factory");
+
+        // Get Factory value from radio buttons
+        let Factory_val_element = document.querySelector('input[name="factory"]:checked');
+        let Factory_val = Factory_val_element ? Factory_val_element.value : "";
+        let Factory_text = Factory_val_element ? Factory_val_element.nextElementSibling.textContent : ""; // Get text from label
+
         if(Ename.value == ""){
             Alertstr += "填寫姓名 ";
         }
-        if(Factory.value == ""){
+        if(Factory_val == ""){
             Alertstr += "填寫來訪廠區(原廠區) "
         }
         if(Eid.value == ""){
@@ -214,7 +219,7 @@ function send_data(type){
         let confirmMsg = 
             "【請再次確認資料】\n\n" +
             "姓名：" + Ename.value + "\n" +
-            "來訪廠區(原廠區)：" + Factory.options[Factory.selectedIndex].text + "\n" +
+            "來訪廠區(原廠區)：" + Factory_text + "\n" +
             "工號：" + Eid.value + "\n" +
             "部門：" + Department.value + "\n" +
             "備註：" + Remark.value + "\n";
@@ -231,7 +236,7 @@ function send_data(type){
                 'Department_id=' + encodeURIComponent(Department.value) + '&' +
                 'Remark=' + encodeURIComponent(Remark.value) + '&' +
                 "Enter_time=" + encodeURIComponent(getNowDatetime()) + "&" +
-                "From_factory=" + encodeURIComponent(Factory.value) + "&" +
+                "From_factory=" + encodeURIComponent(Factory_val) + "&" +
                 "Factory=" + document.getElementById('factorySite').value
         })
         .then(response => response.text())

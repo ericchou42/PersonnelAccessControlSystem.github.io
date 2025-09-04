@@ -15,13 +15,14 @@
             </label>
             <input type="text" id="name" placeholder="請輸入姓名  Please enter Name">
         </div>
-        <div class = "form-row">
-            <label for="unit">來訪廠區(原廠區)  <span style = "color: #888;">Factory </span></label>
-            <select id="factory" name="factory">
-                <option value="">請選擇  Please select</option>
-                <option value="0">紅樹林</option><option value="1">上達</option>
-                <option value="2">立德</option><option value="3">菲律賓</option>
-            </select>
+        <div class="form-row">
+            <label>來訪廠區(原廠區)  <span style = "color: #888;">Factory </span></label>
+            <div class="checkbox grid-factory">
+                <div><input type="radio" name="factory" class="factory" value="0" id="factory-0"><label for="factory-0">紅樹林</label></div>
+                <div><input type="radio" name="factory" class="factory" value="1" id="factory-1"><label for="factory-1">上達</label></div>
+                <div><input type="radio" name="factory" class="factory" value="2" id="factory-2"><label for="factory-2">立德</label></div>
+                <div style="display: none;"><input type="radio" name="factory" class="factory" value="3" id="factory-3"><label for="factory-3">菲律賓</label></div>
+            </div>
         </div>
         <div class="form-row">
             <label for="eid">
