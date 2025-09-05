@@ -111,37 +111,61 @@
                     <label for="name">來訪者姓名  <spqn style = "color: #888;">Visitor Name</span></label>
                     <input type="text" id="name" autocomplete="off" placeholder="請輸入姓名 Please enter your name">
                 </div>
+                <!-- 新增的常見訪客區塊 -->
+                <div id="common-visitors-section" class="form-row">
+                    <label>常見訪客 <span style="color: #888;">Common Visitors</span></label>
+                <div class="checkbox grid-common-visitors">
+                        <div><input type="radio" name="commonVisitor" class="common-visitor-radio" value="林奇豐" id="common-visitor-1"><label for="common-visitor-1" onclick="fillCommonVisitor('林奇豐', '大榮')">大O</label></div>
+                        <div><input type="radio" name="commonVisitor" class="common-visitor-radio" value="廖宗賢" id="common-visitor-3"><label for="common-visitor-3" onclick="fillCommonVisitor('廖宗賢', '聯邦')">聯O</label></div>
+                        <div><input type="radio" name="commonVisitor" class="common-visitor-radio" value="張良宗" id="common-visitor-4"><label for="common-visitor-4" onclick="fillCommonVisitor('張良宗', 'UPS')">UOS</label></div>
+                        <div><input type="radio" name="commonVisitor" class="common-visitor-radio" value="陳國倚" id="common-visitor-5"><label for="common-visitor-5" onclick="fillCommonVisitor('陳國倚', 'DHL')">DOL</label></div>
+                        <div><input type="radio" name="commonVisitor" class="common-visitor-radio" value="高笙銘" id="common-visitor-6"><label for="common-visitor-6" onclick="fillCommonVisitor('高笙銘', '廣灃')">廣O</label></div>
+                        <div><input type="radio" name="commonVisitor" class="common-visitor-radio" value="楊榮河" id="common-visitor-7"><label for="common-visitor-7" onclick="fillCommonVisitor('楊榮河', '勤通')">勤O</label></div>
+                        <div><input type="radio" name="commonVisitor" class="common-visitor-radio" value="江國隆" id="common-visitor-8"><label for="common-visitor-8" onclick="fillCommonVisitor('江國隆', '峯華')">峯O</label></div>
+                        <div><input type="radio" name="commonVisitor" class="common-visitor-radio" value="黃詩雅" id="common-visitor-9"><label for="common-visitor-9" onclick="fillCommonVisitor('黃詩雅', '鉅釜')">鉅O</label></div>
+                        <div><input type="radio" name="commonVisitor" class="common-visitor-radio" value="林仕鑫" id="common-visitor-11"><label for="common-visitor-11" onclick="fillCommonVisitor('林仕鑫', '聯友')">聯O</label></div>
+                        <div><input type="radio" name="commonVisitor" class="common-visitor-radio" value="陳進丁" id="common-visitor-12"><label for="common-visitor-12" onclick="fillCommonVisitor('陳進丁', '鎰聖')">鎰O</label></div>
+                        <div><input type="radio" name="commonVisitor" class="common-visitor-radio" value="宋志偉" id="common-visitor-13"><label for="common-visitor-13" onclick="fillCommonVisitor('宋志偉', '承盛')">承O</label></div>
+                        <div><input type="radio" name="commonVisitor" class="common-visitor-radio" value="李忠樺" id="common-visitor-14"><label for="common-visitor-14" onclick="fillCommonVisitor('李忠樺', '嘉隆')">嘉O</label></div>
+                        <div><input type="radio" name="commonVisitor" class="common-visitor-radio" value="龔冠華" id="common-visitor-15"><label for="common-visitor-15" onclick="fillCommonVisitor('龔冠華', '順風')">順O</label></div>
+                        <div><input type="radio" name="commonVisitor" class="common-visitor-radio" value="李漢紅" id="common-visitor-16"><label for="common-visitor-16" onclick="fillCommonVisitor('李漢紅', '賀盛')">賀O</label></div>
+                        <div><input type="radio" name="commonVisitor" class="common-visitor-radio" value="蘇安淇" id="common-visitor-17"><label for="common-visitor-17" onclick="fillCommonVisitor('蘇安淇', '基峰')">基O</label></div>
+                        <div><input type="radio" name="commonVisitor" class="common-visitor-radio" value="傅建強" id="common-visitor-18"><label for="common-visitor-18" onclick="fillCommonVisitor('傅建強', '統一')">統O</label></div>
+                        <div><input type="radio" name="commonVisitor" class="common-visitor-radio" value="曾耀輝" id="common-visitor-19"><label for="common-visitor-19" onclick="fillCommonVisitor('曾耀輝', '首都')">首O</label></div>
+                        <div><input type="radio" name="commonVisitor" class="common-visitor-radio" value="華政偉" id="common-visitor-10"><label for="common-visitor-10" onclick="fillCommonVisitor('華政偉', '永久晟')">永O晟</label></div>
+                        <div><input type="radio" name="commonVisitor" class="common-visitor-radio" value="張鴻廷" id="common-visitor-2"><label for="common-visitor-2" onclick="fillCommonVisitor('張鴻廷', '新竹貨運')">新OO運</label></div>
+                        <!-- 可以根據需要添加更多按鈕 -->
+                    </div>
+                </div>
                 <div class="form-row">
                     <label for="name">事由   <spqn style = "color: #888;">Reason</span></label>
-                <div class="checkbox grid-reason" style="grid-template-columns: 1fr 1fr;">
-            <label>
-                <input type="radio" name="reason" class="reason" value="Material Pickup">
-                拜訪 <span class="en" style=" font-weight:500;color: #888;">Visit</span>
-            </label>
-            <label>
-                <input type="radio" name="reason" class="reason" value="Material Pickup">
-                廠商領料 <span class="en" style=" font-weight:500;color: #888;">Material Pickup</span>
-            </label>
-            <label>
-                <input type="radio" name="reason" class="reason" value="Material Return">
-                廠商退貨 <span class="en" style=" font-weight:500;color: #888;">Material Return</span>
-            </label>
-            <label>
-                <input type="radio" name="reason" class="reason" value="Transfer/Allocation">
-                轉廠、調撥 <span class="en" style=" font-weight:500;color: #888;">Transfer/Allocation</span>
-            </label>
-            <label>
-                <input type="radio" name="reason" class="reason" value="Shipment">
-                出貨 <span class="en" style=" font-weight:500;color: #888;">Shipment</span>
-            </label>
-            <div class="full-row other-row" style="display: flex; align-items: center; gap: 10px; margin-top: 4px;">
-                <input type="radio" name="reason" class="reason" value="Other" id="reason-other">
-                <label for="reason-other" style="margin:0;display:flex;align-items:center;gap:2px;">
-                    其他 <span class="en" style="font-weight:500;color: #888;">Other</span>
-                </label>
-                <input type="text" id="other" placeholder="請輸入說明 Please enter a description" style="flex:1; min-width:160px;">
+                <div class="checkbox grid-reason">
+                    <div>
+                        <input type="radio" name="reason" class="reason" value="Visit" id="reason-visit">
+                        <label for="reason-visit">拜訪 <span class="en" style=" font-weight:500;color: #888;">Visit</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" name="reason" class="reason" value="Shipment" id="reason-shipment">
+                        <label for="reason-shipment">出貨 <span class="en" style=" font-weight:500;color: #888;">Shipment</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" name="reason" class="reason" value="Material Pickup" id="reason-pickup">
+                        <label for="reason-pickup">廠商領料 <span class="en" style=" font-weight:500;color: #888;">Material Pickup</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" name="reason" class="reason" value="Material Return" id="reason-return">
+                        <label for="reason-return">廠商退貨 <span class="en" style=" font-weight:500;color: #888;">Material Return</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" name="reason" class="reason" value="Transfer/Allocation" id="reason-transfer">
+                        <label for="reason-transfer">轉廠、調撥 <span class="en" style=" font-weight:500;color: #888;">Transfer/Allocation</span></label>
+                    </div>
+                    <div class="full-row other-row" style="display: flex; align-items: center; gap: 10px; margin-top: 4px;">
+                        <input type="radio" name="reason" class="reason" value="Other" id="reason-other" style="display: none;">
+                        <span style="font-size: 1.2rem; margin-right: 10px;">其他:</span>
+                        <input type="text" id="other" placeholder="請輸入說明" style="flex:1; min-width:160px;">
+                    </div>
                 </div>
-            </div>
         </div>
                 <div class="form-row">
                     <label for="unit">來訪公司  <span style = "color: #888;">Visitor Company</span></label>
@@ -185,9 +209,8 @@
                         <div><input type="radio" name="npeople" class="npeople" value="2" id="npeople-2"><label for="npeople-2">2</label></div>
                         <div><input type="radio" name="npeople" class="npeople" value="3" id="npeople-3"><label for="npeople-3">3</label></div>
                         <div class="other-row" style="display: flex; align-items: center; gap: 10px; margin-top: 4px;">
-                            <label style="margin:0;display:flex;align-items:center;gap:2px;">
-                                其他 <span class="en" style="font-weight:500;color: #888;">Other</span>
-                            </label>
+                            <input type="radio" name="npeople" class="npeople" value="Other" id="npeople-other" style="display: none;">
+                            <span style="font-size: 1.2rem; margin-right: 10px;">其他:</span>
                             <input type="number" id="npeople-other-input" placeholder="請輸入人數" style="flex:1; min-width:160px;">
                         </div>
                     </div>
@@ -204,6 +227,12 @@
         </div>
     </div>
     <script>
+        // 自動填入常見訪客資訊
+        function fillCommonVisitor(name, company) {
+            document.getElementById('name').value = name;
+            document.getElementById('unit').value = company;
+        }
+
         document.addEventListener("DOMContentLoaded", function() {
             // 顯示/隱藏表單
             document.getElementById('agreeCheck').addEventListener('change', function () {
@@ -223,6 +252,77 @@
                     guestIdRow.style.display = 'none';
                 }
             }
+
+            // New logic for "Other" fields
+            // Helper function to manage disabling/enabling radio buttons and their labels
+            function setRadioGroupEnabled(groupName, enabled) {
+                const radios = document.querySelectorAll(`input[name="${groupName}"]`);
+                radios.forEach(radio => {
+                    // Don't disable the 'Other' radio itself, just the main ones
+                    if (radio.value !== 'Other') {
+                        radio.disabled = !enabled;
+                        const label = document.querySelector(`label[for="${radio.id}"]`);
+                        if (label) {
+                            label.style.opacity = enabled ? '1' : '0.5';
+                            label.style.pointerEvents = enabled ? 'auto' : 'none';
+                        }
+                    }
+                });
+            }
+
+            // Logic for Reason "Other"
+            const reasonOtherInput = document.getElementById('other');
+            const reasonOtherRadio = document.getElementById('reason-other');
+            const reasonRadios = document.querySelectorAll('input[name="reason"]');
+
+            reasonOtherInput.addEventListener('input', () => {
+                if (reasonOtherInput.value.trim() !== '') {
+                    reasonOtherRadio.checked = true;
+                    setRadioGroupEnabled('reason', false);
+                } else {
+                    // Only re-enable if no other radio is checked
+                    const anyReasonChecked = Array.from(reasonRadios).some(radio => radio.checked && radio.value !== 'Other');
+                    if (!anyReasonChecked) {
+                        setRadioGroupEnabled('reason', true);
+                    }
+                }
+            });
+
+            reasonRadios.forEach(radio => {
+                if (radio.value !== 'Other') {
+                    radio.addEventListener('click', () => {
+                        reasonOtherInput.value = '';
+                        setRadioGroupEnabled('reason', true);
+                    });
+                }
+            });
+
+
+            // Logic for Number of People "Other"
+            const npeopleOtherInput = document.getElementById('npeople-other-input');
+            const npeopleOtherRadio = document.getElementById('npeople-other');
+            const npeopleRadios = document.querySelectorAll('input[name="npeople"]');
+
+            npeopleOtherInput.addEventListener('input', () => {
+                if (npeopleOtherInput.value.trim() !== '') {
+                    if(npeopleOtherRadio) npeopleOtherRadio.checked = true;
+                    setRadioGroupEnabled('npeople', false);
+                } else {
+                    const anyNpeopleChecked = Array.from(npeopleRadios).some(radio => radio.checked && radio.value !== 'Other');
+                    if (!anyNpeopleChecked) {
+                        setRadioGroupEnabled('npeople', true);
+                    }
+                }
+            });
+
+            npeopleRadios.forEach(radio => {
+                if (radio.value !== 'Other') {
+                    radio.addEventListener('click', () => {
+                        npeopleOtherInput.value = '';
+                        setRadioGroupEnabled('npeople', true);
+                    });
+                }
+            });
         });
     </script>
 </body>

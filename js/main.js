@@ -106,10 +106,10 @@ function send_data(type){
         const npeople_selected = document.querySelector('input[name="npeople"]:checked');
         const npeople_other = document.getElementById('npeople-other-input').value;
 
-        if (npeople_selected) {
-            Npeople = npeople_selected.value;
-        } else if (npeople_other) {
+        if (npeople_selected && npeople_selected.value === 'Other') {
             Npeople = npeople_other;
+        } else if (npeople_selected) {
+            Npeople = npeople_selected.value;
         }
 
 
