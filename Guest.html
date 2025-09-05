@@ -253,6 +253,12 @@
                 }
             }
 
+            // Hide common visitors section if factory is not 'shangda'
+            const commonVisitorsSection = document.getElementById('common-visitors-section');
+            if (commonVisitorsSection && factory !== 'shangda') {
+                commonVisitorsSection.style.display = 'none';
+            }
+
             // New logic for "Other" fields
             // Helper function to manage disabling/enabling radio buttons and their labels
             function setRadioGroupEnabled(groupName, enabled) {
