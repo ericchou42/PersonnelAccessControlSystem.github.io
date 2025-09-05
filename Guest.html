@@ -260,21 +260,6 @@
             }
 
             // New logic for "Other" fields
-            // Helper function to manage disabling/enabling radio buttons and their labels
-            function setRadioGroupEnabled(groupName, enabled) {
-                const radios = document.querySelectorAll(`input[name="${groupName}"]`);
-                radios.forEach(radio => {
-                    // Don't disable the 'Other' radio itself, just the main ones
-                    if (radio.value !== 'Other') {
-                        radio.disabled = !enabled;
-                        const label = document.querySelector(`label[for="${radio.id}"]`);
-                        if (label) {
-                            label.style.opacity = enabled ? '1' : '0.5';
-                            label.style.pointerEvents = enabled ? 'auto' : 'none';
-                        }
-                    }
-                });
-            }
 
             // Logic for Reason "Other"
             const reasonOtherInput = document.getElementById('other');
@@ -284,13 +269,6 @@
             reasonOtherInput.addEventListener('input', () => {
                 if (reasonOtherInput.value.trim() !== '') {
                     reasonOtherRadio.checked = true;
-                    setRadioGroupEnabled('reason', false);
-                } else {
-                    // Only re-enable if no other radio is checked
-                    const anyReasonChecked = Array.from(reasonRadios).some(radio => radio.checked && radio.value !== 'Other');
-                    if (!anyReasonChecked) {
-                        setRadioGroupEnabled('reason', true);
-                    }
                 }
             });
 
@@ -298,7 +276,6 @@
                 if (radio.value !== 'Other') {
                     radio.addEventListener('click', () => {
                         reasonOtherInput.value = '';
-                        setRadioGroupEnabled('reason', true);
                     });
                 }
             });
@@ -312,12 +289,6 @@
             npeopleOtherInput.addEventListener('input', () => {
                 if (npeopleOtherInput.value.trim() !== '') {
                     if(npeopleOtherRadio) npeopleOtherRadio.checked = true;
-                    setRadioGroupEnabled('npeople', false);
-                } else {
-                    const anyNpeopleChecked = Array.from(npeopleRadios).some(radio => radio.checked && radio.value !== 'Other');
-                    if (!anyNpeopleChecked) {
-                        setRadioGroupEnabled('npeople', true);
-                    }
                 }
             });
 
@@ -325,7 +296,6 @@
                 if (radio.value !== 'Other') {
                     radio.addEventListener('click', () => {
                         npeopleOtherInput.value = '';
-                        setRadioGroupEnabled('npeople', true);
                     });
                 }
             });
