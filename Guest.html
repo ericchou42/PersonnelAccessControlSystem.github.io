@@ -173,7 +173,14 @@
                 </div>
                 <div class="form-row">
                     <label for="visited">受訪者  <span style = "color: #888;">Contact Person</span></label>
-                    <input type="text" id="visited" autocomplete="off" placeholder="請輸入受訪者姓名 Please enter contact person’s name">
+                    <input type="text" id="visited" name="visited" autocomplete="off" placeholder="請點選下方按鈕或直接輸入">
+                </div>
+                <div class="form-row" id="interviewee-buttons-section">
+                    <div class="checkbox grid-identity">
+                        <div><input type="radio" name="interviewee_btn" id="interviewee_btn_1" value="資材" onclick="document.getElementById('visited').value = this.value"><label for="interviewee_btn_1">資材</label></div>
+                        <div><input type="radio" name="interviewee_btn" id="interviewee_btn_2" value="收發" onclick="document.getElementById('visited').value = this.value"><label for="interviewee_btn_2">收發</label></div>
+                        <div><input type="radio" name="interviewee_btn" id="interviewee_btn_3" value="廠務" onclick="document.getElementById('visited').value = this.value"><label for="interviewee_btn_3">廠務</label></div>
+                    </div>
                 </div>
                 <div class="form-row" id="guest-id-row">
                     <label for="identity">來賓證號  <span style = "color: #888;">Guest ID Number</span></label>
@@ -257,6 +264,12 @@
             const commonVisitorsSection = document.getElementById('common-visitors-section');
             if (commonVisitorsSection && factory !== 'shangda') {
                 commonVisitorsSection.style.display = 'none';
+            }
+
+            // Hide interviewee buttons section if factory is not 'shangda'
+            const intervieweeButtonsSection = document.getElementById('interviewee-buttons-section');
+            if (intervieweeButtonsSection && factory !== 'shangda') {
+                intervieweeButtonsSection.style.display = 'none';
             }
 
             // New logic for "Other" fields
