@@ -114,7 +114,7 @@ function send_data(type){
 
 
         let Reason_string = ""
-        let Reason_dic = ["拜訪", "廠商領料", "廠商退貨", "轉廠、調撥", "出貨"];
+        let Reason_dic = ["拜訪", "出貨", "廠商領料", "廠商退貨", "轉廠、調撥"];
 
         if(!Agree){
             Alertstr += "閱讀須知並勾選同意 ";
