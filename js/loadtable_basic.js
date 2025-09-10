@@ -154,7 +154,7 @@ function send() {
     .then(data => {
         if (data.success) {
             alert('更新成功！');
-            location.reload();
+            window.location.href = 'index.html?factory=' + document.getElementById('factorySite').value;
         } else {
             alert('更新失敗');
         }
