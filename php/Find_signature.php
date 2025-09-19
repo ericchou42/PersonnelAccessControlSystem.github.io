@@ -18,31 +18,19 @@ if ($conn->connect_error) {
 $conn->set_charset("utf8mb4");
 
 $input = json_decode(file_get_contents("php://input"), true);
-$name = $input['name'] ?? null;
+$id = $input['id'] ?? null;
 
-if (!$name) {
-    echo json_encode(['success'=>false, 'msg'=>'缺少name']);
+if (!$id) {
+    echo json_encode(['success'=>false, 'msg'=>'缺少id']);
     exit;
 }
 
-// 1. 用 Name 查 ID（只取第一個）
-$sql = "SELECT Id FROM user WHERE Name = ? LIMIT 1";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $name);
-$stmt->execute();
-$stmt->bind_result($id);
-if(!$stmt->fetch()){
-    echo json_encode(['success'=>false, 'msg'=>'找不到該用戶']);
-    exit;
-}
-$stmt->close();
-
-// 2. 用 ID 去找檔案
+// 用 ID 去找檔案
 $signature_dir = '../signatures/';
-$files = glob($signature_dir . $id . '_*.*');
+$files = glob($signature_dir . intval($id) . '_*.*');
 
 if (!$files || count($files) == 0) {
-    echo json_encode(['success'=>false, 'msg'=>'找不到簽名檔案'+ $name]);
+    echo json_encode(['success'=>false, 'msg'=>'找不到簽名檔案 for ID: '. $id]);
     exit;
 }
 
@@ -52,3 +40,4 @@ $file = $files[0];
 $file_url = substr($file, 3); // 視你的網站結構，可能要改成正確相對路徑
 
 echo json_encode(['success'=>true, 'file'=>$file_url]);
+?>

@@ -91,18 +91,18 @@ function load_list(num, time) {
                     </td>
                     `;
                 if(num == 0){
-                    tr.innerHTML+= `<td onclick="Download('${row.Name}')">下載</td>`
+                    tr.innerHTML+= `<td onclick="Download(${row.Id}, '${row.Name}')">下載</td>`
                 }
                 table.appendChild(tr);
             });
         });
 }
-async function Download(name){
+async function Download(id, name){
     // 1. 取得簽名圖檔案路徑
     const sigRes = await fetch("php/Find_signature.php", {
         method: "POST",
         headers: {"Content-Type":"application/json"},
-        body: JSON.stringify({name: name})
+        body: JSON.stringify({id: id})
     });
     const sigData = await sigRes.json();
 
@@ -133,7 +133,7 @@ async function Download(name){
 
     // 貼上去（x, y 以左下角為原點，可依需求自訂座標）
     page.drawImage(img, {
-        x: 50,   // 水平位置
+        x: 10,   // 水平位置
         y: 20,    // 垂直位置
         width: imgDims.width,
         height: imgDims.height,
